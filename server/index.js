@@ -5,6 +5,9 @@ const massive = require('massive');
 const session = require('express-session');
 const path = require('path');
 
+/* CONTROLLER IMPORTS */
+const userCtrl = require('./controllers/userCtrl');
+
 const app = express();
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
@@ -21,6 +24,28 @@ app.use(
         }
     })
 );
+
+
+
+/* AUTH ENDPOINTS */
+
+// REGISTER
+app.post('/auth/register', userCtrl.register);
+
+// LOGIN
+app.post('/auth/login', userCtrl.login);
+
+// LOGOUT
+app.delete('/auth/logout', userCtrl.logout);
+
+// DELETE ACCOUNT
+app.delete('/auth/delete/:id', userCtrl.deleteAccount)
+
+// USER SESSION
+app.get('/auth/session', userCtrl.getSession);
+
+// CHANGE PASSWORD
+// app.put('/auth/change');
 
 
 
