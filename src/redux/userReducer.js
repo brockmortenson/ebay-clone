@@ -7,18 +7,18 @@ const initialState = {
 };
 
 // ACTION TYPES
-const USER_LOGIN = 'USER_LOGIN';
+const USER_DATA = 'USER_DATA';
 const USER_LOGOUT = 'USER_LOGOUT';
 const GET_USER = 'GET_USER';
 
 // ACTION CREATORS
-export const loginUser = () => {
+export const userData = () => {
     let data = axios.get('/auth/session')
         .then(res => res.data)
         .catch(err => console.log(err));
 
         return {
-            type: USER_LOGIN,
+            type: USER_DATA,
             payload: data
         };
 }
@@ -35,7 +35,7 @@ export const userLogout = () => {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case USER_LOGIN + '_FULFILLED':
+        case USER_DATA + '_FULFILLED':
             return {
                 user: action.payload,
                 isLoggedIn: true
