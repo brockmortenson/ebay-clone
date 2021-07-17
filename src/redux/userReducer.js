@@ -3,7 +3,7 @@ import axios from 'axios';
 // INITIAL STATE
 const initialState = {
     user: {},
-    isLoggedIn: false
+    pending: null
 };
 
 // ACTION TYPES
@@ -33,12 +33,23 @@ export const userLogout = () => {
         };
 }
 
+export const getUser = () => {
+    return {
+        type: GET_USER
+    }
+}
+
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
+        case USER_DATA + '_PENDING':
+            return {
+                pending: true
+            }
         case USER_DATA + '_FULFILLED':
             return {
                 user: action.payload,
-                isLoggedIn: true
+                pending: false
             };
         
         case USER_LOGOUT:

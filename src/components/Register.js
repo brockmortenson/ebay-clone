@@ -3,20 +3,20 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import { useHistory } from 'react-router-dom';
+import store from '../redux/store';
 
 const Register = (props) => {
     // REGISTER STATE
-    // const [ email, setEmail ] = useState('');
-    // const [ password, setPassword ] = useState('');
-    // const [ username, setUsername ] = useState('');
     const [ data, setData ] = useState({
         email: '',
         username: '',
         password: '',
-        birthday: null
+        birthday: ''
     });
 
-    // REGISTER ERRORS
+    const [ user, setUser ] = useState();
+
+    // REGISTER ERROR
     const [ registerError, setRegisterError ] = useState('');
 
     const history = useHistory();
@@ -30,14 +30,10 @@ const Register = (props) => {
             birthday: data.birthday
         };
         try {
-            await axios
+            const response = await axios
                     .post('/auth/register', body)
-                    .then(res => {
-                        props.userData({
-                            username: res.data.username,
-                            id: res.data.user_id
-                        })
-                    })
+                    props.userData()
+                    setUser(response.data)
         } catch (err) {
             console.log(err);
             setRegisterError('*A user with this email already exists*')
@@ -48,10 +44,25 @@ const Register = (props) => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
+    const checkEmail = () => {
+        if (data.email.includes('@' && '.')) {
+            setRegisterError('')
+            return;
+        } else {
+            setRegisterError('*Invalid email address*')
+        }
+    }
+
+    let isLoading = store.getState().user.pending;
+    // console.log(isLoading)
+
     return (
         <div className='Register'>
-            register component
             <br />
+            <br />
+            register component
+            { user ? <div>Hello, {user.username}</div> : null }
+            <div>{registerError}</div>
             <form onSubmit={register}>
                 <input
                     type='text'
@@ -59,6 +70,7 @@ const Register = (props) => {
                     name='email'
                     onChange={handleChange}
                     value={data.email}
+                    onKeyUp={checkEmail}
                     required
                 />
                 <input
@@ -85,8 +97,9 @@ const Register = (props) => {
                     value={data.birthday}
                     required
                 />
-                <button type='submit'>Register</button>
+                <button type='submit'>Create Account</button>
             </form>
+            <div>{ isLoading ? <h2>loading................</h2> : null }</div>
         </div>
     );
 }

@@ -6,16 +6,18 @@ module.exports = {
         const { email, password, username, birthday, created_on } = req.body;
 
         try {
-            const [ existingUser ] = await db.auth.check_existing_user(email);
+            const [ existingUser ] = await db.auth.check_existing_user(email, username);
 
             if (existingUser) {
-                return res.status(409).send('A user with this email already exists');
+                return res.status(409).send('A user with this email or username already exists');
             }
 
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
 
             const [ newUser ] = await db.auth.register_user(email, hash, username, birthday, created_on);
+
+            delete newUser.hash;
 
             req.session.user = newUser;
 
