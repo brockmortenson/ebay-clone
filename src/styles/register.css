@@ -1,0 +1,7 @@
+.Register {
+    max-width: 1100px;
+    padding: 150px 30px;
+    margin:  0 auto;
+    overflow: auto;
+    background-color: rgb(174, 124, 240);
+}

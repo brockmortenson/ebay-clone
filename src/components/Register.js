@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import { useHistory } from 'react-router-dom';
 import store from '../redux/store';
+import '../styles/register.css';
 
 const Register = (props) => {
     // REGISTER STATE
@@ -59,7 +60,6 @@ const Register = (props) => {
     return (
         <div className='Register'>
             <br />
-            <br />
             register component
             { user ? <div>Hello, {user.username}</div> : null }
             <div>{registerError}</div>
@@ -81,14 +81,18 @@ const Register = (props) => {
                     value={data.username}
                     required
                 />
-                <input
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                    onChange={handleChange}
-                    value={data.password}
-                    required
-                />
+                <div>
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        name='password'
+                        onChange={handleChange}
+                        value={data.password}
+                        minLength='6'
+                        required
+                    />
+                    <p>Password must be at least 6 characters</p>
+                </div>
                 <input
                     type='date'
                     // placeholder='Email'
@@ -99,7 +103,7 @@ const Register = (props) => {
                 />
                 <button type='submit'>Create Account</button>
             </form>
-            <div>{ isLoading ? <h2>loading................</h2> : null }</div>
+            <div>{ isLoading ? <h2>..................loading................</h2> : null }</div>
         </div>
     );
 }

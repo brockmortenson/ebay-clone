@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import { useHistory, Link } from 'react-router-dom';
 import store from '../redux/store';
+import '../styles/login.css';
 
 const Login = (props) => {
     // LOGIN STATE
@@ -18,7 +19,7 @@ const Login = (props) => {
     // LOGIN ERROR
     const [ loginError, setLoginError ] = useState('');
     
-    const history = useHistory();
+    // const history = useHistory();
     
     const login = async (e) => {
         e.preventDefault();
@@ -46,11 +47,9 @@ const Login = (props) => {
     return (
         <div className='Login'>
             <br />
-            <br />
             Login component hiiii
-            { user ? <div>Hello, {user.username}</div> : null }
             <form onSubmit={login}>
-            <input
+                <input
                     type='text'
                     placeholder='Username'
                     name='username'
@@ -58,7 +57,7 @@ const Login = (props) => {
                     value={data.username}
                     autoComplete='on'
                     required
-                />
+                    />
                 <input
                     type='password'
                     placeholder='Password'
@@ -66,19 +65,11 @@ const Login = (props) => {
                     onChange={handleChange}
                     value={data.password}
                     required
-                />
-                <button type='submit'>Login</button>
+                    />
+                <button type='submit'>Login { user && !isLoading ? <Link to='/'></Link> : null }</button>
             </form>
-            <section>
-                <div>
-                    <h1>Don't have an account?</h1>
-                    <div>
-                        <Link to='/Register'><p>Sign Up</p></Link>
-                        <p>instead</p>
-                    </div>
-                </div>
-            </section>
             <div>{ isLoading ? <h2>loading................</h2> : null }</div>
+            { user ? <div>Hello, {user.username}</div> : null }
         </div>
     );
 }
