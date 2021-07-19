@@ -6,10 +6,10 @@ function NavThree() {
     return (
         <div className='NavThree'>
             <p>Home</p>
-            <p>Fashion</p>
             <p>Electronics</p>
-            <p>Home &#38; Garden</p>
-            <p>Sporting Goods</p>
+            <p>Men's Apparel</p>
+            <p>Women's Apparel</p>
+            <p>Jewelry</p>
         </div>
     );
 }

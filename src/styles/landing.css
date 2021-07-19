@@ -5,3 +5,12 @@
     overflow: auto;
     background-color: rgb(43, 226, 67);
 }
+
+.products img {
+    width: 100px;
+    height: 100px;
+}
+
+.Landing button {
+    cursor: pointer;
+}

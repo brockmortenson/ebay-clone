@@ -1,18 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import store from '../redux/store';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userLogout } from '../redux/userReducer';
 import '../styles/navOne.css';
+import axios from 'axios';
 
 function NavOne(props) {
+    const [ name, setName ] = useState('closed')
+    // console.log(name)
 
-    let user = store.getState().user.user.username;
+    const history = useHistory();
+
+    const logout = () => {
+        try {
+            axios
+                .delete('/auth/logout')
+                props.userLogout();
+                history.replace('/')
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <div className='NavOne'>
             {
-            props.profileName
+            props.loggedIn
             ?
-            <div>Hello, {user}</div>
+            <div
+                className='conditional'
+                onMouseEnter={ () => setName('open') }
+                onMouseLeave={ () => setName('closed') }
+            >
+                Hi, {props.userName} &#11167;
+                <div className={name} >
+                    <span id='email'>{props.email}</span>
+                    {/* <Link>My Account</Link> */}
+                    <p>My Account</p>
+                    <p onClick={logout}>Logout</p>
+                </div>
+            </div>
             :
             <div>Hi! {' '}
                 <Link to='/Login'>Login</Link>
@@ -24,4 +51,7 @@ function NavOne(props) {
     );
 }
 
-export default NavOne;
+// REDUX STATE
+const mapStateToProps = (state) => { return state }
+
+export default connect(mapStateToProps, { userLogout })(NavOne);

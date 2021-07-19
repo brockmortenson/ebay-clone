@@ -11,7 +11,10 @@ function Header(props) {
             <div>
                 <nav className='nav-one'>
                     <div className='nav-one-group-one'>
-                        <NavOne profileName={props.profileName} />
+                        <NavOne
+                            loggedIn={props.loggedIn}
+                            userName={props.userName}
+                            email={props.email} />
                         <p>About</p>
                         <p>Contact Us</p>
                     </div>

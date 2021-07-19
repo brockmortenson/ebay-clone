@@ -15,6 +15,7 @@ const Register = (props) => {
         birthday: ''
     });
 
+    // THE USER
     const [ user, setUser ] = useState();
 
     // REGISTER ERROR
@@ -35,9 +36,10 @@ const Register = (props) => {
                     .post('/auth/register', body)
                     props.userData()
                     setUser(response.data)
+                    history.push('/')
         } catch (err) {
             console.log(err);
-            setRegisterError('*A user with this email already exists*')
+            setRegisterError('*A user with this email already exists*');
         }
     }
 
@@ -79,6 +81,7 @@ const Register = (props) => {
                     name='username'
                     onChange={handleChange}
                     value={data.username}
+                    maxLength='10'
                     required
                 />
                 <div>

@@ -13,13 +13,13 @@ const Login = (props) => {
         password: ''
     });
 
-    const [ user, setUser ] = useState()
-
+    // THE USER
+    const [ user, setUser ] = useState();
     
     // LOGIN ERROR
     const [ loginError, setLoginError ] = useState('');
     
-    // const history = useHistory();
+    const history = useHistory();
     
     const login = async (e) => {
         e.preventDefault();
@@ -29,9 +29,10 @@ const Login = (props) => {
         };
         try {
             const response = await axios
-            .post('/auth/login', body);
-            props.userData()
-            setUser(response.data)
+                .post('/auth/login', body);
+                props.userData()
+                setUser(response.data)
+                history.push('/') 
         } catch (err) {
             console.log(err);
             setLoginError('*Incorrect username or password*')
@@ -43,10 +44,12 @@ const Login = (props) => {
     }
 
     let isLoading = store.getState().user.pending;
+    // console.log(isLoading);
             
     return (
         <div className='Login'>
             <br />
+            {loginError}
             Login component hiiii
             <form onSubmit={login}>
                 <input
@@ -66,9 +69,9 @@ const Login = (props) => {
                     value={data.password}
                     required
                     />
-                <button type='submit'>Login { user && !isLoading ? <Link to='/'></Link> : null }</button>
+                <button type='submit'>Login</button>
             </form>
-            <div>{ isLoading ? <h2>loading................</h2> : null }</div>
+            {/* <div >{ isLoading ? <h2 className='loading'>loading................</h2> : null }</div> */}
             { user ? <div>Hello, {user.username}</div> : null }
         </div>
     );
