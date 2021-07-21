@@ -7,6 +7,10 @@ const Landing = (props) => {
     const [ products, setProducts ] = useState([]);
     const [ page, setPage ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
+    const [ loadError, setLoadError ] = useState(false);
+
+    const loadingError1 = 'Unable to load window';
+    const loadingError2 = 'This may be due to a poor internet connection';
 
     useEffect(() => {
         axios
@@ -16,8 +20,11 @@ const Landing = (props) => {
                 setProducts(res.data)
                 setIsLoaded(true)
             })
-            .catch(err => console.log(err))
-            console.log(props)
+            .catch(err => {
+                console.log(err)
+                setLoadError(true)
+            })
+            // console.log(props)
     }, [])
 
     const pageOneProducts = products.map((product) => {
@@ -64,6 +71,17 @@ const Landing = (props) => {
     return (
         <div className='Landing'>
             <p>HOME</p>
+            { loadError ?
+            <div className='error'>
+                <div onClick={() => setLoadError(false)}>
+                    <h1>X</h1>
+                </div>
+                <h2>{loadingError1}</h2>
+                <p>{loadingError2}</p>
+            </div>
+            :
+            null
+            }
             { !isLoaded ? <div className='lds-ring'><div></div><div></div><div></div><div></div></div> : null }
             { !page ?
             <div className='product-view'>

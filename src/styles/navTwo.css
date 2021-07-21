@@ -1,5 +1,52 @@
 .NavTwo {
-    height: 15px;
+    /* height: 15px; */
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
+}
+
+.NavTwo div {
+    display: flex;
+    padding-right: 15px;
+    transform: rotate3d(1, 1, 1, -10deg);
+}
+
+.NavTwo div p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.NavTwo div span:nth-child(1) {
+    color: red;
+}
+.NavTwo div span:nth-child(2) {
+    color: blue;
+}
+.NavTwo div span:nth-child(3) {
+    color: yellow;
+}
+.NavTwo div span:nth-child(4) {
+    color: green;
+}
+
+.NavTwo section {
+    display: flex;
+    width: 100vw;
+}
+
+.NavTwo section input {
+    width: 100%;
+    position: relative;
+}
+
+.NavTwo section select {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.NavTwo section button {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

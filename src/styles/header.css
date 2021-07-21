@@ -25,11 +25,11 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* max-width: 1100px; */
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgb(194, 194, 194);
 }
 
 .nav-one-group-one {
-    /* height: 15px; */
     width: 30%;
     display: flex;
     justify-content: space-evenly;
@@ -37,7 +37,6 @@
 }
 
 .nav-one-group-two {
-    /* height: 15px; */
     width: 30%;
     display: flex;
     justify-content: space-evenly;
@@ -45,8 +44,6 @@
 
 .nav-two {
     width: 100%;
-    /* max-width: 1100px; */
-    /* display: flex; */
 }
 
 .nav-three {
