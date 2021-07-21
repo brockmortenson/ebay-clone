@@ -1,0 +1,51 @@
+.Women {
+    max-width: 1100px;
+    padding: 150px 30px;
+    margin:  0 auto;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+    border-inline: 1px solid rgb(194, 194, 194);
+}
+
+.Women > p {
+    padding: 20px 0;
+    font-size: 22px;
+}
+
+.map-womens img {
+    width: 200px;
+    height: 200px;
+}
+
+.map-womens {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.4s ease;
+}
+
+.map-womens:hover {
+    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
+}
+
+.map-womens div:nth-child(2) {
+    height: auto;
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.map-womens div:nth-child(3) {
+    padding: 5px;
+    font-size: 20px;
+}

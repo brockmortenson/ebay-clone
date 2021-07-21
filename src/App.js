@@ -23,7 +23,8 @@ function App() {
       <Header
         loggedIn={profile}
         userName={user}
-        email={userEmail} />
+        email={userEmail}
+      />
       {routes}
     </div>
   );

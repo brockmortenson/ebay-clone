@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavOne from './NavOne';
 import NavTwo from './NavTwo';
 import NavThree from './NavThree';

@@ -3,35 +3,37 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/landing.css';
 
-const Landing = () => {
+const Landing = (props) => {
     const [ products, setProducts ] = useState([]);
     const [ page, setPage ] = useState(false);
     const [ isLoaded, setIsLoaded ] = useState(false);
 
-    useEffect(async () => {
-        await axios
+    useEffect(() => {
+        axios
             .get('https://fakestoreapi.com/products')
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setProducts(res.data)
                 setIsLoaded(true)
             })
             .catch(err => console.log(err))
+            console.log(props)
     }, [])
 
     const pageOneProducts = products.map((product) => {
         if (product.id <= 10) {
             return (
                 <div
-                key={product.id}
-                className='products'    
+                    key={product.id}
+                    className='products'    
                 >
-                    <div>{product.title}</div>
-                    <img src={product.image} />
-                    <div>{product.price}</div>
-                    {/* <div>{product.description}</div> */}
+                    <img src={product.image} alt='products1' />
+                    <div>
+                        <p>{product.title}</p>
+                    </div>
+                    <div>${product.price}</div>
                 </div>
-            )
+            );
         }
     })
 
@@ -42,11 +44,13 @@ const Landing = () => {
                     key={product.id}
                     className='products'
                 >
-                    <div>{product.title}</div>
-                    <img src={product.image} />
-                    <div>{product.price}</div>
+                    <img src={product.image} alt='products2' />
+                    <div>
+                        <p>{product.title}</p>
+                    </div>
+                    <div>${product.price}</div>
                 </div>
-            )
+            );
         }
     })
 
@@ -55,23 +59,33 @@ const Landing = () => {
         window.scroll(0,0)
     }
 
+    // Loading Animation From 'loading.io'
+
     return (
         <div className='Landing'>
-            Landing page hello
-            { !isLoaded ? <div>LOADING...........................</div> : null }
+            <p>HOME</p>
+            { !isLoaded ? <div className='lds-ring'><div></div><div></div><div></div><div></div></div> : null }
             { !page ?
-            <div>
+            <div className='product-view'>
                 {pageOneProducts}
-                <div>
+                { isLoaded ?
+                <div className='btn'>
                     <button onClick={handleClick}>Next Page &#11166;</button>
                 </div>
+                :
+                null
+                }
             </div>
             :
-            <div>
+            <div className='product-view'>
                 {pageTwoProducts}
-                <div>
+                { isLoaded ?
+                <div className='btn'>
                     <button onClick={handleClick}>&#11164; Previous Page</button>
                 </div>
+                :
+                null
+                }
             </div>
             }
         </div>
