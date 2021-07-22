@@ -5,7 +5,6 @@
     overflow: auto;
     background-color: rgb(255, 255, 255);
     border-inline: 1px solid rgb(194, 194, 194);
-    /* border: 1px dou; */
 }
 
 .Landing > p {
@@ -29,7 +28,18 @@
 }
 
 .btn button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    color: white;
+    background-color: #396bf6;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn button:hover {
+    background-color: rgb(78, 196, 78);
 }
 
 .products {
@@ -42,6 +52,7 @@
     margin: 5px;
     border: 1px solid rgb(194, 194, 194);
     border-radius: 5px;
+    color: black;
     cursor: pointer;
     transition: box-shadow 0.4s ease;
 }

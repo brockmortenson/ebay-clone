@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/landing.css';
 
@@ -30,16 +30,19 @@ const Landing = (props) => {
     const pageOneProducts = products.map((product) => {
         if (product.id <= 10) {
             return (
-                <div
+                <Link
                     key={product.id}
-                    className='products'    
+                    to={`/ProductView/${product.id}`}
+                    style={{ textDecoration: 'none' }}
                 >
-                    <img src={product.image} alt='products1' />
-                    <div>
-                        <p>{product.title}</p>
+                    <div className='products'>
+                        <img src={product.image} alt='products1' />
+                        <div>
+                            <p>{product.title}</p>
+                        </div>
+                        <div>${product.price}</div>
                     </div>
-                    <div>${product.price}</div>
-                </div>
+                </Link>
             );
         }
     })
@@ -47,16 +50,18 @@ const Landing = (props) => {
     const pageTwoProducts = products.map((product) => {
         if (product.id > 10) {
             return (
-                <div
+                <Link
                     key={product.id}
-                    className='products'
+                    style={{ textDecoration: 'none' }}
                 >
-                    <img src={product.image} alt='products2' />
-                    <div>
-                        <p>{product.title}</p>
+                    <div className='products'>
+                        <img src={product.image} alt='products2' />
+                        <div>
+                            <p>{product.title}</p>
+                        </div>
+                        <div>${product.price}</div>
                     </div>
-                    <div>${product.price}</div>
-                </div>
+                </Link>
             );
         }
     })
@@ -99,7 +104,7 @@ const Landing = (props) => {
                 {pageTwoProducts}
                 { isLoaded ?
                 <div className='btn'>
-                    <button onClick={handleClick}>&#11164; Previous Page</button>
+                    <button onClick={handleClick} style={{ textDecoration: 'none' }}>&#11164; Previous Page</button>
                 </div>
                 :
                 null

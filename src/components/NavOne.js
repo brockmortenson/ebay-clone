@@ -42,9 +42,21 @@ function NavOne(props) {
             </div>
             :
             <div>Hi! {' '}
-                <Link to='/Login'>Login</Link>
+                <Link
+                    to='/Login'
+                    className='auth'
+                    style={{ textDecoration: 'none' }}
+                >
+                    Login
+                </Link>
                 {' '} or {' '}
-                <Link to='/Register'>Register</Link>
+                <Link
+                    to='/Register'
+                    className='auth'
+                    style={{ textDecoration: 'none' }}
+                >
+                    Register
+                </Link>
             </div>
             }
         </div>

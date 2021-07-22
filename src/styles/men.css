@@ -29,6 +29,7 @@
     margin: 5px;
     border: 1px solid rgb(194, 194, 194);
     border-radius: 5px;
+    color: black;
     cursor: pointer;
     transition: box-shadow 0.4s ease;
 }

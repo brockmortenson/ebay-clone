@@ -5,7 +5,7 @@
     justify-content: space-evenly;
 }
 
-.NavTwo div {
+.NavTwo > div {
     display: flex;
     padding-right: 15px;
     transform: rotate3d(1, 1, 1, -10deg);
@@ -19,34 +19,18 @@
 }
 
 .NavTwo div span:nth-child(1) {
-    color: red;
+    color: rgb(230, 92, 92);
 }
 .NavTwo div span:nth-child(2) {
-    color: blue;
+    color: #396bf6;
 }
 .NavTwo div span:nth-child(3) {
-    color: yellow;
+    color: rgb(209, 209, 70);
 }
 .NavTwo div span:nth-child(4) {
-    color: green;
+    color: rgb(78, 196, 78);
 }
 
 .NavTwo section {
-    display: flex;
     width: 100vw;
-}
-
-.NavTwo section input {
-    width: 100%;
-    position: relative;
-}
-
-.NavTwo section select {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.NavTwo section button {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
 }

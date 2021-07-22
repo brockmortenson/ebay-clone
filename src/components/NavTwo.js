@@ -1,4 +1,5 @@
 import React from 'react';
+import StoreSearch from './StoreSearch';
 import '../styles/navTwo.css';
 
 function NavTwo() {
@@ -20,17 +21,7 @@ function NavTwo() {
                 </span>
             </div>
             <section>
-                <select>
-                    <option selected disabled>Category</option>
-                    <option>Electronics</option>
-                    <option>Men's</option>
-                    <option>Women's</option>
-                    <option>Jewelry</option>
-                </select>
-                <input
-                    placeholder='Search for anything'
-                />
-                <button>Search Button</button>
+                <StoreSearch />
             </section>
         </div>
     );

@@ -1,0 +1,30 @@
+.StoreSearch form {
+    height: 100%;
+    display: flex;
+}
+
+.StoreSearch input {
+    width: 100%;
+    position: relative;
+}
+
+.StoreSearch select {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.StoreSearch button {
+    padding: 10px 15px;
+    font-size: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #396bf6;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.StoreSearch button:hover {
+    background-color: rgb(78, 196, 78);
+}

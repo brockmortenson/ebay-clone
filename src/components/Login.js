@@ -43,7 +43,7 @@ const Login = (props) => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
 
-    let isLoading = store.getState().user.pending;
+    // let isLoading = store.getState().user.pending;
     // console.log(isLoading);
             
     return (

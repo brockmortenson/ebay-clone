@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/men.css';
 
 function Men() {
@@ -26,16 +27,19 @@ function Men() {
 
     const mappedProducts = products.map((product) => {
         return (
-            <div
+            <Link
                 key={product.id}
-                className='map-mens'
+                to={`/ProductView/${product.id}`}
+                style={{ textDecoration: 'none' }}
             >
-                <img src={product.image} alt='mens' />
-                <div>
-                    <p>{product.title}</p>
+                <div className='map-mens'>
+                    <img src={product.image} alt='mens' />
+                    <div>
+                        <p>{product.title}</p>
+                    </div>
+                    <div>${product.price}</div>
                 </div>
-                <div>${product.price}</div>
-            </div>
+            </Link>
         );
     })
 

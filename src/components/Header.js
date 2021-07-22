@@ -2,6 +2,8 @@ import React from 'react';
 import NavOne from './NavOne';
 import NavTwo from './NavTwo';
 import NavThree from './NavThree';
+import { Link } from 'react-router-dom'
+import cartImg from '../images/cart.png';
 import '../styles/header.css';
 
 function Header(props) {
@@ -21,7 +23,7 @@ function Header(props) {
                     <div className='nav-one-group-two'>
                         <p>Saved Items</p>
                         <p>My Account</p>
-                        <p>Cart Img</p>
+                        <Link to='/Cart'><img src={cartImg} alt='cart' /></Link>
                     </div>
                 </nav>
                 <nav className='nav-two'>
