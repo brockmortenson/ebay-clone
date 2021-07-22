@@ -76,17 +76,17 @@
     border-radius: 5px;
 }
 
-.log-in p {
+.log-in span {
     display: flex;
     justify-content: center;
 }
 
-.log-in p p {
+.log-in span p {
     padding-inline: 6px;
     color: #396bf6;
     transition: color 0.3s ease;
 }
 
-.log-in p p:hover {
+.log-in span p:hover {
     color: white;
 }

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import store from '../redux/store';
+import { addToCart } from '../redux/cartReducer';
+import { connect } from 'react-redux';
 import '../styles/productView.css';
 
 function ProductView(props) {
@@ -32,6 +34,13 @@ function ProductView(props) {
         } else {
             setUser(false)
         }
+
+        addItem()
+    }
+
+    // CREATE ENDPOINT AND CONTROLLER FOR CART
+    const addItem = () => {
+        props.addToCart(item)
     }
 
     return (
@@ -55,13 +64,13 @@ function ProductView(props) {
                         user
                         ?
                             <div className='log-in'>
-                                <p>
+                                <span>
                                     Please
                                     <Link to='/Login' style={{ textDecoration: 'none' }}><p>Login</p></Link>
                                     or
                                     <Link to='/Register' style={{ textDecoration: 'none' }}><p>Register</p></Link>
                                     in order to add this item to your cart
-                                </p>
+                                </span>
                             </div>
                         :
                         null
@@ -73,4 +82,6 @@ function ProductView(props) {
     );
 }
 
-export default ProductView;
+const mapStateToProps = (state) => { return state }
+
+export default connect(mapStateToProps, { addToCart })(ProductView);

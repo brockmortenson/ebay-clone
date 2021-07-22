@@ -15,7 +15,7 @@ function NavThree() {
         setName3('unselected')
         setName4('unselected')
         setName5('unselected')
-        console.log(name1)
+        // console.log(name1)
     }
     const handleElec = () => {
         setName2('selected-nav')
@@ -23,7 +23,7 @@ function NavThree() {
         setName3('unselected')
         setName4('unselected')
         setName5('unselected')
-        console.log(name2)
+        // console.log(name2)
     }
     const handleMen = () => {
         setName3('selected-nav')
@@ -31,7 +31,7 @@ function NavThree() {
         setName2('unselected')
         setName4('unselected')
         setName5('unselected')
-        console.log(name3)
+        // console.log(name3)
     }
     const handleWomen = () => {
         setName4('selected-nav')
@@ -39,7 +39,7 @@ function NavThree() {
         setName2('unselected')
         setName3('unselected')
         setName5('unselected')
-        console.log(name4)
+        // console.log(name4)
     }
     const handleJewelry = () => {
         setName5('selected-nav')
@@ -47,7 +47,7 @@ function NavThree() {
         setName2('unselected')
         setName3('unselected')
         setName4('unselected')
-        console.log(name5)
+        // console.log(name5)
     }
 
     return (

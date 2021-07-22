@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // INITIAL STATE
 const initialState = {
     cart: {}
@@ -16,6 +18,15 @@ export const getCart = (cart) => {
     };
 }
 
+export const addToCart = (cart) => {
+    // let data = axios.get(`https://fakestoreapi.com/products/${id}`)
+    //     .then(res => console.log(res.data))
+    return {
+        type: ADD_TO_CART,
+        payload: cart
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_CART:
@@ -24,7 +35,11 @@ export default function reducer(state = initialState, action) {
                 cart: action.payload
             };
 
-        
+        case addToCart:
+            return {
+                ...state,
+                cart: action.payload
+            }
             
         default: 
             return state;
