@@ -7,6 +7,7 @@ import Electronics from './components/Electronics';
 import Men from './components/Men';
 import Women from './components/Women';
 import Jewelry from './components/Jewelry';
+import CartItem from './components/CartItem';
 import Cart from './components/Cart';
 import ProductView from './components/ProductView';
 
@@ -20,6 +21,7 @@ export default (
         <Route path='/Men' component={Men} />
         <Route path='/Women' component={Women} />
         <Route path='/Jewelry' component={Jewelry} />
+        <Route path='/CartItem/:id' component={CartItem} />
         <Route path='/Cart' component={Cart} />
         <Route path='/ProductView/:id' component={ProductView} />
     </Switch>

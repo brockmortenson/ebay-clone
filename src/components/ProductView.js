@@ -1,24 +1,29 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import store from '../redux/store';
 import { addToCart } from '../redux/cartReducer';
 import { connect } from 'react-redux';
 import '../styles/productView.css';
 
 function ProductView(props) {
+    // const [ data, setData ] = useState({ item_id: null })
+
+    const [ isLoaded, setIsLoaded ] = useState(false);
+
+    const history = useHistory();
+
     const [ user, setUser ] = useState(false);
     const [ item, setItem ] = useState([]);
-    let str = '';
+
+    let id = props.match.params.id;
 
     useEffect(() => {
-        str = props.location.pathname
-        // regex borrowed from stack overflow
-        let id = str.replace( /^\D+/g, '');
         axios
             .get(`https://fakestoreapi.com/products/${id}`)
             .then(res => {
                 setItem(res.data)
+                setIsLoaded(true)
                 // console.log(res.data)
             })
         // console.log(props)
@@ -27,24 +32,52 @@ function ProductView(props) {
 
     let loggedIn = store.getState().user.isLoggedIn;
 
-    const handleClick = () => {
-        // console.log(store.getState().user.isLoggedIn)
+
+    let itemData = null;
+    const handleClick = async (e) => {
+        e.preventDefault(e);
+        // let body = { item_id: data.item_id }
         if (!loggedIn) {
             setUser(true)
         } else {
-            setUser(false)
+            try {
+                const response = await axios
+                    // .post('/api/item', body)
+                    .get(`https://fakestoreapi.com/products/${id}`)
+                    setUser(false)
+                    // itemData = response.data
+                    // itemData = props;
+                    // console.log('Props:', itemData)
+                    // console.log(response.data)
+                    props.addToCart(response.data)
+                    history.push('/Cart')
+            } catch (err) {
+                console.log(err);
+            }
         }
 
-        addItem()
+        // addItem()
     }
 
+    // add to cart on click redirect to cart - take id received set it to a variable for a specific axios request
+
     // CREATE ENDPOINT AND CONTROLLER FOR CART
-    const addItem = () => {
-        props.addToCart(item)
-    }
+    // const addItem = (item_id) => {
+    //     let body = { item_id };
+    //     try {
+    //         axios
+    //             .post('/api/item', body)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     return (
         <div className='ProductView'>
+            { !isLoaded ? <div className='load-ring'><div></div><div></div><div></div><div></div></div> : null }
+            {
+            isLoaded
+            ?
             <div className='item'>
                 <img src={item.image} />
                 <div>
@@ -66,9 +99,9 @@ function ProductView(props) {
                             <div className='log-in'>
                                 <span>
                                     Please
-                                    <Link to='/Login' style={{ textDecoration: 'none' }}><p>Login</p></Link>
+                                    <p onClick={() => history.push('/Login')}>Login</p>
                                     or
-                                    <Link to='/Register' style={{ textDecoration: 'none' }}><p>Register</p></Link>
+                                    <p onClick={() => history.push('/Register')}>Register</p>
                                     in order to add this item to your cart
                                 </span>
                             </div>
@@ -78,6 +111,9 @@ function ProductView(props) {
                     </div>
                 </div>
             </div>
+            :
+            null
+            }
         </div>
     );
 }

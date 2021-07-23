@@ -4,17 +4,16 @@ import '../styles/storeSearch.css';
 
 function StoreSearch() {
     // SearchBar State
-    const [ name, setName ] = useState([]);
-    const [ selectedFilter, setFilter ] = useState('none');
-    const [ searchParams, setSearchParams ] = useState('');
-    const [ results, setResults ] = useState(null);
+    // const [ name, setName ] = useState([]);
+    // const [ selectedFilter, setFilter ] = useState('none');
+    // const [ searchParams, setSearchParams ] = useState('');
+    // const [ results, setResults ] = useState(null);
 
     const handleItemSearch = async () => {
         try {
             await axios
                     .get('https://fakestoreapi.com/products')
                     .then(res => {
-                        // res.data
                         console.log(res.data)
                         
                     })

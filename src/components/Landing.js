@@ -52,6 +52,7 @@ const Landing = (props) => {
             return (
                 <Link
                     key={product.id}
+                    to={`/ProductView/${product.id}`}
                     style={{ textDecoration: 'none' }}
                 >
                     <div className='products'>

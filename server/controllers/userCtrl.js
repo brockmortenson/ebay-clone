@@ -16,8 +16,13 @@ module.exports = {
             const hash = bcrypt.hashSync(password, salt);
 
             const [ newUser ] = await db.auth.register_user(email, hash, username, birthday, created_on);
+            const [ cart ] = await db.cart.create_cart(newUser.user_id);
+            console.log('Register Cart:', cart)
 
             delete newUser.hash;
+
+            newUser.cart = cart.cart_id;
+            console.log('Register User:', newUser)
 
             req.session.user = newUser;
 
@@ -43,6 +48,11 @@ module.exports = {
             if (!isAuthenticated) {
                 return res.status(403).send('Incorrect username or password');
             }
+
+            const [ cart ] = await db.cart.get_cart_id(existingUser.user_id);
+            // console.log('Login Cart:', cart);
+
+            existingUser.cartID = cart.cart_id;
 
             delete existingUser.hash;
 

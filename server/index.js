@@ -7,6 +7,7 @@ const path = require('path');
 
 /* CONTROLLER IMPORTS */
 const userCtrl = require('./controllers/userCtrl');
+const cartCtrl = require('./controllers/cartCtrl');
 
 const app = express();
 
@@ -47,6 +48,15 @@ app.get('/auth/session', userCtrl.getSession);
 // CHANGE PASSWORD
 // app.put('/auth/change');
 
+
+
+/* CART ENDPOINTS */
+
+// ADD TO CART
+app.post('/api/item', cartCtrl.addItemToCart)
+
+// GET CART
+app.get('/api/cart', cartCtrl.getCart)
 
 
 massive({

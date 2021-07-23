@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // INITIAL STATE
 const initialState = {
-    cart: {}
+    cart: [],
+    pendingAdd: null
     //cart: []
 };
 
@@ -19,8 +20,9 @@ export const getCart = (cart) => {
 }
 
 export const addToCart = (cart) => {
-    // let data = axios.get(`https://fakestoreapi.com/products/${id}`)
-    //     .then(res => console.log(res.data))
+    // let data = axios.post(`/api/item`)
+    //     .then(res => res.data)
+    console.log(cart)
     return {
         type: ADD_TO_CART,
         payload: cart
@@ -35,10 +37,15 @@ export default function reducer(state = initialState, action) {
                 cart: action.payload
             };
 
-        case addToCart:
+        case ADD_TO_CART + '_PENDING':
             return {
-                ...state,
-                cart: action.payload
+                pendingAdd: true
+            }
+
+        case ADD_TO_CART + '_FULFILLED':
+            return {
+                cart: action.payload,
+                pendingAdd: false
             }
             
         default: 
