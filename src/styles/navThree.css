@@ -14,4 +14,9 @@
 .unselected {
     padding: 5px 10px;
     color: black;
+    transition: color 0.3s ease;
+}
+
+.unselected:hover {
+    color: #396bf6;
 }
