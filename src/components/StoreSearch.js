@@ -8,13 +8,10 @@ function StoreSearch() {
     const [ selectedFilter, setFilter ] = useState('all');
     const [ searchParams, setSearchParams ] = useState('');
     const [ results, setResults ] = useState(null);
-    const [ searchFail, setSearchFail ] = useState(true);
-
-    const [ data, setData ] = useState(false);
+    const [ searchFail, setSearchFail ] = useState(false);
+    const [ array, setArray ] = useState([]);
 
     const [ loading, setLoading ] = useState(false);
-
-    const history = useHistory();
 
     const handleItemSearch = async () => {
         setLoading(true)
@@ -23,9 +20,9 @@ function StoreSearch() {
                     .get('https://fakestoreapi.com/products')
                     .then(res => {
                         const mapped = res.data.map((item) => {
+                            setArray([])
                             if (item.title.toLowerCase().includes(searchParams)) {
                                 setSearchFail(false)
-                                setData(true)
                                 return (
                                     <Link
                                         key={item.id}
@@ -33,17 +30,21 @@ function StoreSearch() {
                                         style={{ textDecoration: 'none' }}
                                     >
                                         <div className='item-search' onClick={() => setResults(null)}>
-                                            <img src={item.image} alt='products1' />
+                                            <img src={item.image} alt='products1'/>
                                             <p>{item.title}</p>
                                             <div>${item.price}</div>
                                         </div>
                                     </Link>
                                 );
-                            } 
-                            // create classname with state and change
-                            // classname when item.includes can't be found
+                            } else {
+                                array.push(item)
+                            }
+
+                            if (array.length >= 20) {
+                                setSearchFail(true)
+                            }
                         })
-                        // console.log(results)
+                        console.log(array)
                         setLoading(false)
                         setResults(mapped)
                     })
@@ -59,6 +60,7 @@ function StoreSearch() {
                     .get(`https://fakestoreapi.com/products/category/electronics`)
                     .then(res => {
                         const mapped = res.data.map((item) => {
+                            setArray([])
                             if (item.title.toLowerCase().includes(searchParams)) {
                                 setSearchFail(false)
                                 return (
@@ -75,9 +77,14 @@ function StoreSearch() {
                                     </Link>
                                 );
                             } else {
+                                array.push(item)
+                            }
+
+                            if (array.length >= 6) {
                                 setSearchFail(true)
                             }
                         })
+                        console.log(array)
                         setLoading(false)
                         setResults(mapped)
                     })
@@ -93,6 +100,7 @@ function StoreSearch() {
                     .get(`https://fakestoreapi.com/products/category/men's%20clothing`)
                     .then(res => {
                         const mapped = res.data.map((item) => {
+                            setArray([])
                             if (item.title.toLowerCase().includes(searchParams)) {
                                 setSearchFail(false)
                                 return (
@@ -109,6 +117,10 @@ function StoreSearch() {
                                     </Link>
                                 );
                             } else {
+                                array.push(item)
+                            }
+
+                            if (array.length >= 4) {
                                 setSearchFail(true)
                             }
                         })
@@ -127,6 +139,7 @@ function StoreSearch() {
                     .get(`https://fakestoreapi.com/products/category/women's%20clothing`)
                     .then(res => {
                         const mapped = res.data.map((item) => {
+                            setArray([])
                             if (item.title.toLowerCase().includes(searchParams)) {
                                 setSearchFail(false)
                                 return (
@@ -143,6 +156,10 @@ function StoreSearch() {
                                     </Link>
                                 );
                             } else {
+                                array.push(item)
+                            }
+
+                            if (array.length >= 6) {
                                 setSearchFail(true)
                             }
                         })
@@ -161,6 +178,7 @@ function StoreSearch() {
                     .get(`https://fakestoreapi.com/products/category/jewelery`)
                     .then(res => {
                         const mapped = res.data.map((item) => {
+                            setArray([])
                             if (item.title.toLowerCase().includes(searchParams)) {
                                 setSearchFail(false)
                                 return (
@@ -177,6 +195,10 @@ function StoreSearch() {
                                     </Link>
                                 );
                             } else {
+                                array.push(item)
+                            }
+
+                            if (array.length >= 4) {
                                 setSearchFail(true)
                             }
                         })
@@ -234,7 +256,7 @@ function StoreSearch() {
                 <button
                     style={{textDecoration: 'none'}}
                     type='submit'
-                    onClick={() => history.push('/')}
+                    // onClick={() => history.push('/')}
                 >
                 {
                     loading
@@ -254,9 +276,9 @@ function StoreSearch() {
                         ?
                         <div>No results were found that match your search : (</div>
                         :
-                        null
+                        // null
+                        <div>{results}</div>
                     }
-                    {results}
                 </div>
                 :
                 null

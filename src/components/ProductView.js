@@ -16,7 +16,9 @@ function ProductView(props) {
     const [ user, setUser ] = useState(false);
     const [ item, setItem ] = useState([]);
 
-    let id = props.match.params.id;
+    // const [ id, setId ] = useState();
+    
+    let id = props.match.params.id
 
     useEffect(() => {
         axios
@@ -28,7 +30,7 @@ function ProductView(props) {
             })
         // console.log(props)
         // console.log(id)
-    }, []);
+    }, [id]);
 
     let loggedIn = store.getState().user.isLoggedIn;
 
