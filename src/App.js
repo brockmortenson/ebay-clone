@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import store from './redux/store';
 import routes from './routes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -9,14 +10,14 @@ function App() {
   const [ user, setUser ] = useState();
   const [ userEmail, setUserEmail ] = useState();
 
-  // let data = store.getState().user.isLoggedIn;
+  let data = store.getState().user.isLoggedIn;
 
   // useEffect(() => {
-  //   if (data) {
-  //       setUser(store.getState().user.user.username)
-  //       setUserEmail(store.getState().user.user.email)
-  //       return;
-  //   }
+    // if (data) {
+        // setUser(store.getState().user.user.username)
+        // setUserEmail(store.getState().user.user.email)
+        // return;
+    // }
   // }, [data])
 
   const update = () => {
@@ -37,6 +38,7 @@ function App() {
         email={userEmail}
       />
       {routes}
+      <Footer />
     </div>
   );
 }

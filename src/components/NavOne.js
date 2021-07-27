@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/userReducer';
-import '../styles/navOne.css';
 import axios from 'axios';
+import '../styles/navOne.css';
 
 function NavOne(props) {
     const [ name, setName ] = useState('closed')

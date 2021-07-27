@@ -17,6 +17,7 @@
     font-size: 40px;
     font-weight: 600;
     padding: 5px;
+    text-shadow: 1px 1px 4px #000000;
 }
 
 .NavTwo div span:nth-child(1) {
