@@ -10,6 +10,7 @@ import Jewelry from './components/Jewelry';
 import CartItem from './components/CartItem';
 import Cart from './components/Cart';
 import ProductView from './components/ProductView';
+import Account from './components/Account';
 
 
 export default (
@@ -24,5 +25,6 @@ export default (
         <Route path='/CartItem/:id' component={CartItem} />
         <Route path='/Cart' component={Cart} />
         <Route path='/ProductView/:id' component={ProductView} />
+        <Route path='/Account/:id' component={Account} />
     </Switch>
 )

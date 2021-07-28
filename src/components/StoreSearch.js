@@ -44,7 +44,7 @@ function StoreSearch() {
                                 setSearchFail(true)
                             }
                         })
-                        console.log(array)
+                        // console.log(array)
                         setLoading(false)
                         setResults(mapped)
                     })
@@ -84,7 +84,7 @@ function StoreSearch() {
                                 setSearchFail(true)
                             }
                         })
-                        console.log(array)
+                        // console.log(array)
                         setLoading(false)
                         setResults(mapped)
                     })

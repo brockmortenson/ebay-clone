@@ -2,11 +2,19 @@ import React from 'react';
 import NavOne from './NavOne';
 import NavTwo from './NavTwo';
 import NavThree from './NavThree';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import cartImg from '../images/cart.png';
 import '../styles/header.css';
 
 function Header(props) {
+
+    const history = useHistory();
+
+    let user = props.userProfile.username;
+
+    const handleAccount = () => {
+        history.push(`/Account/${user}`)
+    }
 
     return (
         <div className='Header'>
@@ -16,13 +24,15 @@ function Header(props) {
                         <NavOne
                             loggedIn={props.loggedIn}
                             userName={props.userName}
-                            email={props.email} />
+                            email={props.email}
+                            userProfile={props.userProfile}
+                        />
                         <p>About</p>
                         <p>Contact Us</p>
                     </div>
                     <div className='nav-one-group-two'>
                         <p>Saved Items</p>
-                        <p>My Account</p>
+                        <p onClick={handleAccount}>My Account</p>
                         <Link to='/Cart'><img src={cartImg} alt='cart' /></Link>
                     </div>
                 </nav>
