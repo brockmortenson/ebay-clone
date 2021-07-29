@@ -8,8 +8,6 @@ import '../styles/navOne.css';
 function NavOne(props) {
     const [ name, setName ] = useState('closed')
 
-    // let userProfile = props.user.user.username
-
     const history = useHistory();
 
     const logout = () => {
@@ -23,10 +21,13 @@ function NavOne(props) {
         }
     }
 
-    let user = props.userProfile.username;
-
+    
     const handleAccount = () => {
-        history.push(`/Account/${user}`)
+        let loggedIn = props.loggedIn;
+        if (loggedIn) {
+            let user = props.userProfile.username;
+            history.push(`/Account/${user}`)
+        }
     }
 
     return (
@@ -42,7 +43,6 @@ function NavOne(props) {
                 Hi, {props.userName} &#11167;
                 <div className={name} >
                     <span id='email'>{props.email}</span>
-                    {/* <Link>My Account</Link> */}
                     <p onClick={handleAccount}>My Account</p>
                     <p onClick={logout}>Logout</p>
                 </div>

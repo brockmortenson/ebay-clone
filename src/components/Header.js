@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavOne from './NavOne';
 import NavTwo from './NavTwo';
 import NavThree from './NavThree';
@@ -7,15 +7,27 @@ import cartImg from '../images/cart.png';
 import '../styles/header.css';
 
 function Header(props) {
+    const [ name, setName ] = useState(false)
 
     const history = useHistory();
 
-    let user = props.userProfile.username;
-
     const handleAccount = () => {
-        history.push(`/Account/${user}`)
+        let loggedIn = props.loggedIn;
+        if (loggedIn) {
+            let user = props.userProfile.username;
+            history.push(`/Account/${user}`)
+        }
     }
 
+    const handleLoggedIn = () => {
+        let loggedIn = props.loggedIn;
+        if (!loggedIn) {
+            setName(true)
+        } else {
+            setName(false)
+        }
+    }
+    
     return (
         <div className='Header'>
             <div>
@@ -31,8 +43,23 @@ function Header(props) {
                         <p>Contact Us</p>
                     </div>
                     <div className='nav-one-group-two'>
-                        <p>Saved Items</p>
-                        <p onClick={handleAccount}>My Account</p>
+                        <div>Saved Items</div>
+                        <div
+                            onClick={handleAccount}
+                            onMouseEnter={handleLoggedIn}
+                            onMouseLeave={() => setName(false)}
+                        >
+                            My Account
+                            {
+                                name
+                                ?
+                                <div className='condition'>
+                                    <p>Sign In to view your account</p>
+                                </div>
+                                :
+                                null
+                            }
+                        </div>
                         <Link to='/Cart'><img src={cartImg} alt='cart' /></Link>
                     </div>
                 </nav>
