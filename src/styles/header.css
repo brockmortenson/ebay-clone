@@ -94,7 +94,7 @@
     border-bottom-right-radius: 5px;
     box-shadow: 0px 11px 15px -5px rgba(0,0,0,0.42);
     color: black;
-    transition: all 0.2s ease;
+    cursor: initial;
     z-index: 2;
 }
 

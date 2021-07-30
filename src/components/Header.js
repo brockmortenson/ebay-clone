@@ -7,7 +7,9 @@ import cartImg from '../images/cart.png';
 import '../styles/header.css';
 
 function Header(props) {
-    const [ name, setName ] = useState(false)
+    const [ name, setName ] = useState(false);
+    const [ cart, setCart ] = useState(false);
+    const [ items, setItems ] = useState(false);
 
     const history = useHistory();
 
@@ -19,12 +21,46 @@ function Header(props) {
         }
     }
 
-    const handleLoggedIn = () => {
+    const handleCart = () => {
+        let loggedIn = props.loggedIn;
+        if (loggedIn) {
+            history.push('/Cart')
+            setCart(false)
+        }
+    }
+
+    const handleItems = () => {
+        let loggedIn = props.loggedIn;
+        if (loggedIn) {
+            history.push('/SavedItems')
+            setItems(false)
+        }
+    }
+
+    const loggedInAccount = () => {
         let loggedIn = props.loggedIn;
         if (!loggedIn) {
             setName(true)
         } else {
             setName(false)
+        }
+    }
+
+    const loggedInCart = () => {
+        let loggedIn = props.loggedIn;
+        if (!loggedIn) {
+            setCart(true)
+        } else {
+            setCart(false)
+        }
+    }
+
+    const loggedInItems = () => {
+        let loggedIn = props.loggedIn;
+        if (!loggedIn) {
+            setItems(true)
+        } else {
+            setItems(false)
         }
     }
     
@@ -39,14 +75,29 @@ function Header(props) {
                             email={props.email}
                             userProfile={props.userProfile}
                         />
-                        <p>About</p>
-                        <p>Contact Us</p>
+                        <p onClick={() => history.push('/About')}>About</p>
+                        <p onClick={() => history.push('/Contact')}>Contact Us</p>
                     </div>
                     <div className='nav-one-group-two'>
-                        <div>Saved Items</div>
+                        <div
+                            onClick={handleItems}
+                            onMouseEnter={loggedInItems}
+                            onMouseLeave={() => setItems(false)}
+                        >
+                            Saved Items
+                            {
+                                items
+                                ?
+                                <div className='condition'>
+                                    <p>Sign In to view your saved items</p>
+                                </div>
+                                :
+                                null
+                            }
+                        </div>
                         <div
                             onClick={handleAccount}
-                            onMouseEnter={handleLoggedIn}
+                            onMouseEnter={loggedInAccount}
                             onMouseLeave={() => setName(false)}
                         >
                             My Account
@@ -60,7 +111,22 @@ function Header(props) {
                                 null
                             }
                         </div>
-                        <Link to='/Cart'><img src={cartImg} alt='cart' /></Link>
+                        <div
+                            onClick={handleCart}
+                            onMouseEnter={loggedInCart}
+                            onMouseLeave={() => setCart(false)}
+                        >
+                            <img src={cartImg} alt='cart' />
+                            {
+                                cart
+                                ?
+                                <div className='condition'>
+                                    <p>Sign In to view your cart</p>
+                                </div>
+                                :
+                                null
+                            }
+                        </div>
                     </div>
                 </nav>
                 <nav className='nav-two'>

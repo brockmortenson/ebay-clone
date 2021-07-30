@@ -11,6 +11,9 @@ import CartItem from './components/CartItem';
 import Cart from './components/Cart';
 import ProductView from './components/ProductView';
 import Account from './components/Account';
+import SavedItems from './components/SavedItems';
+import About from './components/About';
+import Contact from './components/Contact';
 
 
 export default (
@@ -26,5 +29,8 @@ export default (
         <Route path='/Cart' component={Cart} />
         <Route path='/ProductView/:id' component={ProductView} />
         <Route path='/Account/:id' component={Account} />
+        <Route path='/SavedItems' component={SavedItems} />
+        <Route path='/About' component={About} />
+        <Route path='/Contact' component={Contact} />
     </Switch>
 )

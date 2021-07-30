@@ -77,40 +77,48 @@ const Landing = (props) => {
     return (
         <div className='Landing'>
             <p>HOME</p>
-            { loadError ?
-            <div className='error'>
-                <div onClick={() => setLoadError(false)}>
-                    <h1>X</h1>
+            {
+                loadError
+                ?
+                <div className='error'>
+                    <div onClick={() => setLoadError(false)}>
+                        <h1>X</h1>
+                    </div>
+                    <h2>{loadingError1}</h2>
+                    <p>{loadingError2}</p>
                 </div>
-                <h2>{loadingError1}</h2>
-                <p>{loadingError2}</p>
-            </div>
-            :
-            null
+                :
+                null
             }
             { !isLoaded ? <div className='lds-ring'><div></div><div></div><div></div><div></div></div> : null }
-            { !page ?
-            <div className='product-view'>
-                {pageOneProducts}
-                { isLoaded ?
-                <div className='btn'>
-                    <button onClick={handleClick}>Next Page &#11166;</button>
+            {
+                !page
+                ?
+                <div className='product-view'>
+                    {pageOneProducts}
+                    {
+                        isLoaded
+                        ?
+                        <div className='btn'>
+                            <button onClick={handleClick}>Next Page &#11166;</button>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
                 :
-                null
-                }
-            </div>
-            :
-            <div className='product-view'>
-                {pageTwoProducts}
-                { isLoaded ?
-                <div className='btn'>
-                    <button onClick={handleClick} style={{ textDecoration: 'none' }}>&#11164; Previous Page</button>
+                <div className='product-view'>
+                    {pageTwoProducts}
+                    {
+                        isLoaded
+                        ?
+                        <div className='btn'>
+                            <button onClick={handleClick} style={{ textDecoration: 'none' }}>&#11164; Previous Page</button>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
-                :
-                null
-                }
-            </div>
             }
         </div>
     );

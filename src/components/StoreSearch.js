@@ -256,7 +256,6 @@ function StoreSearch() {
                 <button
                     style={{textDecoration: 'none'}}
                     type='submit'
-                    // onClick={() => history.push('/')}
                 >
                 {
                     loading
