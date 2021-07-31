@@ -10,7 +10,7 @@ function Header(props) {
     const [ name, setName ] = useState(false);
     const [ cart, setCart ] = useState(false);
     const [ items, setItems ] = useState(false);
-
+    
     const history = useHistory();
 
     const handleAccount = () => {
