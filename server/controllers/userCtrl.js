@@ -22,7 +22,7 @@ module.exports = {
             delete newUser.hash;
 
             newUser.cart = cart.cart_id;
-            console.log('Register User:', newUser)
+            // console.log('Register User:', newUser)
 
             req.session.user = newUser;
 

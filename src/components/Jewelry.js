@@ -46,16 +46,18 @@ function Jewelry() {
     return (
         <div className='Jewelry'>
             <p>JEWELRY</p>
-            { loadError ?
-            <div className='error'>
-                <div onClick={() => setLoadError(false)}>
-                    <h1>X</h1>
+            {
+                loadError
+                ?
+                <div className='error'>
+                    <div onClick={() => setLoadError(false)}>
+                        <h1>X</h1>
+                    </div>
+                    <h2>{loadingError1}</h2>
+                    <p>{loadingError2}</p>
                 </div>
-                <h2>{loadingError1}</h2>
-                <p>{loadingError2}</p>
-            </div>
-            :
-            null
+                :
+                null
             }
             { !isLoaded ? <div className='lds-ring'><div></div><div></div><div></div><div></div></div> : null }
             <div className='product-view'>

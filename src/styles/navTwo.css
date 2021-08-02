@@ -12,11 +12,12 @@
     transform: rotate3d(1, 1, 1, -10deg);
 }
 
-.NavTwo div p {
+.NavTwo > div p {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 40px;
     font-weight: 600;
     padding: 5px;
+    text-shadow: 1px 1px 4px #000000;
 }
 
 .NavTwo div span:nth-child(1) {

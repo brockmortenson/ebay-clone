@@ -81,7 +81,8 @@
 
 .item-search > p {
     text-align: center;
-    /* font-size: 500; */
+    font-size: 45px;
+    font-weight: 600;
 }
 
 .item-search >div {

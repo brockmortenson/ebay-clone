@@ -15,6 +15,8 @@ const Login = (props) => {
 
     // THE USER
     const [ user, setUser ] = useState();
+
+    const [ loading, setLoading ] = useState(false);
     
     // LOGIN ERROR
     const [ loginError, setLoginError ] = useState('');
@@ -23,6 +25,9 @@ const Login = (props) => {
     
     const login = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
+
         let body = {
             username: data.username,
             password: data.password
@@ -30,9 +35,10 @@ const Login = (props) => {
         try {
             const response = await axios
                 .post('/auth/login', body);
-                props.userData()
-                setUser(response.data)
-                history.push('/') 
+                props.userData();
+                setUser(response.data);
+                setLoading(false);
+                history.push('/') ;
         } catch (err) {
             console.log(err);
             setLoginError('*Incorrect username or password*')
@@ -50,7 +56,6 @@ const Login = (props) => {
         <div className='Login'>
             <br />
             {loginError}
-            Login component hiiii
             <form onSubmit={login}>
                 <input
                     type='text'
@@ -71,8 +76,22 @@ const Login = (props) => {
                     />
                 <button type='submit'>Login</button>
             </form>
-            {/* <div >{ isLoading ? <h2 className='loading'>loading................</h2> : null }</div> */}
-            { user ? <div>Hello, {user.username}</div> : null }
+            <div >
+                {
+                    loading
+                    ?
+                    <div className='loading'><div></div><div></div><div></div><div></div></div>
+                    :
+                    null
+                    }
+            </div>
+            {
+                user
+                ?
+                <div>Hello, {user.username}</div>
+                :
+                null
+            }
         </div>
     );
 }

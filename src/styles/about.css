@@ -1,0 +1,65 @@
+.About {
+    max-width: 1100px;
+    padding: 150px 30px;
+    margin:  0 auto;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+    border-inline: 1px solid rgb(194, 194, 194);
+}
+
+.About > p {
+    padding: 15px 0;
+    margin: 10px;
+    font-size: 22px;
+    border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.About > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.About > div > section {
+    margin-top: 15px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+}
+
+.About a {
+    color: #396bf6;
+    transition: all 0.3s ease;
+}
+
+.About a:hover {
+    filter: drop-shadow(2px 2px 2px #959595);
+}
+
+.About > div > section > div {
+    width: 50%;
+    padding-inline: 15px;
+}
+
+.About > div > div {
+    margin-block: 65px;
+}
+
+.About > div > div > img {
+    border-radius: 5px;
+    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.247);
+    transition: all 0.5s ease;
+}
+
+.About > div > div > img:hover {
+    border-radius: 35%;
+    filter: saturate(2);
+}
+
+.About > div > article {
+    padding-inline: 15px;
+}
+
+.About > div > article > p {
+    padding: 10px;
+}

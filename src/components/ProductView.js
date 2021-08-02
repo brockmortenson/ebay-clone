@@ -15,8 +15,8 @@ function ProductView(props) {
 
     const [ user, setUser ] = useState(false);
     const [ item, setItem ] = useState([]);
-
-    let id = props.match.params.id;
+    
+    let id = props.match.params.id
 
     useEffect(() => {
         axios
@@ -24,11 +24,8 @@ function ProductView(props) {
             .then(res => {
                 setItem(res.data)
                 setIsLoaded(true)
-                // console.log(res.data)
             })
-        // console.log(props)
-        // console.log(id)
-    }, []);
+    }, [id]);
 
     let loggedIn = store.getState().user.isLoggedIn;
 
@@ -55,64 +52,57 @@ function ProductView(props) {
                 console.log(err);
             }
         }
-
-        // addItem()
     }
 
     // add to cart on click redirect to cart - take id received set it to a variable for a specific axios request
 
-    // CREATE ENDPOINT AND CONTROLLER FOR CART
-    // const addItem = (item_id) => {
-    //     let body = { item_id };
-    //     try {
-    //         axios
-    //             .post('/api/item', body)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
     return (
         <div className='ProductView'>
-            { !isLoaded ? <div className='load-ring'><div></div><div></div><div></div><div></div></div> : null }
             {
-            isLoaded
-            ?
-            <div className='item'>
-                <img src={item.image} />
-                <div>
-                    <div className='title'>
-                        <h2>{item.title}</h2>
-                        <p>{item.description}</p>
-                    </div>
-                    <div>Price: ${item.price}</div>
+                !isLoaded
+                ?
+                <div className='load-ring'><div></div><div></div><div></div><div></div></div>
+                :
+                null
+            }
+            {
+                isLoaded
+                ?
+                <div className='item'>
+                    <img src={item.image} />
                     <div>
-                        <button
-                            onClick={handleClick}
-                            style={{ textDecoration: 'none' }}
-                        >
-                            Add to cart
-                        </button>
-                        {
-                        user
-                        ?
-                            <div className='log-in'>
-                                <span>
-                                    Please
-                                    <p onClick={() => history.push('/Login')}>Login</p>
-                                    or
-                                    <p onClick={() => history.push('/Register')}>Register</p>
-                                    in order to add this item to your cart
-                                </span>
-                            </div>
-                        :
-                        null
-                        }
+                        <div className='title'>
+                            <h2>{item.title}</h2>
+                            <p>{item.description}</p>
+                        </div>
+                        <div>Price: ${item.price}</div>
+                        <div>
+                            <button
+                                onClick={handleClick}
+                                style={{ textDecoration: 'none' }}
+                            >
+                                Add to cart
+                            </button>
+                            {
+                                user
+                                ?
+                                    <div className='log-in'>
+                                        <span>
+                                            Please
+                                            <p onClick={() => history.push('/Login')}>Login</p>
+                                            or
+                                            <p onClick={() => history.push('/Register')}>Register</p>
+                                            in order to add this item to your cart
+                                        </span>
+                                    </div>
+                                :
+                                null
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            :
-            null
+                :
+                null
             }
         </div>
     );

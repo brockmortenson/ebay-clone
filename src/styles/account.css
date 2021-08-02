@@ -1,0 +1,49 @@
+.Account {
+    max-width: 1100px;
+    padding: 150px 30px;
+    margin:  0 auto;
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+    border-inline: 1px solid rgb(194, 194, 194);
+}
+
+.Account > p {
+    padding: 15px 0;
+    margin: 10px 0;
+    font-size: 22px;
+    border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.Account > section > div > div {
+    font-size: 25px;
+    margin: 10px 0;
+    display: flex;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 5px;
+}
+
+.Account > section > div > div > h2 {
+    padding: 25px 10px;
+}
+
+.Account > section > div > div > p {
+    font-weight: 600;
+    padding: 25px 5px;
+}
+
+.change > h3 {
+    /* width: 250px; */
+    color: #396bf6;
+    padding: 25px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.change > h3:hover {
+    filter: drop-shadow(2px 2px 2px #959595);
+}
+
+.Account > section > div > div:nth-child(5) {
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+}
