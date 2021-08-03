@@ -57,6 +57,7 @@ const Login = (props) => {
                         name='username'
                         onChange={handleChange}
                         value={data.username}
+                        maxLength='10'
                         autoComplete='on'
                         required
                         />

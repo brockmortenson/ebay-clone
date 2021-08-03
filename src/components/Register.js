@@ -16,13 +16,16 @@ const Register = (props) => {
     });
 
     // CONFIRM PASSWORD
-    const [ pass, setPass ] = useState({ password: '' });
-    const [ matches, setMatches ] = useState(false);
+    const [ matchPass, setMatchPass ] = useState('')
     
+    // PASSWORD COUNT
+    const [ count, setCount ] = useState(0);
+
     const [ loading, setLoading ] = useState(false);
 
     // REGISTER ERROR
     const [ registerError, setRegisterError ] = useState('');
+
 
     const history = useHistory();
 
@@ -63,17 +66,6 @@ const Register = (props) => {
         }
     }
 
-    const checkPass = (e) => {
-        setPass({ ...pass, confirm: e.target.value });
-        console.log(pass.password)
-        if (pass === data.password) {
-            setMatches(true)
-            console.log('nice job')
-        } else {
-            setMatches(false)
-        }
-    }
-
     return (
         <div className='Register'>
             <div className='reg-form'>
@@ -98,26 +90,41 @@ const Register = (props) => {
                         maxLength='10'
                         required
                     />
-                    <div>
+                    <div className='pass-div'>
                         <input
                             type='password'
                             placeholder='Password'
                             name='password'
                             onChange={handleChange}
+                            onKeyUp={e => setCount(e.target.value.length)}
                             value={data.password}
                             minLength='6'
                             required
                         />
-                        {matches ? <div>NICEEEEEEEEEEEEEEEEEEEEEEEEEE</div> : null}
+                        {
+                            count < 6
+                            ?
+                            <p style={{ color: 'red' }}>
+                                Password must be at least 6 characters
+                            </p>
+                            :
+                            <p>&#9989;</p>
+                        }
                         <input
                             type='password'
                             placeholder='Confirm your password'
                             name='confirm'
-                            onChange={checkPass}
-                            value={pass.password}
+                            onChange={e => setMatchPass(e.target.value)}
+                            value={matchPass}
                             required
                         />
-                        <p>Password must be at least 6 characters</p>
+                        {
+                            matchPass === data.password && matchPass !== ''
+                            ?
+                            <span>&#9989;</span>
+                            :
+                            <span>Passwords do not match</span>
+                        }
                     </div>
                     <input
                         type='date'
