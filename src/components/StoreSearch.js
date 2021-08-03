@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/storeSearch.css';
 
 function StoreSearch() {
@@ -275,7 +275,6 @@ function StoreSearch() {
                         ?
                         <div>No results were found that match your search : (</div>
                         :
-                        // null
                         <div>{results}</div>
                     }
                 </div>

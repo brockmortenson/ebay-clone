@@ -16,6 +16,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0 15px;
+    overflow: auto;
 }
 
 .nav-one {

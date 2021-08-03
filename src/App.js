@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import store from './redux/store';
 import routes from './routes';
 import Header from './components/Header';

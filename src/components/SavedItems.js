@@ -5,7 +5,7 @@ function SavedItems() {
 
     return (
         <div className='SavedItems'>
-            Saved Items component
+            <p>MY SAVED ITEMS</p>
         </div>
     );
 }

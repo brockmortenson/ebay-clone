@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react';
-import ProductView from './ProductView';
+import React from 'react';
+import { connect } from 'react-redux';
 import '../styles/cartItem.css';
 
 function CartItem(props) {
-    // console.log(props)
-    // let str = '';
-
-    // useEffect(() => {
-    //     str = props.location.pathname;
-        
-    // })
-    console.log('Cart-Item Props:', props)
+    console.log('Cart-Item Props:', props.products)
 
     return (
         <div className='CartItem'>
@@ -19,4 +12,8 @@ function CartItem(props) {
     );
 }
 
-export default CartItem;
+const mapStateToProps = state => {
+    return state;
+}
+
+export default connect(mapStateToProps)(CartItem);

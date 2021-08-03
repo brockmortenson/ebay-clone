@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import store from '../redux/store';
 import '../styles/account.css';
 
 function Account() {
-    const [ showPass, setShowPass ] = useState(false);
     
     let user = store.getState().user.user
-
-    const handleShow = () => {
-        setShowPass(!showPass)
-    }
 
     return (
         <div className='Account'>

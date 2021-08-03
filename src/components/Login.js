@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
-import { useHistory, Link } from 'react-router-dom';
-import store from '../redux/store';
+import { useHistory } from 'react-router-dom';
 import '../styles/login.css';
 
 const Login = (props) => {
@@ -12,9 +11,6 @@ const Login = (props) => {
         username: '',
         password: ''
     });
-
-    // THE USER
-    const [ user, setUser ] = useState();
 
     const [ loading, setLoading ] = useState(false);
     
@@ -33,65 +29,58 @@ const Login = (props) => {
             password: data.password
         };
         try {
-            const response = await axios
+            await axios
                 .post('/auth/login', body);
                 props.userData();
-                setUser(response.data);
                 setLoading(false);
                 history.push('/') ;
         } catch (err) {
             console.log(err);
-            setLoginError('*Incorrect username or password*')
+            setLoginError('*Incorrect username or password*');
+            setLoading(false);
         }
     }
             
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
-
-    // let isLoading = store.getState().user.pending;
-    // console.log(isLoading);
             
     return (
         <div className='Login'>
-            <br />
-            {loginError}
-            <form onSubmit={login}>
-                <input
-                    type='text'
-                    placeholder='Username'
-                    name='username'
-                    onChange={handleChange}
-                    value={data.username}
-                    autoComplete='on'
-                    required
-                    />
-                <input
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                    onChange={handleChange}
-                    value={data.password}
-                    required
-                    />
-                <button type='submit'>Login</button>
-            </form>
-            <div >
+            <div className='form'>
+                <span>Login To Your Account</span>
+                <form onSubmit={login}>
+                    <p>{loginError}</p>
+                    <input
+                        type='text'
+                        placeholder='Username'
+                        name='username'
+                        onChange={handleChange}
+                        value={data.username}
+                        autoComplete='on'
+                        required
+                        />
+                    <input
+                        type='password'
+                        placeholder='Password'
+                        name='password'
+                        onChange={handleChange}
+                        value={data.password}
+                        required
+                        />
+                    <button type='submit'>Login</button>
+                    <span>Forgot Password?</span>
+                </form>
+            </div>
+            <div>
                 {
                     loading
                     ?
                     <div className='loading'><div></div><div></div><div></div><div></div></div>
                     :
                     null
-                    }
+                }
             </div>
-            {
-                user
-                ?
-                <div>Hello, {user.username}</div>
-                :
-                null
-            }
         </div>
     );
 }

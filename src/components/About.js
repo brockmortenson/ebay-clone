@@ -12,8 +12,8 @@ function About() {
                         SGGE is a web application developed by Brock Mortenson. There is no actual use for this website as it is only for show. The products show throughout the website are being brought from the
                         <a
                             href='https://fakestoreapi.com/'
-                            target='_blank'
                             rel='noreferrer'
+                            target='_blank'
                             style={{ textDecoration: 'none' }}
                         >
                             {' '} Fake Store API. {' '}
@@ -23,8 +23,8 @@ function About() {
                         Some designs used to create this website were inspired by eBay such as the colors in the title and the layered nav bars within the header. The rest of the designs seen are original and were created as the application was developed. I hope you find this website and/or the
                         <a
                             href='https://github.com/brockmortenson/ebay-clone'
-                            target='_blank'
                             rel='norefferer'
+                            target='_blank'
                             style={{ textDecoration: 'none' }}
                         >
                             {' '} source code {' '}

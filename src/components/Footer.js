@@ -37,7 +37,7 @@ function Footer() {
                     <a
                         href='https://github.com/brockmortenson/ebay-clone'
                         target='_blank'
-                        rel='norefferer'
+                        rel='noreferrer'
                         style={{ textDecoration: 'none' }}
                     >
                         {' '} source code {' '}

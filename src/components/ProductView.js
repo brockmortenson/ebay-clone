@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import store from '../redux/store';
 import { addToCart } from '../redux/cartReducer';
 import { connect } from 'react-redux';
 import '../styles/productView.css';
 
 function ProductView(props) {
-    // const [ data, setData ] = useState({ item_id: null })
 
     const [ isLoaded, setIsLoaded ] = useState(false);
 
@@ -27,34 +25,18 @@ function ProductView(props) {
             })
     }, [id]);
 
-    let loggedIn = store.getState().user.isLoggedIn;
+    let loggedIn = props.user.isLoggedIn;
 
+    const handleCart = (e) => {
+        e.preventDefault();
 
-    let itemData = null;
-    const handleClick = async (e) => {
-        e.preventDefault(e);
-        // let body = { item_id: data.item_id }
         if (!loggedIn) {
             setUser(true)
         } else {
-            try {
-                const response = await axios
-                    // .post('/api/item', body)
-                    .get(`https://fakestoreapi.com/products/${id}`)
-                    setUser(false)
-                    // itemData = response.data
-                    // itemData = props;
-                    // console.log('Props:', itemData)
-                    // console.log(response.data)
-                    props.addToCart(response.data)
-                    history.push('/Cart')
-            } catch (err) {
-                console.log(err);
-            }
+            setUser(false)
+            props.addToCart()
         }
     }
-
-    // add to cart on click redirect to cart - take id received set it to a variable for a specific axios request
 
     return (
         <div className='ProductView'>
@@ -69,7 +51,7 @@ function ProductView(props) {
                 isLoaded
                 ?
                 <div className='item'>
-                    <img src={item.image} />
+                    <img src={item.image} alt={item.title} />
                     <div>
                         <div className='title'>
                             <h2>{item.title}</h2>
@@ -78,7 +60,7 @@ function ProductView(props) {
                         <div>Price: ${item.price}</div>
                         <div>
                             <button
-                                onClick={handleClick}
+                                onClick={handleCart}
                                 style={{ textDecoration: 'none' }}
                             >
                                 Add to cart

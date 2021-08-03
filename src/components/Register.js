@@ -15,8 +15,11 @@ const Register = (props) => {
         birthday: ''
     });
 
-    // THE USER
-    const [ user, setUser ] = useState();
+    // CONFIRM PASSWORD
+    const [ pass, setPass ] = useState({ password: '' });
+    const [ matches, setMatches ] = useState(false);
+    
+    const [ loading, setLoading ] = useState(false);
 
     // REGISTER ERROR
     const [ registerError, setRegisterError ] = useState('');
@@ -25,6 +28,9 @@ const Register = (props) => {
 
     const register = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
+        
         let body = {
             email: data.email,
             username: data.username,
@@ -32,14 +38,15 @@ const Register = (props) => {
             birthday: data.birthday
         };
         try {
-            const response = await axios
-                    .post('/auth/register', body)
-                    props.userData()
-                    setUser(response.data)
-                    history.push('/')
+            await axios
+                    .post('/auth/register', body);
+                    props.userData();
+                    setLoading(false);
+                    history.push('/');
         } catch (err) {
             console.log(err);
             setRegisterError('*A user with this email already exists*');
+            setLoading(false);
         }
     }
 
@@ -49,64 +56,92 @@ const Register = (props) => {
 
     const checkEmail = () => {
         if (data.email.includes('@' && '.')) {
-            setRegisterError('')
+            setRegisterError('');
             return;
         } else {
             setRegisterError('*Invalid email address*')
         }
     }
 
-    let isLoading = store.getState().user.pending;
-    // console.log(isLoading)
+    const checkPass = (e) => {
+        setPass({ ...pass, confirm: e.target.value });
+        console.log(pass.password)
+        if (pass === data.password) {
+            setMatches(true)
+            console.log('nice job')
+        } else {
+            setMatches(false)
+        }
+    }
 
     return (
         <div className='Register'>
-            <br />
-            register component
-            { user ? <div>Hello, {user.username}</div> : null }
-            <div>{registerError}</div>
-            <form onSubmit={register}>
-                <input
-                    type='text'
-                    placeholder='Email'
-                    name='email'
-                    onChange={handleChange}
-                    value={data.email}
-                    onKeyUp={checkEmail}
-                    required
-                />
-                <input
-                    type='text'
-                    placeholder='Username'
-                    name='username'
-                    onChange={handleChange}
-                    value={data.username}
-                    maxLength='10'
-                    required
-                />
-                <div>
+            <div className='reg-form'>
+                <span>Create Your Account</span>
+                <form onSubmit={register}>
+                    <p>{registerError}</p>
                     <input
-                        type='password'
-                        placeholder='Password'
-                        name='password'
+                        type='text'
+                        placeholder='Email'
+                        name='email'
                         onChange={handleChange}
-                        value={data.password}
-                        minLength='6'
+                        value={data.email}
+                        onKeyUp={checkEmail}
                         required
                     />
-                    <p>Password must be at least 6 characters</p>
-                </div>
-                <input
-                    type='date'
-                    // placeholder='Email'
-                    name='birthday'
-                    onChange={handleChange}
-                    value={data.birthday}
-                    required
-                />
-                <button type='submit'>Create Account</button>
-            </form>
-            <div>{ isLoading ? <h2>..................loading................</h2> : null }</div>
+                    <input
+                        type='text'
+                        placeholder='Username'
+                        name='username'
+                        onChange={handleChange}
+                        value={data.username}
+                        maxLength='10'
+                        required
+                    />
+                    <div>
+                        <input
+                            type='password'
+                            placeholder='Password'
+                            name='password'
+                            onChange={handleChange}
+                            value={data.password}
+                            minLength='6'
+                            required
+                        />
+                        {matches ? <div>NICEEEEEEEEEEEEEEEEEEEEEEEEEE</div> : null}
+                        <input
+                            type='password'
+                            placeholder='Confirm your password'
+                            name='confirm'
+                            onChange={checkPass}
+                            value={pass.password}
+                            required
+                        />
+                        <p>Password must be at least 6 characters</p>
+                    </div>
+                    <input
+                        type='date'
+                        name='birthday'
+                        onChange={handleChange}
+                        value={data.birthday}
+                        required
+                    />
+                    <button type='submit'>Create Account</button>
+                    <div className='account-login'>
+                        <p>Have an account?</p>
+                        <span onClick={() => history.push('/Login')}>Log in.</span>
+                    </div>
+                </form>
+            </div>
+            <div>
+                {
+                    loading
+                    ?
+                    <div className='loading'><div></div><div></div><div></div><div></div></div>
+                    :
+                    null
+                }
+            </div>
         </div>
     );
 }

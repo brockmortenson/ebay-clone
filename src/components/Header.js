@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavOne from './NavOne';
 import NavTwo from './NavTwo';
 import NavThree from './NavThree';
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import cartImg from '../images/cart.png';
 import '../styles/header.css';
 

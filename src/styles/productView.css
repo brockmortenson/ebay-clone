@@ -84,11 +84,12 @@
 .log-in span p {
     padding-inline: 6px;
     color: #396bf6;
-    transition: color 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .log-in span p:hover {
-    color: white;
+  filter: drop-shadow(2px 2px 2px #959595);
 }
 
 /* Loading Animation */
