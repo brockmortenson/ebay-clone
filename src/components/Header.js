@@ -4,6 +4,7 @@ import NavTwo from './NavTwo';
 import NavThree from './NavThree';
 import { useHistory } from 'react-router-dom'
 import cartImg from '../images/cart.png';
+import { connect } from 'react-redux';
 import '../styles/header.css';
 
 function Header(props) {
@@ -116,7 +117,10 @@ function Header(props) {
                             onMouseEnter={loggedInCart}
                             onMouseLeave={() => setCart(false)}
                         >
-                            <img src={cartImg} alt='cart' />
+                            <div>
+                                <img src={cartImg} alt='cart' />
+                                <p>{props.cart.cartCount}</p>
+                            </div>
                             {
                                 cart
                                 ?
@@ -140,4 +144,8 @@ function Header(props) {
     );
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return state
+}
+
+export default connect(mapStateToProps)(Header);

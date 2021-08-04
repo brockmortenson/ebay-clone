@@ -60,11 +60,6 @@
     cursor: pointer;
 }
 
-.nav-one-group-two img:hover {
-    margin: 0;
-    border-bottom: 1px solid black;
-}
-
 .nav-one-group-two > div {
     transition: all 0.3s ease;
     cursor: pointer;
@@ -102,4 +97,12 @@
 
 .condition > p {
     text-align: center;
+}
+
+.nav-one-group-two > div:nth-child(3) > div:nth-child(1) {
+    display: flex;
+}
+
+.nav-one-group-two > div:nth-child(3) > div:nth-child(1) > p {
+    padding-left: 3px;
 }

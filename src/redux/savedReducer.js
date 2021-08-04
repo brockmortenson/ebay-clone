@@ -1,6 +1,7 @@
 // INITIAL STATE
 const initialState = {
     saved: [],
+    savedCount: 0
 };
 
 // ACTION CREATOR
@@ -28,7 +29,7 @@ export const removeFromSaved = (itemID) => {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_SAVED:
-            console.warn('Reducer:', action)
+            state.savedCount += 1;
             return {
                 ...state,
                 saved: [...state.saved, action.payload],

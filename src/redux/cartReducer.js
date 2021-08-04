@@ -1,9 +1,7 @@
-import { applyMiddleware } from "redux";
-import promise from "redux-promise-middleware";
-
 // INITIAL STATE
 const initialState = {
     cart: [],
+    cartCount: 0
 };
 
 // ACTION CREATOR
@@ -42,6 +40,7 @@ export const adjustQuantity = (itemID, value) => {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
+            state.cartCount += 1;
             return {
                 ...state,
                 cart: [...state.cart, action.payload],

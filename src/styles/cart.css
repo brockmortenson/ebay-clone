@@ -20,3 +20,59 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+.cart-view > section {
+    width: 100%;
+    margin-top: 25px;
+    border: 1px solid rgb(194, 194, 194);
+    border-radius: 5px;
+}
+
+.cart-view > section > h2 {
+    font-size: 28px;
+    padding: 10px 20px;
+    background-color: rgb(241, 241, 241);
+}
+
+.cart-view > section > div {
+    height: 250px;
+    font-size: 20px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.cart-view > section > div > span {
+    display: flex;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.cart-view > section > div > span > p {
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.cart-view > section > div > button {
+    /* height: 30px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #396bf6;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-view > section > div > button:hover {
+    background-color: rgb(78, 196, 78);
+}
+
+.cart-view > section > div > button > p {
+    padding-inline: 10px;
+}

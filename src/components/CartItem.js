@@ -8,11 +8,17 @@ function CartItem(props) {
     const mappedCart = props.cart.cart.map((item) => {
         return (
             <div key={item.id} className='cart-items'>
-                <img src={item.image} alt={item.title} />
+                <img id='cart-img' src={item.image} alt={item.title} />
                 <div>
                     <p>{item.title}</p>
                 </div>
                 <div>${item.price}</div>
+                <div>
+                    <button>-</button>
+                    <span>Quantity</span>
+                    <button>+</button>
+                </div>
+                <button>Remove</button>
             </div>
         );
     })
