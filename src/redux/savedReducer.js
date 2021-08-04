@@ -6,7 +6,6 @@ const initialState = {
 // ACTION CREATOR
 const ADD_TO_SAVED = 'ADD_TO_SAVED';
 const REMOVE_FROM_SAVED = 'REMOVE_FROM_SAVED';
-const SAVED_QUANTITY = 'SAVED_QUANTITY';
 
 
 // ACTION TYPES
@@ -22,16 +21,6 @@ export const removeFromSaved = (itemID) => {
         type: REMOVE_FROM_SAVED,
         payload: {
             id: itemID
-        }
-    }
-}
-
-export const savedQuantity = (itemID, value) => {
-    return {
-        type: SAVED_QUANTITY,
-        payload: {
-            id: itemID,
-            qty: value,
         }
     }
 }

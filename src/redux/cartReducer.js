@@ -1,3 +1,6 @@
+import { applyMiddleware } from "redux";
+import promise from "redux-promise-middleware";
+
 // INITIAL STATE
 const initialState = {
     cart: [],
@@ -39,7 +42,6 @@ export const adjustQuantity = (itemID, value) => {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
-            console.warn('Reducer:', action)
             return {
                 ...state,
                 cart: [...state.cart, action.payload],

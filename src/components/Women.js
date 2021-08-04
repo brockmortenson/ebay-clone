@@ -11,7 +11,11 @@ function Women(props) {
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ loadError, setLoadError ] = useState(false);
 
+    // BOOLEAN FOR ADD TO CART/SAVED
     const [ user, setUser ] = useState(false);
+    const [ save, setSave ] = useState(false);
+    const [ added, setAdded ] = useState(false);
+    const [ saved, setSaved ] = useState(false);
 
     const history = useHistory();
 
@@ -32,17 +36,43 @@ function Women(props) {
             })
     }, [])
 
+    const addSuccess = () => {
+        setTimeout(() => {
+            setAdded(false)
+            setSaved(false)
+        }, 2000);
+    }
+
     let loggedIn = props.user.isLoggedIn;
 
     const mappedProducts = products.map((product) => {
         const handleCart = (e) => {
             e.preventDefault();
     
+            setAdded(false)
+            
             if (!loggedIn) {
                 setUser(true)
             } else {
                 setUser(false)
                 props.addToCart(product)
+                setAdded(true)
+                addSuccess();
+            }
+        }
+
+        const handleSave = (e) => {
+            e.preventDefault();
+
+            setSaved(false)
+
+            if (!loggedIn) {
+                setSave(true)
+            } else {
+                setSave(false)
+                props.addToSaved(product)
+                setSaved(true)
+                addSuccess();
             }
         }
         
@@ -62,7 +92,7 @@ function Women(props) {
                     <div>${product.price}</div>
                 </div>
                 <div>
-                    <button>Save Item</button>
+                    <button onClick={handleSave}>Save Item</button>
                     <button onClick={handleCart}>Add to Cart</button>
                 </div>
             </div>
@@ -100,6 +130,45 @@ function Women(props) {
                                 <p onClick={() => history.push('/Login')}>Login</p>
                                 <p>to be able to add this item to your cart</p>
                             </div>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    save
+                    ?
+                    <div id='login-save'>
+                        <div>
+                            <div>
+                                <span onClick={() => setSave(false)}>X</span>
+                            </div>
+                            <div>
+                                <p onClick={() => history.push('/Login')}>Login</p>
+                                <p>to be able to save this item</p>
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    added
+                    ?
+                    <div className='added'>
+                        <div>
+                            <p>Item was added to your cart! &#9989;</p>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    saved
+                    ?
+                    <div className='added'>
+                        <div>
+                            <p>Saved! &#9989;</p>
                         </div>
                     </div>
                     :
