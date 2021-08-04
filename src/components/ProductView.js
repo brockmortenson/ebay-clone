@@ -5,6 +5,7 @@ import { addToCart } from '../redux/cartReducer';
 import { connect } from 'react-redux';
 import '../styles/productView.css';
 
+
 function ProductView(props) {
 
     const [ isLoaded, setIsLoaded ] = useState(false);
@@ -34,7 +35,7 @@ function ProductView(props) {
             setUser(true)
         } else {
             setUser(false)
-            props.addToCart()
+            props.addToCart(item)
         }
     }
 
@@ -90,6 +91,8 @@ function ProductView(props) {
     );
 }
 
-const mapStateToProps = (state) => { return state }
+const mapStateToProps = (state) => {
+    return state
+}
 
 export default connect(mapStateToProps, { addToCart })(ProductView);

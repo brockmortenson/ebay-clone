@@ -1,34 +1,34 @@
 // INITIAL STATE
 const initialState = {
-    cart: [],
+    saved: [],
 };
 
 // ACTION CREATOR
-const ADD_TO_CART = 'ADD_TO_CART';
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-const ADJUST_QUANTITY = 'ADJUST_QUANTITY';
+const ADD_TO_SAVED = 'ADD_TO_SAVED';
+const REMOVE_FROM_SAVED = 'REMOVE_FROM_SAVED';
+const SAVED_QUANTITY = 'SAVED_QUANTITY';
 
 
 // ACTION TYPES
-export const addToCart = (itemID) => {
+export const addToSaved = (itemID) => {
     return {
-        type: ADD_TO_CART,
+        type: ADD_TO_SAVED,
         payload: itemID
     }
 }
 
-export const removeFromCart = (itemID) => {
+export const removeFromSaved = (itemID) => {
     return {
-        type: REMOVE_FROM_CART,
+        type: REMOVE_FROM_SAVED,
         payload: {
             id: itemID
         }
     }
 }
 
-export const adjustQuantity = (itemID, value) => {
+export const savedQuantity = (itemID, value) => {
     return {
-        type: ADJUST_QUANTITY,
+        type: SAVED_QUANTITY,
         payload: {
             id: itemID,
             qty: value,
@@ -38,15 +38,15 @@ export const adjustQuantity = (itemID, value) => {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_TO_CART:
+        case ADD_TO_SAVED:
             console.warn('Reducer:', action)
             return {
                 ...state,
-                cart: [...state.cart, action.payload],
+                saved: [...state.saved, action.payload],
             };
 
-        case REMOVE_FROM_CART:
-            return state.filter(cart => cart.id !== action.payload.id)
+        case REMOVE_FROM_SAVED:
+            return state.filter(saved => saved.id !== action.payload.id)
             
         default: 
             return state;

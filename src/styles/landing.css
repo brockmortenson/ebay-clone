@@ -69,7 +69,7 @@
 
 .products div:nth-child(2) {
     height: auto;
-    width: 200px;
+    width: 220px;
     padding: 5px;
     display: flex;
     justify-content: center;
@@ -80,6 +80,101 @@
 .products div:nth-child(3) {
     padding: 5px;
     font-size: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card > div:nth-child(2) {
+  position: relative;
+  top: -20px;
+}
+
+.card > div > button {
+  width: 100px;
+  height: 30px;
+}
+
+.card > div > button:nth-child(1) {
+  border: 2px solid #396bf6;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #396bf6;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card > div > button:nth-child(1):hover {
+  border: 2px solid rgb(78, 196, 78);
+  color: rgb(78, 196, 78);
+}
+
+.card > div > button:nth-child(2) {
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  background-color: #396bf6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card > div > button:nth-child(2):hover {
+  background-color: rgb(78, 196, 78);
+}
+
+#login-add {
+  width: 100vw;
+  height: 100vh;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(241, 241, 241, 0.322);
+  z-index: 2;
+}
+
+#login-add > div {
+  padding: 20px 20px 30px 20px;
+  background-color: rgb(224, 224, 224);
+  border-radius: 5px;
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
+}
+
+#login-add > div > div {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 20px;
+}
+
+#login-add > div > div > p:nth-child(1) {
+  padding-right: 10px;
+  color: #396bf6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#login-add > div > div > p:nth-child(1):hover {
+  filter: drop-shadow(2px 2px 2px #959595);
+}
+
+#login-add > div > div > span {
+  padding: 5px 8px;
+  background-color: rgb(245, 148, 148);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#login-add > div > div > span:hover {
+  background-color: rgb(245, 120, 120);
 }
 
 .error {

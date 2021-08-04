@@ -273,7 +273,7 @@ function StoreSearch() {
                     {
                         searchFail
                         ?
-                        <div>No results were found that match your search : (</div>
+                        <div>No results were found that match your search &#9785;</div>
                         :
                         <div>{results}</div>
                     }

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { addToCart } from '../redux/cartReducer';
+import { addToSaved } from '../redux/savedReducer';
 import '../styles/landing.css';
 
 const Landing = (props) => {
@@ -9,8 +12,12 @@ const Landing = (props) => {
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ loadError, setLoadError ] = useState(false);
 
+    const [ user, setUser ] = useState(false);
+
     const loadingError1 = 'Unable to load window';
     const loadingError2 = 'This may be due to a poor internet connection';
+
+    const history = useHistory();
 
     useEffect(() => {
         axios
@@ -27,42 +34,78 @@ const Landing = (props) => {
             // console.log(props)
     }, [])
 
+    let loggedIn = props.user.isLoggedIn;
+
     const pageOneProducts = products.map((product) => {
+        const handleCart = (e) => {
+            e.preventDefault();
+    
+            if (!loggedIn) {
+                setUser(true)
+            } else {
+                setUser(false)
+                props.addToCart(product)
+            }
+        }
+        
         if (product.id <= 10) {
             return (
-                <Link
+                <div
                     key={product.id}
-                    to={`/ProductView/${product.id}`}
-                    style={{ textDecoration: 'none' }}
+                    className='card'
                 >
-                    <div className='products'>
+                    <div
+                        className='products'
+                        onClick={() => history.push(`/ProductView/${product.id}`)}
+                    >
                         <img src={product.image} alt='products1' />
                         <div>
                             <p>{product.title}</p>
                         </div>
                         <div>${product.price}</div>
                     </div>
-                </Link>
+                    <div>
+                        <button>Save Item</button>
+                        <button onClick={handleCart}>Add to Cart</button>
+                    </div>
+                </div>
             );
         }
     })
 
     const pageTwoProducts = products.map((product) => {
+        const handleCart = (e) => {
+            e.preventDefault();
+    
+            if (!loggedIn) {
+                setUser(true)
+            } else {
+                setUser(false)
+                props.addToCart(product)
+            }
+        }
+        
         if (product.id > 10) {
             return (
-                <Link
+                <div
                     key={product.id}
-                    to={`/ProductView/${product.id}`}
-                    style={{ textDecoration: 'none' }}
+                    className='card'
                 >
-                    <div className='products'>
+                    <div
+                        className='products'
+                        onClick={() => history.push(`/ProductView/${product.id}`)}
+                    >
                         <img src={product.image} alt='products2' />
                         <div>
                             <p>{product.title}</p>
                         </div>
                         <div>${product.price}</div>
                     </div>
-                </Link>
+                    <div>
+                        <button>Save Item</button>
+                        <button onClick={handleCart}>Add to Cart</button>
+                    </div>
+                </div>
             );
         }
     })
@@ -105,6 +148,23 @@ const Landing = (props) => {
                         :
                         null
                     }
+                    {
+                        user
+                        ?
+                        <div id='login-add'>
+                            <div>
+                                <div>
+                                    <span onClick={() => setUser(false)}>X</span>
+                                </div>
+                                <div>
+                                    <p onClick={() => history.push('/Login')}>Login</p>
+                                    <p>to be able to add this item to your cart</p>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
                 :
                 <div className='product-view'>
@@ -118,10 +178,31 @@ const Landing = (props) => {
                         :
                         null
                     }
+                    {
+                        user
+                        ?
+                        <div id='login-add'>
+                            <div>
+                                <div>
+                                    <span onClick={() => setUser(false)}>X</span>
+                                </div>
+                                <div>
+                                    <p onClick={() => history.push('/Login')}>Login</p>
+                                    <p>to be able to add this item to your cart</p>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
             }
         </div>
     );
 }
 
-export default Landing;
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps, { addToCart, addToSaved })(Landing);

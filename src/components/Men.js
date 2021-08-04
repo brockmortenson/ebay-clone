@@ -1,12 +1,19 @@
 import axios from 'axios';
 import React, { useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { addToCart } from '../redux/cartReducer';
+import { addToSaved } from '../redux/savedReducer';
 import '../styles/men.css';
 
-function Men() {
+function Men(props) {
     const [ products, setProducts ] = useState([]);
     const [ isLoaded, setIsLoaded ] = useState(false);
     const [ loadError, setLoadError ] = useState(false);
+
+    const [ user, setUser ] = useState(false);
+
+    const history = useHistory();
 
     const loadingError1 = 'Unable to load window';
     const loadingError2 = 'This may be due to a poor internet connection';
@@ -25,21 +32,40 @@ function Men() {
             })
     }, [])
 
+    let loggedIn = props.user.isLoggedIn;
+    
     const mappedProducts = products.map((product) => {
+        const handleCart = (e) => {
+            e.preventDefault();
+    
+            if (!loggedIn) {
+                setUser(true)
+            } else {
+                setUser(false)
+                props.addToCart(product)
+            }
+        }
+        
         return (
-            <Link
+            <div
                 key={product.id}
-                to={`/ProductView/${product.id}`}
-                style={{ textDecoration: 'none' }}
+                className='men-card'
             >
-                <div className='map-mens'>
+                <div
+                    className='map-mens'
+                    onClick={() => history.push(`/ProductView/${product.id}`)}
+                >
                     <img src={product.image} alt='mens' />
                     <div>
                         <p>{product.title}</p>
                     </div>
                     <div>${product.price}</div>
                 </div>
-            </Link>
+                <div>
+                    <button>Save Item</button>
+                    <button onClick={handleCart}>Add to Cart</button>
+                </div>
+            </div>
         );
     })
 
@@ -62,9 +88,30 @@ function Men() {
             { !isLoaded ? <div className='lds-ring'><div></div><div></div><div></div><div></div></div> : null }
             <div className='product-view'>
                 {mappedProducts}
+                {
+                    user
+                    ?
+                    <div id='login-add'>
+                        <div>
+                            <div>
+                                <span onClick={() => setUser(false)}>X</span>
+                            </div>
+                            <div>
+                                <p onClick={() => history.push('/Login')}>Login</p>
+                                <p>to be able to add this item to your cart</p>
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
             </div>
         </div>
     );
 }
 
-export default Men;
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps, { addToCart, addToSaved })(Men);
