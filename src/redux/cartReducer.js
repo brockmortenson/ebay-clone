@@ -7,6 +7,7 @@ const initialState = {
 // ACTION CREATOR
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const EMPTY_CART = 'EMPTY_CART;'
 const ADJUST_QUANTITY = 'ADJUST_QUANTITY';
 
 
@@ -21,9 +22,14 @@ export const addToCart = (itemID) => {
 export const removeFromCart = (itemID) => {
     return {
         type: REMOVE_FROM_CART,
-        payload: {
-            id: itemID
-        }
+        payload: itemID
+    }
+}
+
+export const emptyCart = (items) => {
+    return {
+        type: EMPTY_CART,
+        payload: items
     }
 }
 
@@ -47,7 +53,20 @@ export default function reducer(state = initialState, action) {
             };
 
         case REMOVE_FROM_CART:
-            return state.filter(cart => cart.id !== action.payload.id)
+            state.cartCount -= 1;
+            return {
+                ...state,
+                cart: [
+                    ...state.cart.filter( item => item !== action.payload)
+                ]
+            };
+
+        case EMPTY_CART:
+            state.cartCount = 0;
+            return {
+                ...state,
+                cart: []
+            }
             
         default: 
             return state;

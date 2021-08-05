@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { removeFromCart } from '../redux/cartReducer';
 import cartImg from '../images/cart.png';
 import '../styles/cartItem.css';
 
@@ -18,7 +19,7 @@ function CartItem(props) {
                     <span>Quantity</span>
                     <button>+</button>
                 </div>
-                <button>Remove</button>
+                <button onClick={() => props.removeFromCart(item)}>Remove</button>
             </div>
         );
     })
@@ -46,4 +47,4 @@ const mapStateToProps = state => {
     return state;
 }
 
-export default connect(mapStateToProps)(CartItem);
+export default connect(mapStateToProps, { removeFromCart })(CartItem);

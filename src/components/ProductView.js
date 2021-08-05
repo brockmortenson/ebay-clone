@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { addToCart } from '../redux/cartReducer';
+import { addToSaved } from '../redux/savedReducer';
 import { connect } from 'react-redux';
 import '../styles/productView.css';
 
@@ -14,6 +15,11 @@ function ProductView(props) {
 
     const [ user, setUser ] = useState(false);
     const [ item, setItem ] = useState([]);
+
+    // BOOLEAN FOR ADD TO CART/SAVED
+    const [ save, setSave ] = useState(false);
+    const [ added, setAdded ] = useState(false);
+    const [ saved, setSaved ] = useState(false);
     
     let id = props.match.params.id
 
@@ -31,12 +37,42 @@ function ProductView(props) {
     const handleCart = (e) => {
         e.preventDefault();
 
+        setSave(false)
+
+        setAdded(false)
+        
         if (!loggedIn) {
             setUser(true)
         } else {
             setUser(false)
             props.addToCart(item)
+            setAdded(true)
+            addSuccess();
         }
+    }
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        
+        setUser(false)
+
+        setSaved(false)
+        
+        if (!loggedIn) {
+            setSave(true)
+        } else {
+            setSave(false)
+            props.addToSaved(item)
+            setSaved(true)
+            addSuccess();
+        }
+    }
+
+    const addSuccess = () => {
+        setTimeout(() => {
+            setAdded(false)
+            setSaved(false)
+        }, 2000);
     }
 
     return (
@@ -60,12 +96,20 @@ function ProductView(props) {
                         </div>
                         <div>Price: ${item.price}</div>
                         <div>
-                            <button
-                                onClick={handleCart}
-                                style={{ textDecoration: 'none' }}
-                            >
-                                Add to cart
-                            </button>
+                            <section className='buttons'>
+                                <button
+                                    onClick={handleSave}
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    Save item
+                                </button>
+                                <button
+                                    onClick={handleCart}
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    Add to cart
+                                </button>
+                            </section>
                             {
                                 user
                                 ?
@@ -78,6 +122,40 @@ function ProductView(props) {
                                             in order to add this item to your cart
                                         </span>
                                     </div>
+                                :
+                                null
+                            }
+                            {
+                                save
+                                ?
+                                <div className='log-in'>
+                                    <span>
+                                        <p onClick={() => history.push('/Login')}>Login</p>
+                                        to be able to save this item
+                                    </span>
+                                </div>
+                                :
+                                null
+                            }
+                            {
+                                added
+                                ?
+                                <div className='added'>
+                                    <div>
+                                        <p>Item was added to your cart! &#9989;</p>
+                                    </div>
+                                </div>
+                                :
+                                null
+                            }
+                            {
+                                saved
+                                ?
+                                <div className='added'>
+                                    <div>
+                                        <p>Saved! &#9989;</p>
+                                    </div>
+                                </div>
                                 :
                                 null
                             }
@@ -95,4 +173,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps, { addToCart })(ProductView);
+export default connect(mapStateToProps, { addToCart, addToSaved })(ProductView);

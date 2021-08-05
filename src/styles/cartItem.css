@@ -72,3 +72,19 @@
 .CartItem > div > div > p {
     padding-top: 10px;
 }
+
+.cart-items > button {
+    width: 80px;
+    height: 25px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(250, 110, 110);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.cart-items > button:hover {
+    background-color: red;
+}

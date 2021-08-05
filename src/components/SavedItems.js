@@ -10,8 +10,8 @@ function SavedItems(props) {
     return (
         <div className='SavedItems'>
             <p>MY SAVED ITEMS</p>
-            <div className='saved-view'>
             <h2>Total saved items: {count}</h2>
+            <div className='saved-view'>
                 <SavedItem />
             </div>
         </div>

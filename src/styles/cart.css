@@ -35,7 +35,7 @@
 }
 
 .cart-view > section > div {
-    height: 250px;
+    height: 350px;
     font-size: 20px;
     padding: 10px 20px;
     display: flex;
@@ -49,13 +49,19 @@
     border-bottom: 1px solid rgb(194, 194, 194);
 }
 
+.cart-view > section > div > span:nth-child(5) {
+    border: none;
+}
+
 .cart-view > section > div > span > p {
     font-weight: 500;
     padding-left: 10px;
+    width: 4ch;
 }
 
-.cart-view > section > div > button {
+.cart-view > section > div button {
     /* height: 30px; */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,12 +73,37 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    z-index: 10;
 }
 
-.cart-view > section > div > button:hover {
+.cart-view > section > div button:hover {
     background-color: rgb(78, 196, 78);
 }
 
-.cart-view > section > div > button > p {
-    padding-inline: 10px;
+.cart-view > section > div > div {
+    font-size: 18px;
+    padding-block: 5px;
+}
+
+.cart-view > section > div > div > p {
+    padding-block: 5px;
+}
+
+.cart-view > section > div > div > p:nth-child(1) {
+    padding-top: 10px;
+}
+
+.Cart > button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(250, 110, 110);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.Cart > button:hover {
+    background-color: red;
 }

@@ -1,6 +1,6 @@
-.SavedItems {
+.Checkout {
     max-width: 1100px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 150px 30px;
     margin:  0 auto;
     overflow: auto;
@@ -8,20 +8,9 @@
     border-inline: 1px solid rgb(194, 194, 194);
 }
 
-.SavedItems > p {
+.Checkout > p {
     padding: 15px 0;
     margin: 10px 0;
     font-size: 22px;
     border-bottom: 1px solid rgb(194, 194, 194);
-}
-
-.SavedItems > h2 {
-    font-size: 18px;
-    padding-bottom: 15px;
-}
-
-.saved-view {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
 }

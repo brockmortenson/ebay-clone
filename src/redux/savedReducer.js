@@ -20,9 +20,7 @@ export const addToSaved = (itemID) => {
 export const removeFromSaved = (itemID) => {
     return {
         type: REMOVE_FROM_SAVED,
-        payload: {
-            id: itemID
-        }
+        payload: itemID
     }
 }
 
@@ -36,7 +34,13 @@ export default function reducer(state = initialState, action) {
             };
 
         case REMOVE_FROM_SAVED:
-            return state.filter(saved => saved.id !== action.payload.id)
+            state.savedCount -= 1;
+            return {
+                ...state,
+                saved: [
+                    ...state.saved.filter( item => item !== action.payload)
+                ]
+            }
             
         default: 
             return state;
