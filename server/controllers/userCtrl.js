@@ -16,13 +16,8 @@ module.exports = {
             const hash = bcrypt.hashSync(password, salt);
 
             const [ newUser ] = await db.auth.register_user(email, hash, username, birthday, created_on);
-            const [ cart ] = await db.cart.create_cart(newUser.user_id);
-            console.log('Register Cart:', cart)
 
             delete newUser.hash;
-
-            newUser.cart = cart.cart_id;
-            // console.log('Register User:', newUser)
 
             req.session.user = newUser;
 
@@ -48,11 +43,6 @@ module.exports = {
             if (!isAuthenticated) {
                 return res.status(403).send('Incorrect username or password');
             }
-
-            const [ cart ] = await db.cart.get_cart_id(existingUser.user_id);
-            // console.log('Login Cart:', cart);
-
-            existingUser.cartID = cart.cart_id;
 
             delete existingUser.hash;
 
@@ -81,5 +71,33 @@ module.exports = {
 
         await db.auth.delete_account(user_id)
         res.status(200).send('Account successfully deleted');
+    },
+    changePassword: async (req, res) => {
+        const db = req.app.get('db');
+        const { password, newPassword } = req.body;
+        const { user_id } = req.session.user;
+
+        // Error says variable $2 is out of range
+
+        const { email } = req.session;
+        const [ existingUser ] = await db.auth.check_existing_user(email);
+
+        const isAuthenticated = bcrypt.compareSync(password, existingUser.hash);
+
+        if (!isAuthenticated) {
+            return res.status(403).send('Incorrect email and/or password');
+        }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(newPassword, salt);
+
+        const [ updateUser ] = await db.auth.change_password(hash, user_id);
+        console.log(hash)
+
+        delete updateUser.hash;
+
+        req.session.user = updateUser;
+
+        res.status(200).send(req.session.user)
     }
 }

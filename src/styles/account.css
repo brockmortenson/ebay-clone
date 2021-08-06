@@ -32,7 +32,6 @@
 }
 
 .change > h3 {
-    /* width: 250px; */
     color: #396bf6;
     padding: 25px 0;
     transition: all 0.3s ease;
@@ -44,6 +43,5 @@
 }
 
 .Account > section > div > div:nth-child(5) {
-    /* flex-direction: column; */
     justify-content: space-evenly;
 }

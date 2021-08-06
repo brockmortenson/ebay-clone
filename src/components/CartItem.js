@@ -3,17 +3,29 @@ import { connect } from 'react-redux';
 import { removeFromCart } from '../redux/cartReducer';
 import cartImg from '../images/cart.png';
 import '../styles/cartItem.css';
+import { useHistory } from 'react-router-dom';
 
 function CartItem(props) {
+
+    const history = useHistory();
+
     
     const mappedCart = props.cart.cart.map((item) => {
+        const handlePush = () => history.push(`/ProductView/${item.id}`)
         return (
             <div key={item.id} className='cart-items'>
-                <img id='cart-img' src={item.image} alt={item.title} />
                 <div>
+                <img
+                    id='cart-img'
+                    src={item.image}
+                    alt={item.title}
+                    onClick={handlePush}
+                />
+                <div onClick={handlePush}>
                     <p>{item.title}</p>
                 </div>
                 <div>${item.price}</div>
+                </div>
                 <div>
                     <button>-</button>
                     <span>Quantity</span>
@@ -24,9 +36,13 @@ function CartItem(props) {
         );
     })
 
+    let border = '';
+
+    const styles = mappedCart.length === 0 ? border = 'none' : null
+
     return (
         <div className='CartItem'>
-            <div>
+            <div style={{ border: styles }}>
                 {
                     mappedCart.length !== 0
                     ?

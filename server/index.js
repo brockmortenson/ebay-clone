@@ -46,7 +46,7 @@ app.delete('/auth/delete/:id', userCtrl.deleteAccount)
 app.get('/auth/session', userCtrl.getSession);
 
 // CHANGE PASSWORD
-// app.put('/auth/change');
+app.put('/auth/change', userCtrl.changePassword);
 
 
 

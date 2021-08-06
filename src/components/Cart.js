@@ -15,7 +15,9 @@ function Cart(props) {
 
     let count = props.cart.cartCount;
 
-    const tax = 3.72
+    let tax = 0
+    
+    const withTax = count === 0 ? tax = 0 : tax = 3.72; 
     
     let subTotal = 0;
 
@@ -25,13 +27,10 @@ function Cart(props) {
         props.cart.cart.map((item) => {
             subTotal += item.price;
             setSum(subTotal);
-            total = subTotal + tax;
+            total = Math.round((subTotal + withTax) * 100) / 100;
             setFinal(total);
         })
-    }, [])
-
-    // ADD ITEM TO DEPENDENCY ARRAY TO UPDATE 
-    // IF ITEM QUANTITY IS ADJUSTED IN CART
+    }, [count])
 
     const handleToken = (token, addreses) => {
         console.log({ token, addreses })
@@ -68,14 +67,6 @@ function Cart(props) {
                             Total:
                             <p>${final}</p>
                         </span>
-                        {/* <button onClick={() => history.push('/Checkout')}>
-                            <p>Proceed To Checkout</p>
-                            <p>&#11166;</p>
-                        </button> */}
-
-                        {/* I was unable to find information on how to
-                        style the stripe checkout component so that it
-                        matches the them of the website */}
                         {
                             count !== 0
                             ?
@@ -87,10 +78,10 @@ function Cart(props) {
                             shippingAddress
                             amount={final * 100}
                             >
-                            <button>Checkout</button>
-                        </StripeCheckout>
-                        :
-                        null
+                                <button>Checkout</button>
+                            </StripeCheckout>
+                            :
+                            null
                         }
                         <div>
                             Note: Enter your card information as seen below to imitate a successful checkout
