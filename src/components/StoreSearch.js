@@ -21,7 +21,7 @@ function StoreSearch() {
                     .then(res => {
                         const mapped = res.data.map((item) => {
                             setArray([])
-                            if (item.title.toLowerCase().includes(searchParams)) {
+                            if (item.title.toLowerCase().includes(searchParams.toLowerCase())) {
                                 setSearchFail(false)
                                 return (
                                     <Link
@@ -61,7 +61,7 @@ function StoreSearch() {
                     .then(res => {
                         const mapped = res.data.map((item) => {
                             setArray([])
-                            if (item.title.toLowerCase().includes(searchParams)) {
+                            if (item.title.toLowerCase().includes(searchParams.toLowerCase())) {
                                 setSearchFail(false)
                                 return (
                                     <Link
@@ -101,7 +101,7 @@ function StoreSearch() {
                     .then(res => {
                         const mapped = res.data.map((item) => {
                             setArray([])
-                            if (item.title.toLowerCase().includes(searchParams)) {
+                            if (item.title.toLowerCase().includes(searchParams.toLowerCase())) {
                                 setSearchFail(false)
                                 return (
                                     <Link
@@ -140,7 +140,7 @@ function StoreSearch() {
                     .then(res => {
                         const mapped = res.data.map((item) => {
                             setArray([])
-                            if (item.title.toLowerCase().includes(searchParams)) {
+                            if (item.title.toLowerCase().includes(searchParams.toLowerCase())) {
                                 setSearchFail(false)
                                 return (
                                     <Link
@@ -179,7 +179,7 @@ function StoreSearch() {
                     .then(res => {
                         const mapped = res.data.map((item) => {
                             setArray([])
-                            if (item.title.toLowerCase().includes(searchParams)) {
+                            if (item.title.toLowerCase().includes(searchParams.toLowerCase())) {
                                 setSearchFail(false)
                                 return (
                                     <Link
