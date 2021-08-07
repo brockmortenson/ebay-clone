@@ -26,12 +26,6 @@ app.use(
     })
 );
 
-// HOSTING
-app.use(express.static(__dirname + '/../build'));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build/index.html'))
-});
 
 
 
@@ -57,13 +51,14 @@ app.put('/auth/change', userCtrl.changePassword);
 
 
 
-/* CART ENDPOINTS */
+/* HOSTING */
 
-// ADD TO CART
-app.post('/api/item', cartCtrl.addItemToCart)
+app.use(express.static(__dirname + '/../build'));
 
-// GET CART
-app.get('/api/cart', cartCtrl.getCart)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+});
+
 
 
 massive({

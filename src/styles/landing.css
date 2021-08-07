@@ -127,104 +127,30 @@
   background-color: rgb(78, 196, 78);
 }
 
-#login-add {
+
+/* Failed Add */
+.failed {
   width: 100vw;
-  height: 100vh;
-  font-size: 30px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 155px;
   left: 0;
-  background-color: rgba(241, 241, 241, 0.322);
   z-index: 2;
 }
 
-#login-add > div {
-  padding: 20px 20px 30px 20px;
-  background-color: rgb(224, 224, 224);
+.failed > div {
+  padding: 20px 25px;
   border-radius: 5px;
   box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
-}
-
-#login-add > div > div {
-  display: flex;
-  justify-content: flex-end;
-  padding-bottom: 20px;
-}
-
-#login-add > div > div > p:nth-child(1) {
-  padding-right: 10px;
-  color: #396bf6;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#login-add > div > div > p:nth-child(1):hover {
-  filter: drop-shadow(2px 2px 2px #959595);
-}
-
-#login-add > div > div > span {
-  padding: 5px 8px;
-  background-color: rgb(245, 148, 148);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#login-add > div > div > span:hover {
-  background-color: rgb(245, 120, 120);
-}
-
-#login-save {
-  width: 100vw;
-  height: 100vh;
-  font-size: 30px;
+  border: 2px solid red;
+  color: rgb(250, 110, 110);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(241, 241, 241, 0.322);
-  z-index: 2;
-}
-
-#login-save > div {
-  padding: 20px 20px 30px 20px;
-  background-color: rgb(224, 224, 224);
-  border-radius: 5px;
-  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
-}
-
-#login-save > div > div {
-  display: flex;
-  justify-content: flex-end;
-  padding-bottom: 20px;
-}
-
-#login-save > div > div > p:nth-child(1) {
-  padding-right: 10px;
-  color: #396bf6;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#login-save > div > div > p:nth-child(1):hover {
-  filter: drop-shadow(2px 2px 2px #959595);
-}
-
-#login-save > div > div > span {
-  padding: 5px 8px;
-  background-color: rgb(245, 148, 148);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#login-save > div > div > span:hover {
-  background-color: rgb(245, 120, 120);
 }
 
 

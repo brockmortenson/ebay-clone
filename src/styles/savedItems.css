@@ -18,10 +18,26 @@
 .SavedItems > h2 {
     font-size: 18px;
     padding-bottom: 15px;
+    margin-top: 15px;
 }
 
 .saved-view {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.SavedItems > button {
+    width: 130px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(250, 110, 110);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.SavedItems > button:hover {
+    background-color: red;
 }

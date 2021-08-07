@@ -14,16 +14,16 @@ function Header(props) {
     
     const history = useHistory();
 
+    let loggedIn = props.user.isLoggedIn;
+    let currentUser = props.user.user;
+    
     const handleAccount = () => {
-        let loggedIn = props.loggedIn;
         if (loggedIn) {
-            let user = props.userProfile.username;
-            history.push(`/Account/${user}`)
+            history.push(`/Account/${currentUser.username}`)
         }
     }
 
     const handleCart = () => {
-        let loggedIn = props.loggedIn;
         if (loggedIn) {
             history.push('/Cart')
             setCart(false)
@@ -31,7 +31,6 @@ function Header(props) {
     }
 
     const handleItems = () => {
-        let loggedIn = props.loggedIn;
         if (loggedIn) {
             history.push('/SavedItems')
             setItems(false)
@@ -39,7 +38,6 @@ function Header(props) {
     }
 
     const loggedInAccount = () => {
-        let loggedIn = props.loggedIn;
         if (!loggedIn) {
             setName(true)
         } else {
@@ -48,7 +46,6 @@ function Header(props) {
     }
 
     const loggedInCart = () => {
-        let loggedIn = props.loggedIn;
         if (!loggedIn) {
             setCart(true)
         } else {
@@ -57,7 +54,6 @@ function Header(props) {
     }
 
     const loggedInItems = () => {
-        let loggedIn = props.loggedIn;
         if (!loggedIn) {
             setItems(true)
         } else {
@@ -71,10 +67,8 @@ function Header(props) {
                 <nav className='nav-one'>
                     <div className='nav-one-group-one'>
                         <NavOne
-                            loggedIn={props.loggedIn}
-                            userName={props.userName}
-                            email={props.email}
-                            userProfile={props.userProfile}
+                            loggedIn={loggedIn}
+                            currentUser={currentUser}
                         />
                         <p onClick={() => history.push('/About')}>About</p>
                         <p onClick={() => history.push('/Contact')}>Contact Us</p>

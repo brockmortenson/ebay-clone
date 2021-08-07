@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/userReducer';
@@ -6,16 +6,38 @@ import axios from 'axios';
 import '../styles/navOne.css';
 
 function NavOne(props) {
-    const [ name, setName ] = useState('closed')
+    const [ name, setName ] = useState('closed');
+    const [ newUser, setNewUser ] = useState();
+    const [ loggedOut, setLoggedOut ] = useState(false);
+
 
     const history = useHistory();
+
+
+    let userLoggedIn = props.loggedIn;
+    let currentUser = props.currentUser;
+
+    useEffect(() => {
+        if (userLoggedIn) {
+            setNewUser(currentUser.username)
+            setLoggedOut(false)
+        }
+    }, [userLoggedIn])
+
+    const logoutSuccess = () => {
+        setTimeout(() => {
+            setLoggedOut(false);
+        }, 2000);
+    }
 
     const logout = () => {
         try {
             axios
                 .delete('/auth/logout')
                 props.userLogout();
-                history.replace('/')
+                history.replace('/');
+                setLoggedOut(true)
+                logoutSuccess();
         } catch (err) {
             console.log(err);
         }
@@ -23,26 +45,24 @@ function NavOne(props) {
 
     
     const handleAccount = () => {
-        let loggedIn = props.loggedIn;
-        if (loggedIn) {
-            let user = props.userProfile.username;
-            history.push(`/Account/${user}`)
+        if (userLoggedIn) {
+            history.push(`/Account/${newUser}`)
         }
     }
 
     return (
         <div className='NavOne'>
             {
-            props.loggedIn
+            userLoggedIn
             ?
             <div
                 className='conditional'
                 onMouseEnter={ () => setName('open') }
                 onMouseLeave={ () => setName('closed') }
             >
-                Hi, {props.userName} &#11167;
+                Hi, {newUser} &#11167;
                 <div className={name} >
-                    <span id='email'>{props.email}</span>
+                    <span id='email'>{currentUser.email}</span>
                     <p onClick={handleAccount}>My Account</p>
                     <p onClick={logout}>Logout</p>
                 </div>
@@ -65,6 +85,17 @@ function NavOne(props) {
                     Register
                 </Link>
             </div>
+            }
+            {
+                loggedOut
+                ?
+                <div className='user-logged-out'>
+                    <div>
+                        <p>Successfully logged out &#9989;</p>
+                    </div>
+                </div>
+                :
+                null
             }
         </div>
     );

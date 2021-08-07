@@ -27,9 +27,9 @@ function CartItem(props) {
                 <div>${item.price}</div>
                 </div>
                 <div>
-                    <button>-</button>
+                    <button onClick={() => alert('Work in progress')}>-</button>
                     <span>Quantity</span>
-                    <button>+</button>
+                    <button onClick={() => alert('Work in progress')}>+</button>
                 </div>
                 <button onClick={() => props.removeFromCart(item)}>Remove</button>
             </div>

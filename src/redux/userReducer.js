@@ -11,6 +11,8 @@ const initialState = {
 const USER_DATA = 'USER_DATA';
 const USER_LOGOUT = 'USER_LOGOUT';
 const GET_USER = 'GET_USER';
+const UPDATE_USER = 'UPDATE_USER';
+
 
 // ACTION CREATORS
 export const userData = () => {
@@ -37,16 +39,22 @@ export const userLogout = () => {
 export const getUser = () => {
     return {
         type: GET_USER
-    }
+    };
 }
 
+export const updateUser = (user) => {
+    return {
+        type: UPDATE_USER,
+        payload: user
+    }
+};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case USER_DATA + '_PENDING':
             return {
                 pending: true
-            }
+            };
         case USER_DATA + '_FULFILLED':
             return {
                 user: action.payload,
@@ -57,7 +65,13 @@ export default function reducer(state = initialState, action) {
         case GET_USER:
             return {
                 ...state
-            }
+            };
+        
+        case UPDATE_USER:
+            return {
+                ...state,
+                ...action.payload
+            };
         
         case USER_LOGOUT:
             return initialState;

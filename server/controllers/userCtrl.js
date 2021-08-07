@@ -67,37 +67,53 @@ module.exports = {
     },
     deleteAccount: async (req, res) => {
         const db = req.app.get('db');
-        const { user_id } = req.session.user;
+        // const { user_id } = req.session.user;
 
-        await db.auth.delete_account(user_id)
+        await db.auth.delete_account(req.session.user.user_id)
         res.status(200).send('Account successfully deleted');
     },
     changePassword: async (req, res) => {
         const db = req.app.get('db');
-        const { password, newPassword } = req.body;
-        const { user_id } = req.session.user;
+        // const { password } = req.body;
+        // const { user_id } = req.session.user;
 
         // Error says variable $2 is out of range
+        // try {
+        //     const [ existingUser ] = await db.update.check_user_password(password);
+        //     console.log('Existing User:', existingUser)
+            
+        //     const isAuthenticated = bcrypt.compareSync(password, existingUser.hash);
+            
+        //     if (!isAuthenticated) {
+        //         return res.status(403).send('Incorrect email and/or password');
+        //     }
+            
+        //     const salt = bcrypt.genSaltSync(10);
+        //     const hash = bcrypt.hashSync(password, salt);
+            
+        //     const [ updateUser ] = await db.update.change_password(hash, req.session.user.user_id);
+        //     console.log(hash)
+            
+        //     delete updateUser.hash;
+            
+        //     req.session.user = updateUser;
+        //     console.log('req session', req.session.user)
+            
+        //     res.status(200).send(req.session.user)
+        // } catch (err) {
+        //     console.log(err);
+        //     return res.status(500).send('CHANGE PASSWORD ERROR');
+        // }
 
-        const { email } = req.session;
-        const [ existingUser ] = await db.auth.check_existing_user(email);
+        // const { password } = req.body;
 
-        const isAuthenticated = bcrypt.compareSync(password, existingUser.hash);
+        // const [ updateProfile ] = await db.update.change_password(password, req.session.user.user_id);
 
-        if (!isAuthenticated) {
-            return res.status(403).send('Incorrect email and/or password');
-        }
+        // delete updateProfile.password;
 
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(newPassword, salt);
+        // req.session.user = updateProfile;
 
-        const [ updateUser ] = await db.auth.change_password(hash, user_id);
-        console.log(hash)
-
-        delete updateUser.hash;
-
-        req.session.user = updateUser;
-
-        res.status(200).send(req.session.user)
+        // res.status(200).send(req.session.user);
+        // console.log(req.session.user)
     }
 }

@@ -36,6 +36,7 @@ function Contact() {
                             placeholder='Enter Your Email'
                             style={{ textDecoration: 'none' }}
                             name='email'
+                            onClick={() => alert('Work in progress')}
                         />
                         <button
                             type='submit'

@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import store from '../redux/store';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import '../styles/account.css';
 
-function Account() {
+function Account(props) {
+    console.log(props)
 
     const history = useHistory();
+
+    const [ popup, setPopup ] = useState(false);
 
     const [ birthday, setBirthday ] = useState('');
     const [ createdOn, setCreatedOn ] = useState('');
     
-    let user = store.getState().user.user
+    let user = props.user.user
 
     useEffect(() => {
+        setPopup(false);
         setBirthday(user.birthday.substring(0, 10));
         setCreatedOn(user.created_on.substring(0, 10));
     }, [])
+
+    const deleteAccount = async (e) => {
+        e.preventDefault();
+
+        let id = props.user.user.user_id;
+
+        await axios
+                .delete(`/auth/delete/${id}`)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
+    }
 
     return (
         <div className='Account'>
@@ -39,14 +55,38 @@ function Account() {
                         <p>{createdOn}</p>
                     </div>
                     <div className='change'>
-                        <h3>Change Username</h3>
-                        <h3>Change Email</h3>
-                        <h3 onClick={() => history.push('/ChangePass')}>Change Password</h3>
+                        <h3 onClick={() => alert('Work in progress')}>Change Username</h3>
+                        <h3 onClick={() => alert('Work in progress')}>Change Email</h3>
+                        <h3 onClick={() => alert('Work in progress')}>Change Password</h3>
+                        {/* <h3 onClick={() => history.push('/ChangePass')}>Change Password</h3> */}
                     </div>
+                    <button onClick={() => setPopup(true)}>Delete Account</button>
+                    {
+                        popup
+                        ?
+                        <span className='popup'>
+                            <div>
+                                <div>
+                                    <p onClick={() => setPopup(false)}>X</p>
+                                    <p>Are you sure you want to delete your account?</p>
+                                </div>
+                                <div>
+                                    <button onClick={() => setPopup(false)}>Cancel</button>
+                                    <button onClick={deleteAccount}>Yes I'm Sure</button>
+                                </div>
+                            </div>
+                        </span>
+                        :
+                        null
+                    }
                 </div>
             </section>
         </div>
     );
 }
 
-export default Account;
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps)(Account);

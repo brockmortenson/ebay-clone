@@ -126,13 +126,17 @@ const Register = (props) => {
                             <span>Passwords do not match</span>
                         }
                     </div>
+                    <div className='birthday'>
+                    <span>Birthday</span>
                     <input
                         type='date'
+                        placeholder='Enter your birthday'
                         name='birthday'
                         onChange={handleChange}
                         value={data.birthday}
                         required
                     />
+                    </div>
                     <button type='submit'>Create Account</button>
                     <div className='account-login'>
                         <p>Have an account?</p>

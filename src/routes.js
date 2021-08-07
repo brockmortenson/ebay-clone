@@ -14,7 +14,6 @@ import Account from './components/Account';
 import SavedItems from './components/SavedItems';
 import About from './components/About';
 import Contact from './components/Contact';
-import Checkout from './components/Checkout';
 import ChangePass from './components/ChangePass';
 
 
@@ -34,7 +33,6 @@ export default (
         <Route path='/SavedItems' component={SavedItems} />
         <Route path='/About' component={About} />
         <Route path='/Contact' component={Contact} />
-        <Route path='/Checkout' component={Checkout} />
         <Route path='/ChangePass' component={ChangePass} />
     </Switch>
 )

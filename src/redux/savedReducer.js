@@ -7,6 +7,7 @@ const initialState = {
 // ACTION CREATOR
 const ADD_TO_SAVED = 'ADD_TO_SAVED';
 const REMOVE_FROM_SAVED = 'REMOVE_FROM_SAVED';
+const EMPTY_SAVED = 'EMPTY_SAVED';
 
 
 // ACTION TYPES
@@ -21,6 +22,13 @@ export const removeFromSaved = (itemID) => {
     return {
         type: REMOVE_FROM_SAVED,
         payload: itemID
+    }
+}
+
+export const emptySaved = (items) => {
+    return {
+        type: EMPTY_SAVED,
+        payload: items
     }
 }
 
@@ -40,6 +48,13 @@ export default function reducer(state = initialState, action) {
                 saved: [
                     ...state.saved.filter( item => item !== action.payload)
                 ]
+            }
+        
+        case EMPTY_SAVED:
+            state.savedCount = 0;
+            return {
+                ...state,
+                saved: []
             }
             
         default: 

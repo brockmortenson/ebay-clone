@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { addToCart } from '../redux/cartReducer';
@@ -45,6 +45,13 @@ const Landing = (props) => {
         }, 2000);
     }
 
+    const addFail = () => {
+        setTimeout(() => {
+            setUser(false)
+            setSave(false)
+        }, 2000)
+    }
+
     let loggedIn = props.user.isLoggedIn;
 
     const pageOneProducts = products.map((product) => {
@@ -55,6 +62,7 @@ const Landing = (props) => {
     
             if (!loggedIn) {
                 setUser(true)
+                addFail();
             } else {
                 setUser(false)
                 props.addToCart(product)
@@ -70,6 +78,7 @@ const Landing = (props) => {
             
             if (!loggedIn) {
                 setSave(true)
+                addFail();
             } else {
                 setSave(false)
                 props.addToSaved(product)
@@ -111,6 +120,7 @@ const Landing = (props) => {
     
             if (!loggedIn) {
                 setUser(true)
+                addFail();
             } else {
                 setUser(false)
                 props.addToCart(product)
@@ -126,6 +136,7 @@ const Landing = (props) => {
 
             if (!loggedIn) {
                 setSave(true)
+                addFail();
             } else {
                 setSave(false)
                 props.addToSaved(product)
@@ -200,15 +211,9 @@ const Landing = (props) => {
                     {
                         user
                         ?
-                        <div id='login-add'>
+                        <div className='failed'>
                             <div>
-                                <div>
-                                    <span onClick={() => setUser(false)}>X</span>
-                                </div>
-                                <div>
-                                    <p onClick={() => history.push('/Login')}>Login</p>
-                                    <p>to be able to add this item to your cart</p>
-                                </div>
+                                <p>Login to add this item to your cart &#10060;</p>
                             </div>
                         </div>
                         :
@@ -217,15 +222,9 @@ const Landing = (props) => {
                     {
                         save
                         ?
-                        <div id='login-save'>
+                        <div className='failed'>
                             <div>
-                                <div>
-                                    <span onClick={() => setSave(false)}>X</span>
-                                </div>
-                                <div>
-                                    <p onClick={() => history.push('/Login')}>Login</p>
-                                    <p>to be able to save this item</p>
-                                </div>
+                                <p>Login to save this item &#10060;</p>
                             </div>
                         </div>
                         :
@@ -269,15 +268,42 @@ const Landing = (props) => {
                     {
                         user
                         ?
-                        <div id='login-add'>
+                        <div className='failed'>
                             <div>
-                                <div>
-                                    <span onClick={() => setUser(false)}>X</span>
-                                </div>
-                                <div>
-                                    <p onClick={() => history.push('/Login')}>Login</p>
-                                    <p>to be able to add this item to your cart</p>
-                                </div>
+                                <p>Login to add this item to your cart &#10060;</p>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        save
+                        ?
+                        <div className='failed'>
+                            <div>
+                                <p>Login to save this item &#10060;</p>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        added
+                        ?
+                        <div className='added'>
+                            <div>
+                                <p>Item was added to your cart! &#9989;</p>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        saved
+                        ?
+                        <div className='added'>
+                            <div>
+                                <p>Saved! &#9989;</p>
                             </div>
                         </div>
                         :
