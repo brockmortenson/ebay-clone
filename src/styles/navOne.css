@@ -94,3 +94,9 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 666px) {
+    .auth {
+        font-size: 16px;
+    }
+}

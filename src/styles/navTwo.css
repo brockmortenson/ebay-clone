@@ -36,3 +36,16 @@
 .NavTwo section {
     width: 100vw;
 }
+
+@media (max-width: 666px) {
+    .NavTwo {
+        height: 70px;
+        flex-direction: column;
+        position: relative;
+        top: -315px;
+    }
+
+    .NavTwo > section {
+        margin-top: 10px;
+    }
+}

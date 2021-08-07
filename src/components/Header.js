@@ -11,6 +11,10 @@ function Header(props) {
     const [ name, setName ] = useState(false);
     const [ cart, setCart ] = useState(false);
     const [ items, setItems ] = useState(false);
+
+    // Hamburger Menu State
+    const [ open, setOpen ] = useState(false);
+    const [ checked, setChecked ] = useState(false);
     
     const history = useHistory();
 
@@ -60,10 +64,24 @@ function Header(props) {
             setItems(false)
         }
     }
+
+    const handleOpen = () => {
+        setOpen(!open)
+        setChecked(!checked)
+    }
+
+    const handleChecked = () => {
+        setOpen(!open)
+        setChecked(!checked)
+    }
     
     return (
         <div className='Header'>
             <div>
+                <div>
+                    <input className='toggler' type='checkbox' onClick={handleOpen} checked={checked}  />
+                    <div className='hamburger'><div></div></div>
+                </div>
                 <nav className='nav-one'>
                     <div className='nav-one-group-one'>
                         <NavOne
@@ -127,6 +145,77 @@ function Header(props) {
                         </div>
                     </div>
                 </nav>
+                {
+                    open
+                    ?
+                    <nav className='toggled' onClick={handleChecked}>
+                        <div>
+                            <div className='nav-one-group-one'>
+                                <NavOne
+                                    loggedIn={loggedIn}
+                                    currentUser={currentUser}
+                                />
+                                <p onClick={() => history.push('/About')}>About</p>
+                                <p onClick={() => history.push('/Contact')}>Contact Us</p>
+                            </div>
+                            <div className='nav-one-group-two'>
+                                <div
+                                    onClick={handleItems}
+                                    onMouseEnter={loggedInItems}
+                                    onMouseLeave={() => setItems(false)}
+                                >
+                                    Saved Items
+                                    {
+                                        items
+                                        ?
+                                        <div className='condition'>
+                                            <p>Sign In to view your saved items</p>
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div
+                                    onClick={handleAccount}
+                                    onMouseEnter={loggedInAccount}
+                                    onMouseLeave={() => setName(false)}
+                                >
+                                    My Account
+                                    {
+                                        name
+                                        ?
+                                        <div className='condition'>
+                                            <p>Sign In to view your account</p>
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div
+                                    onClick={handleCart}
+                                    onMouseEnter={loggedInCart}
+                                    onMouseLeave={() => setCart(false)}
+                                >
+                                    <div>
+                                        <img src={cartImg} alt='cart' />
+                                        <p>{props.cart.cartCount}</p>
+                                    </div>
+                                    {
+                                        cart
+                                        ?
+                                        <div className='condition'>
+                                            <p>Sign In to view your cart</p>
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    :
+                    null
+                }
                 <nav className='nav-two'>
                     <NavTwo />
                 </nav>

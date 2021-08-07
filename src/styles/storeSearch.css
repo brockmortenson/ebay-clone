@@ -135,3 +135,19 @@
       transform: rotate(360deg);
     }
   }
+
+  @media (max-width: 666px) {
+    .StoreSearch button {
+      height: 30px;
+    }
+
+    .results {
+      /* z-index: 6; */
+    }
+
+    .load-search div {
+      width: 18px;
+      height: 18px;
+      margin: -4px;
+    }
+  }

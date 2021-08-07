@@ -20,3 +20,22 @@
 .unselected:hover {
     color: #396bf6;
 }
+
+@media (max-width: 666px) {
+    .NavThree {
+        width: 70%;
+        position: relative;
+        top: -305px;
+        right: -15%;
+    }
+}
+
+@media (max-width: 545px) {
+    .NavThree {
+        width: 50%;
+        font-size: 11px;
+        position: relative;
+        top: -305px;
+        right: -25%;
+    }
+}
