@@ -3,6 +3,7 @@
     padding: 150px 30px;
     margin:  0 auto;
     overflow: auto;
+    overflow-x: hidden;
     background-color: rgb(255, 255, 255);
     border-inline: 1px solid rgb(194, 194, 194);
 }

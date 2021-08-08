@@ -113,6 +113,28 @@
   filter: drop-shadow(2px 2px 2px #959595);
 }
 
+@media (max-width: 788px) {
+  .item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item > div {
+    width: 100%;
+  }
+
+  .ProductView {
+    overflow-x: hidden;
+  }
+
+  .ProductView img {
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-bottom: 1px solid rgb(194, 194, 194);
+  }
+}
+
 /* Loading Animation */
 .load-ring {
     width: 100%;

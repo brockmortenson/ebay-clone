@@ -136,18 +136,29 @@
     }
   }
 
+
   @media (max-width: 666px) {
     .StoreSearch button {
       height: 30px;
     }
 
     .results {
-      /* z-index: 6; */
+      width: 45%;
+      z-index: 5;
     }
 
     .load-search div {
       width: 18px;
       height: 18px;
       margin: -4px;
+    }
+
+    .item-search > img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .item-search > p {
+      font-size: 30px;
     }
   }

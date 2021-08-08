@@ -15,6 +15,10 @@
     border-bottom: 1px solid rgb(194, 194, 194);
 }
 
+.Cart > button {
+    margin-bottom: 10px;
+}
+
 .cart-view {
     display: flex;
     flex-wrap: wrap;
