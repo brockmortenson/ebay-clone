@@ -118,7 +118,7 @@
     right: 30px;
     top: 10px;
     cursor: pointer;
-    z-index: 7;
+    z-index: 8;
     opacity: 0;
 }
 
@@ -131,7 +131,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 6;
+    z-index: 7;
 }
 
 .hamburger > div {
@@ -153,7 +153,7 @@
     position: absolute;
     top: -10px;
     background: inherit;
-    z-index: 6;
+    z-index: 7;
 }
 
 .hamburger > div:after {
@@ -189,7 +189,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: row-reverse;
-        z-index: 5;
+        z-index: 6;
     }
 
     .toggled > div {
@@ -201,7 +201,7 @@
         justify-content: center;
         align-items: center;
         box-shadow: -15px 0px 15px -5px rgba(0,0,0,0.33);
-        z-index: 5;
+        z-index: 6;
     }
 
     .nav-one-group-one {
