@@ -32,10 +32,10 @@
 
 @media (max-width: 545px) {
     .NavThree {
-        width: 50%;
+        width: 52%;
         font-size: 11px;
         position: relative;
         top: -305px;
-        right: -25%;
+        right: -24%;
     }
 }

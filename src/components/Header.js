@@ -74,6 +74,14 @@ function Header(props) {
         setOpen(!open)
         setChecked(!checked)
     }
+
+    const logIn = <div className='condition'><p>Log In to view this</p></div>
+    const failed =
+        <div className='toggled-condition'>
+            <div>
+                <p>Log in to view this</p>
+            </div>
+        </div>
     
     return (
         <div className='Header'>
@@ -101,9 +109,7 @@ function Header(props) {
                             {
                                 items
                                 ?
-                                <div className='condition'>
-                                    <p>Sign In to view your saved items</p>
-                                </div>
+                                logIn
                                 :
                                 null
                             }
@@ -117,9 +123,7 @@ function Header(props) {
                             {
                                 name
                                 ?
-                                <div className='condition'>
-                                    <p>Sign In to view your account</p>
-                                </div>
+                                logIn
                                 :
                                 null
                             }
@@ -136,9 +140,7 @@ function Header(props) {
                             {
                                 cart
                                 ?
-                                <div className='condition'>
-                                    <p>Sign In to view your cart</p>
-                                </div>
+                                logIn
                                 :
                                 null
                             }
@@ -168,9 +170,7 @@ function Header(props) {
                                     {
                                         items
                                         ?
-                                        <div className='condition'>
-                                            <p>Sign In to view your saved items</p>
-                                        </div>
+                                        failed
                                         :
                                         null
                                     }
@@ -184,9 +184,7 @@ function Header(props) {
                                     {
                                         name
                                         ?
-                                        <div className='condition'>
-                                            <p>Sign In to view your account</p>
-                                        </div>
+                                        failed
                                         :
                                         null
                                     }
@@ -203,9 +201,7 @@ function Header(props) {
                                     {
                                         cart
                                         ?
-                                        <div className='condition'>
-                                            <p>Sign In to view your cart</p>
-                                        </div>
+                                        failed
                                         :
                                         null
                                     }
