@@ -15,11 +15,11 @@ function Cart(props) {
 
     let tax = 0
     
-    const withTax = count === 0 ? tax = 0 : tax = 3.72; 
-    
     let subTotal = 0;
 
     let total = 0;
+    
+    const withTax = count === 0 ? tax = 0 : tax = 3.72; 
 
     useEffect(() => {
         props.cart.cart.map((item) => {
@@ -84,7 +84,7 @@ function Cart(props) {
                             shippingAddress
                             amount={final * 100}
                             >
-                                <button>Checkout</button>
+                                <button onClick={() => props.emptyCart()}>Checkout</button>
                             </StripeCheckout>
                             :
                             null

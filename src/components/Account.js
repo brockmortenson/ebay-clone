@@ -5,7 +5,6 @@ import axios from 'axios';
 import '../styles/account.css';
 
 function Account(props) {
-    console.log(props)
 
     const history = useHistory();
 
@@ -55,10 +54,9 @@ function Account(props) {
                         <p>{createdOn}</p>
                     </div>
                     <div className='change'>
-                        <h3 onClick={() => alert('Work in progress')}>Change Username</h3>
-                        <h3 onClick={() => alert('Work in progress')}>Change Email</h3>
-                        <h3 onClick={() => alert('Work in progress')}>Change Password</h3>
-                        {/* <h3 onClick={() => history.push('/ChangePass')}>Change Password</h3> */}
+                        <h3 onClick={() => history.push('/ChangeUsername')}>Change Username</h3>
+                        <h3 onClick={() => history.push('/ChangeEmail')}>Change Email</h3>
+                        {/* <h3 onClick={() => alert('Work in progress')}>Change Password</h3> */}
                     </div>
                     <button onClick={() => setPopup(true)}>Delete Account</button>
                     {

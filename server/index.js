@@ -7,7 +7,7 @@ const path = require('path');
 
 /* CONTROLLER IMPORTS */
 const userCtrl = require('./controllers/userCtrl');
-const cartCtrl = require('./controllers/cartCtrl');
+const updateCtrl = require('./controllers/updateCtrl');
 
 const app = express();
 
@@ -41,13 +41,23 @@ app.post('/auth/login', userCtrl.login);
 app.delete('/auth/logout', userCtrl.logout);
 
 // DELETE ACCOUNT
-app.delete('/auth/delete/:id', userCtrl.deleteAccount)
+app.delete('/auth/delete/:id', userCtrl.deleteAccount);
 
 // USER SESSION
 app.get('/auth/session', userCtrl.getSession);
 
+
+
+/* UPDATE ENDPOINTS */
+
 // CHANGE PASSWORD
-app.put('/auth/change', userCtrl.changePassword);
+app.put('/auth/change', updateCtrl.changePassword);
+
+// CHANGE EMAIL
+app.put('/auth/changeEmail', updateCtrl.changeEmail);
+
+// CHANGE USERNAME
+app.put('/auth/changeUsername', updateCtrl.changeUsername)
 
 
 

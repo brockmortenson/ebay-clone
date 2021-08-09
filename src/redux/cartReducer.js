@@ -47,17 +47,19 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
             state.cartCount += 1;
-            // Item already in cart?
-            // const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
-            // console.log(inCart)
             return {
                 ...state,
                 cart: [...state.cart, action.payload],
             };
 
+            // Item already in cart?
+            // const item = state.cart.find((prod) => prod.id === action.payload.id)
+            // const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
+            // console.log('Payload ID:', action.payload.id)
+            // console.log('In Cart:', inCart)
             // return {
             //     ...state,
-            //     cart: inCart ? state.cart.map((item) => item.id === action.payload.id ? {...action.payload, qty: item.qty + 1} : item) : [...state.cart, action.payload, action.payload.qty]
+            //     cart: inCart ? state.cart.map((item) => item.id === action.payload.id ? {...item, qty: item.qty + 1} : item) : [...state.cart, {...item, qty: 1}]
             // }
 
         case REMOVE_FROM_CART:

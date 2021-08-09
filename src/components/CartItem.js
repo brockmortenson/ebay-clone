@@ -14,19 +14,17 @@ function CartItem(props) {
     
     const mappedCart = props.cart.cart.map((item, index) => {
         const handlePush = () => history.push(`/ProductView/${item.id}`)
+        // if (props.cart.cart.id === props.cart.cart.id) {
+        //     props.cart.cart.splice(props.cart.cart.id, 1)
+        //     console.log('IF', props.cart.cart)
+        // }
         const increment = () => {
-            props.addToCart(item);
-            // props.adjustQuantity()
+            // props.addToCart(item);
+            // props.adjustQuantity(item.id)
 
-            console.log(itemCount)
-
-            // for (let i = 0; i <= props.cart.cart.length; i++) {
-            //     for (let j = i + 1; j <= props.cart.cart.length; j++) {
-            //         if (props.cart.cart[i] === props.cart.cart[j]) {
-            //             props.cart.cart.splice(props.cart.cart[i], 1)
-            //         }
-            //     }
-            // }
+            if (item[index] === item[index]) {
+                setItemCount(itemCount + 1)
+            } 
         }
         return (
             <div key={index} className='cart-items'>
@@ -42,11 +40,12 @@ function CartItem(props) {
                     </div>
                     <div>${item.price}</div>
                 </div>
-                <div>
+                {/* <div>
                     <button onClick={() => alert('Work in progress')}><p>-</p></button>
                     <span>{itemCount}</span>
                     <button onClick={increment}><p>+</p></button>
-                </div>
+                </div> */}
+                <br />
                 <button onClick={() => props.removeFromCart(item)}>Remove</button>
             </div>
         );

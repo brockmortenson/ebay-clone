@@ -72,48 +72,4 @@ module.exports = {
         await db.auth.delete_account(req.session.user.user_id)
         res.status(200).send('Account successfully deleted');
     },
-    changePassword: async (req, res) => {
-        const db = req.app.get('db');
-        // const { password } = req.body;
-        // const { user_id } = req.session.user;
-
-        // Error says variable $2 is out of range
-        // try {
-        //     const [ existingUser ] = await db.update.check_user_password(password);
-        //     console.log('Existing User:', existingUser)
-            
-        //     const isAuthenticated = bcrypt.compareSync(password, existingUser.hash);
-            
-        //     if (!isAuthenticated) {
-        //         return res.status(403).send('Incorrect email and/or password');
-        //     }
-            
-        //     const salt = bcrypt.genSaltSync(10);
-        //     const hash = bcrypt.hashSync(password, salt);
-            
-        //     const [ updateUser ] = await db.update.change_password(hash, req.session.user.user_id);
-        //     console.log(hash)
-            
-        //     delete updateUser.hash;
-            
-        //     req.session.user = updateUser;
-        //     console.log('req session', req.session.user)
-            
-        //     res.status(200).send(req.session.user)
-        // } catch (err) {
-        //     console.log(err);
-        //     return res.status(500).send('CHANGE PASSWORD ERROR');
-        // }
-
-        // const { password } = req.body;
-
-        // const [ updateProfile ] = await db.update.change_password(password, req.session.user.user_id);
-
-        // delete updateProfile.password;
-
-        // req.session.user = updateProfile;
-
-        // res.status(200).send(req.session.user);
-        // console.log(req.session.user)
-    }
 }
