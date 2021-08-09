@@ -95,6 +95,20 @@
     align-items: center;
 }
 
+.mobile-logout {
+    /* padding: 1px 10px 3px 10px; */
+    padding-block: 4px;
+    font-size: 13px;
+    color: white;
+    background-color: #396bf6;
+    border-radius: 45px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-logout:hover {
+    background-color: rgb(78, 196, 78);
+}
+
 @media (max-width: 666px) {
     .auth {
         font-size: 16px;

@@ -22,7 +22,7 @@ function NavOne(props) {
             setNewUser(currentUser.username)
             setLoggedOut(false)
         }
-    }, [userLoggedIn])
+    }, [userLoggedIn, currentUser])
 
     const logoutSuccess = () => {
         setTimeout(() => {
@@ -61,11 +61,20 @@ function NavOne(props) {
                 onMouseLeave={ () => setName('closed') }
             >
                 Hi, {newUser} &#11167;
-                <div className={name} >
-                    <span id='email'>{currentUser.email}</span>
-                    <p onClick={handleAccount}>My Account</p>
-                    <p onClick={logout}>Logout</p>
-                </div>
+                {
+                    !props.open
+                    ?
+                    <div className={name} >
+                        <span id='email'>{currentUser.email}</span>
+                        <p onClick={handleAccount}>My Account</p>
+                        <p onClick={logout}>Logout</p>
+                    </div>
+                    :
+                    <div>
+                        <br />
+                        <p className='mobile-logout' onClick={logout}>Logout</p>
+                    </div>
+                }
             </div>
             :
             <div>Hi! {' '}

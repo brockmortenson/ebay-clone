@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 import { connect } from 'react-redux';
 import { emptyCart } from '../redux/cartReducer';
-import { useHistory } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import '../styles/cart.css';
 
 function Cart(props) {
-
-    const history = useHistory();
-
+    // const [ quantity, setQuantity ] = useState(0);
+    
     const [ sum, setSum ] = useState(0);
     const [ final, setFinal ] = useState(0);
 
@@ -47,6 +45,14 @@ function Cart(props) {
             <p>YOUR CART</p>
             <button onClick={handleEmpty}>Empty cart</button>
             <div className='cart-view'>
+                {/* {
+                    props.cart.cart.map((item) => {
+                        if (item.id === item.id) {
+                            props.cart.cart.splice(item)
+                        }
+                        return <CartItem key={item.id} itemData={item} />
+                    })
+                } */}
                 <CartItem />
                 <section>
                     <h2>Cart Totals</h2>

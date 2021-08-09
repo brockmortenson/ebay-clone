@@ -127,3 +127,13 @@
   padding-bottom: 5px;
   margin-left: 5px;
 }
+
+@media (max-width: 666px) {
+  .reg-form {
+    width: 100%;
+  }
+
+  .reg-form > form {
+    width: 100%;
+  }
+}

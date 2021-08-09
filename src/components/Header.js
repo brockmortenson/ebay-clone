@@ -76,12 +76,6 @@ function Header(props) {
     }
 
     const logIn = <div className='condition'><p>Log In to view this</p></div>
-    const failed =
-        <div className='toggled-condition'>
-            <div>
-                <p>Log in to view this</p>
-            </div>
-        </div>
     
     return (
         <div className='Header'>
@@ -156,57 +150,31 @@ function Header(props) {
                                 <NavOne
                                     loggedIn={loggedIn}
                                     currentUser={currentUser}
+                                    open={open}
                                 />
                                 <p onClick={() => history.push('/About')}>About</p>
                                 <p onClick={() => history.push('/Contact')}>Contact Us</p>
                             </div>
-                            <div className='nav-one-group-two'>
-                                <div
-                                    onClick={handleItems}
-                                    onMouseEnter={loggedInItems}
-                                    onMouseLeave={() => setItems(false)}
-                                >
-                                    Saved Items
-                                    {
-                                        items
-                                        ?
-                                        failed
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div
-                                    onClick={handleAccount}
-                                    onMouseEnter={loggedInAccount}
-                                    onMouseLeave={() => setName(false)}
-                                >
-                                    My Account
-                                    {
-                                        name
-                                        ?
-                                        failed
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div
-                                    onClick={handleCart}
-                                    onMouseEnter={loggedInCart}
-                                    onMouseLeave={() => setCart(false)}
-                                >
-                                    <div>
-                                        <img src={cartImg} alt='cart' />
-                                        <p>{props.cart.cartCount}</p>
+                            {
+                                loggedIn
+                                ?
+                                <div className='nav-one-group-two'>
+                                    <div onClick={handleItems}>
+                                        Saved Items
                                     </div>
-                                    {
-                                        cart
-                                        ?
-                                        failed
-                                        :
-                                        null
-                                    }
+                                    <div onClick={handleAccount}>
+                                        My Account
+                                    </div>
+                                    <div onClick={handleCart}>
+                                        <div>
+                                            <img src={cartImg} alt='cart' />
+                                            <p>{props.cart.cartCount}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                :
+                                null
+                            }
                         </div>
                     </nav>
                     :

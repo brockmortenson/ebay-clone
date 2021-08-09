@@ -47,10 +47,18 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ADD_TO_CART:
             state.cartCount += 1;
+            // Item already in cart?
+            // const inCart = state.cart.find(item => item.id === action.payload.id ? true : false)
+            // console.log(inCart)
             return {
                 ...state,
                 cart: [...state.cart, action.payload],
             };
+
+            // return {
+            //     ...state,
+            //     cart: inCart ? state.cart.map((item) => item.id === action.payload.id ? {...action.payload, qty: item.qty + 1} : item) : [...state.cart, action.payload, action.payload.qty]
+            // }
 
         case REMOVE_FROM_CART:
             state.cartCount -= 1;
@@ -66,6 +74,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 cart: []
+            }
+
+        case ADJUST_QUANTITY:
+            return {
+                ...state,
+                cart: state.cart.map((item) => item.id === action.payload.id ? {...item, qty: action.payload.qty} : item)
             }
             
         default: 

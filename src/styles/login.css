@@ -81,6 +81,18 @@
 
 
 
+@media (max-width: 666px) {
+  .form {
+    width: 100%;
+  }
+
+  .form > form {
+    width: 100%;
+  }
+}
+
+
+
 /* Loading */
 .loading {
   width: 100vw;

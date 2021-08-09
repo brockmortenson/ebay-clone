@@ -9,10 +9,10 @@ function SavedItem(props) {
 
     const history = useHistory();
 
-    const mapSaved = props.saved.saved.map((item) => {
+    const mapSaved = props.saved.saved.map((item, index) => {
         return (
             <div
-                key={item.id}
+                key={index}
                 className='saved-items'
             >
                 <div onClick={() => history.push(`/ProductView/${item.id}`)}>
