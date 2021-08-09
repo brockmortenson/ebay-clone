@@ -1,5 +1,6 @@
 .ProductView {
     max-width: 1100px;
+    min-height: 70vh;
     padding: 180px 30px;
     margin:  0 auto;
     overflow: auto;
