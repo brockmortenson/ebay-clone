@@ -28,18 +28,17 @@ function ChangeUsername(props) {
         popup();
 
         let body = { username };
-            await axios
+            try {
+                await axios
                     .put('/auth/changeUsername', body)
-                    .then(res => {
-                        props.updateUser(username, res.data.user_id);
-                        // history.replace(`/Account/${user.username}`);
-                        setSuccess(true);
-                        setUsername('');
-                    })
-                    .catch(err => {
-                        console.log(err)
-                        setFailed(true);
-                    })
+                    // history.replace(`/Account/${user.username}`);
+                    props.userData();
+                    setSuccess(true);
+                    setUsername('');
+            } catch (err) {
+                console.log(err);
+                setFailed(true);
+            }
     }
 
     return (
@@ -63,7 +62,7 @@ function ChangeUsername(props) {
                 ?
                 <div className='added'>
                     <div>
-                        <p>Username changed successfully! To see your changes, sign out, then log back in. &#9989;</p>
+                        <p>Username changed successfully! &#9989;</p>
                     </div>
                 </div>
                 :
@@ -88,4 +87,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps, { userData, updateUser })(ChangeUsername);
+export default connect(mapStateToProps, { userData })(ChangeUsername);

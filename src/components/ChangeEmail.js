@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { userData, updateUser } from '../redux/userReducer';
+import { userData } from '../redux/userReducer';
 import axios from 'axios';
 import '../styles/changeEmail.css';
 
@@ -29,17 +29,16 @@ function ChangeEmail(props) {
         popup();
 
         let body = { email };
-            await axios
+            try {
+                await axios
                     .put('/auth/changeEmail', body)
-                    .then(res => {
-                        props.updateUser(email, res.data.user_id);
-                        // history.replace(`/Account/${user.username}`);
-                        setSuccess(true);
-                    })
-                    .catch(err => {
-                        console.log(err)
-                        setFailed(true);
-                    })
+                    props.userData();
+                    setSuccess(true);
+                    // history.replace(`/Account/${user.username}`);
+            } catch (err) {
+                console.log(err)
+                setFailed(true);
+            }
     }
 
     const checkEmail = () => {
@@ -72,7 +71,7 @@ function ChangeEmail(props) {
                 ?
                 <div className='added'>
                     <div>
-                        <p>Email changed successfully! To see your changes, sign out, then log back in. &#9989;</p>
+                        <p>Email changed successfully! &#9989;</p>
                     </div>
                 </div>
                 :
@@ -97,4 +96,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps, { userData, updateUser })(ChangeEmail);
+export default connect(mapStateToProps, { userData })(ChangeEmail);

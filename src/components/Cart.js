@@ -6,7 +6,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import '../styles/cart.css';
 
 function Cart(props) {
-    // const [ quantity, setQuantity ] = useState(0);
     
     const [ sum, setSum ] = useState(0);
     const [ final, setFinal ] = useState(0);
@@ -28,6 +27,12 @@ function Cart(props) {
             total = Math.round((subTotal + withTax) * 100) / 100;
             setFinal(total);
         })
+
+        if (count === 0) {
+            setSum(0);
+            setFinal(0);
+        }
+
     }, [count])
 
     const handleToken = (token, addreses) => {
