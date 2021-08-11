@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { userLogout } from '../redux/userReducer';
 import axios from 'axios';
 import '../styles/account.css';
 
@@ -26,10 +27,15 @@ function Account(props) {
 
         let id = props.user.user.user_id;
 
-        await axios
+        try {
+            await axios
                 .delete(`/auth/delete/${id}`)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err))
+                history.push('/');
+                props.userLogout();
+                alert('Account has been deleted');
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -87,4 +93,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps, { userLogout })(Account);

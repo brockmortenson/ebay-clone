@@ -100,7 +100,7 @@ function NavOne(props) {
                 ?
                 <div className='user-logged-out'>
                     <div>
-                        <p>Successfully logged out &#9989;</p>
+                        <span>Successfully logged out &#9989;</span>
                     </div>
                 </div>
                 :
