@@ -70,7 +70,8 @@ const Login = (props) => {
                         required
                         />
                     <button type='submit'>Login</button>
-                    <span>Forgot Password?</span>
+                    {/* <span>Forgot Password?</span> */}
+                    <span onClick={() => history.push('/Register')}>Register instead?</span>
                 </form>
             </div>
             <div>

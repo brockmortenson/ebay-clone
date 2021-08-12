@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchIcon from '@material-ui/icons/Search';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import { Icon, IconButton, TextField } from '@material-ui/core';
 import '../styles/storeSearch.css';
+import { height } from '@material-ui/system';
 
 function StoreSearch() {
     // SearchBar State
@@ -227,6 +231,12 @@ function StoreSearch() {
             handleJewelrySearch();
         }
     }
+
+    const edit = () => {
+        if (window.innerWidth <= '666px') {
+            console.log('nice')
+        }
+    }
     
     return (
         <div className='StoreSearch'>
@@ -253,6 +263,26 @@ function StoreSearch() {
                     type='text'
                     onChange={(e) => setSearchParams(e.target.value)}
                 />
+                {/* <TextField
+                    className='text-field'
+                    type='text'
+                    variant='outlined'
+                    placeholder='Search for anything'
+                    // onChange={(e) => setSearchParams(e.target.value)}
+                    onChange={edit}
+                    InputProps={{
+                        style: {
+                            height: '40px',
+                            borderRadius: '0',
+                            border: '1px solid black'
+                        },
+                        startAdornment: (
+                            <InputAdornment position='start'>
+                                <SearchIcon />
+                            </InputAdornment>
+                        )
+                    }}
+                /> */}
                 <button
                     style={{textDecoration: 'none'}}
                     type='submit'
