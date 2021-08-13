@@ -4,7 +4,10 @@ import axios from 'axios';
 const initialState = {
     user: {},
     pending: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    accountDelete: false,
+    usernameChange: false,
+    emailChange: false
 };
 
 // ACTION TYPES
@@ -42,11 +45,15 @@ export const getUser = () => {
     };
 }
 
-export const updateUser = (user) => {
-    return {
-        type: UPDATE_USER,
-        payload: user
-    }
+export const updateUser = () => {
+    let data = axios.get('/auth/session')
+        .then(res => res.data)
+        .catch(err => console.log(err));
+
+        return {
+            type: USER_DATA,
+            payload: data
+        };
 };
 
 export default function reducer(state = initialState, action) {
@@ -69,8 +76,8 @@ export default function reducer(state = initialState, action) {
         
         case UPDATE_USER:
             return {
-                ...state,
-                ...action.payload
+                user: action.payload,
+                isLoggedIn: true
             };
         
         case USER_LOGOUT:

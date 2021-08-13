@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { userData, updateUser } from '../redux/userReducer';
+import { userData } from '../redux/userReducer';
 import axios from 'axios';
 import '../styles/changeUsername.css';
 

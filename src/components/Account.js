@@ -34,7 +34,8 @@ function Account(props) {
                 props.userLogout();
                 alert('Account has been deleted');
         } catch (err) {
-            console.log(err)
+            console.log(err);
+            alert('Failed to delete your account');
         }
     }
 
