@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import axios from 'axios';
 import '../styles/changeUsername.css';
+import { useHistory } from 'react-router-dom';
 
 function ChangeUsername(props) {
     // REQUEST BODY BEING SENT
@@ -12,8 +13,7 @@ function ChangeUsername(props) {
     const [ failed, setFailed ] = useState(false);
     const [ success, setSuccess ] = useState(false);
 
-    // INVALID EMAIL
-    const [ userError, setUserError ] = useState('');
+    const history = useHistory();
 
     const popup = () => {
         setTimeout(() => {
@@ -39,14 +39,18 @@ function ChangeUsername(props) {
                 console.log(err);
                 setFailed(true);
             }
+
+        e.target.reset();
     }
 
     return (
         <div className='ChangeUsername'>
             <div className='change-username-form'>
+                <section>
+                    <p onClick={() => history.goBack()}>&#8678;</p>
+                </section>
                 <span>Change your username</span>
                 <form onSubmit={changeUsername}>
-                    {/* <p>{userError}</p> */}
                     <input
                         type='text'
                         placeholder='Enter new username'

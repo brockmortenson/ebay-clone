@@ -77,6 +77,9 @@ function ProductView(props) {
 
     return (
         <div className='ProductView'>
+            <section>
+                <p onClick={() => history.goBack()}>&#8678;</p>
+            </section>
             {
                 !isLoaded
                 ?

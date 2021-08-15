@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import axios from 'axios';
 import '../styles/changeEmail.css';
+import { useHistory } from 'react-router-dom';
 
 
 function ChangeEmail(props) {
@@ -16,6 +17,8 @@ function ChangeEmail(props) {
     // INVALID EMAIL
     const [ emailError, setEmailError ] = useState('');
 
+    const history = useHistory();
+    
     const popup = () => {
         setTimeout(() => {
             setFailed(false);
@@ -39,6 +42,8 @@ function ChangeEmail(props) {
                 console.log(err)
                 setFailed(true);
             }
+
+        e.target.reset();
     }
 
     const checkEmail = () => {
@@ -53,6 +58,9 @@ function ChangeEmail(props) {
     return (
         <div className='ChangeEmail'>
             <div className='change-email-form'>
+                <section>
+                    <p onClick={() => history.goBack()}>&#8678;</p>
+                </section>
                 <span>Change your email</span>
                 <form onSubmit={changeEmail}>
                     <p>{emailError}</p>

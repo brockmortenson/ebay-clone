@@ -114,6 +114,33 @@
   filter: drop-shadow(2px 2px 2px #959595);
 }
 
+.ProductView > section {
+  width: 100%;
+  margin-block: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
+
+.ProductView > section > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #396bf6;
+  border-radius: 5px;
+  padding: 2px 5px 6px 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* the html arrow does not center so
+  I had to use odd padding */
+}
+
+.ProductView > section > p:hover {
+  background-color: rgb(78, 196, 78);
+}
+
 @media (max-width: 788px) {
   .item {
     flex-direction: column;

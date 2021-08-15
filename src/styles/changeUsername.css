@@ -1,85 +1,112 @@
 .ChangeUsername {
-    max-width: 1100px;
-    min-height: 70vh;
-    padding: 150px 30px;
-    margin:  0 auto;
-    overflow: auto;
-    background-color: rgb(255, 255, 255);
-    border-inline: 1px solid rgb(194, 194, 194);
+  max-width: 1100px;
+  min-height: 70vh;
+  padding: 150px 30px;
+  margin:  0 auto;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+  border-inline: 1px solid rgb(194, 194, 194);
 }
 
 .change-username-form > form > p {
-    text-align: center;
-    color: red;
-    font-size: 14px;
-    margin-bottom: -25px;
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  margin-bottom: -25px;
 }
 
 .change-username-form > span {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .change-username-form {
-    width: 75%;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgb(194, 194, 194);
-    margin: 0 auto;
-    margin-top: 100px;
-    border-radius: 20px;
-    background-color: rgb(241, 241, 241);
-    transition: box-shadow 0.4s ease;
+  width: 75%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(194, 194, 194);
+  margin: 0 auto;
+  margin-top: 100px;
+  border-radius: 20px;
+  background-color: rgb(241, 241, 241);
+  transition: box-shadow 0.4s ease;
 }
 
 .change-username-form:hover {
-    box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
 }
 
 .change-username-form > form {
-    width: 50%;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 50%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
   
   .change-username-form > form > input {
-    width: 60%;
-    height: 30px;
-    padding-left: 5px;
-    border-radius: 5px;
-    border: 1px solid rgb(194, 194, 194);
+  width: 60%;
+  height: 30px;
+  padding-left: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 194, 194);
 }
   
   .change-username-form > form > button {
-    width: 60%;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: #396bf6;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #396bf6;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
   
   .change-username-form > form > button:hover {
-    background-color: rgb(78, 196, 78);
+  background-color: rgb(78, 196, 78);
+}
+
+.change-username-form > section {
+  width: 96%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
+
+.change-username-form > section > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #396bf6;
+  border-radius: 5px;
+  padding: 2px 5px 6px 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* the html arrow does not center so
+  I had to use odd padding */
+}
+
+.change-username-form > section > p:hover {
+  background-color: rgb(78, 196, 78);
 }
 
 @media (max-width: 666px) {
-    .change-username-form > span {
-        text-align: center;
-    }
+  .change-username-form > span {
+      text-align: center;
+  }
     
-    .change-username-form {
-      width: 100%;
-    }
+  .change-username-form {
+    width: 100%;
+  }
   
-    .change-username-form > form {
-      width: 100%;
-    }
+  .change-username-form > form {
+    width: 100%;
+  }
 }

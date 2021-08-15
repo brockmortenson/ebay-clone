@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import '../styles/contact.css';
 
 function Contact() {
+    const [ count, setCount ] = useState(0);
+
+    const [ success, setSuccess ] = useState(false);
+    const [ fail, setFail ] = useState(false);
 
     function sendEmail(e) {
         e.preventDefault();
 
-        emailjs.sendForm('service_y2vhikq', 'template_xbx4qfa', e.target, 'user_WhXjNaLuAcUBQlMNFKlOo')
+        emailjs.sendForm('service_y2vhikq', 'template_6rkendl', e.target, 'user_WhXjNaLuAcUBQlMNFKlOo')
             .then((result) => {
                 console.log(result.text);
+                setSuccess(true);
+                setTimeout(() => {
+                    setSuccess(false)
+                }, 2000);
             }, (error) => {
                 console.log(error.text);
+                setFail(true);
+                setTimeout(() => {
+                    setFail(false)
+                }, 2000);
             });
         e.target.reset();
     }
@@ -20,30 +32,67 @@ function Contact() {
         <div className='Contact'>
             <p>CONTACT</p>
             <div>
+                {
+                    fail
+                    ?
+                    <div className='failed'>
+                        <div>
+                            <p>An error ocurred. Try again later. &#10060;</p>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    success
+                    ?
+                    <div className='added'>
+                        <div>
+                            <p>Message sent successfully! &#9989;</p>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
                 <span>
                     <p>Contact us by phone:</p>
                     <p>(000)-000-0000</p>
                 </span>
                 <span>
-                    <p>Contact us by email:</p>
-                    <p>fake-email@fake.com</p>
+                    <p>Or send us a message below</p>
                 </span>
                 <form className='contact-form' onSubmit={sendEmail}>
-                    <p>Subscribe to receive exclusive offers!</p>
                     <div>
-                        <input
-                            type='text'
-                            placeholder='Enter Your Email'
-                            style={{ textDecoration: 'none' }}
-                            name='email'
-                            onClick={() => alert('Work in progress')}
-                        />
-                        <button
-                            type='submit'
-                            style={{ textDecoration: 'none' }}
-                        >
-                            Subscribe
-                        </button>
+                        <h2>Get In Touch</h2>
+                        <div>
+                            <div>
+                                <label for='fname'>Name</label>
+                                <input
+                                    placeholder='Enter your name'
+                                    type='text'
+                                    name='user_name'
+                                />
+                            </div>
+                            <div>
+                                <label>Email</label>
+                                <input
+                                    placeholder='Enter your email'
+                                    type='email'
+                                    name='user_email'
+                                />
+                            </div>
+                        </div>
+                        <section>
+                            <label>Message</label>
+                            <textarea
+                                placeholder='Type your message...'
+                                name='message'
+                                onChange={(e) => setCount(e.target.value.length)}
+                                maxLength='250'
+                            ></textarea>
+                            <p>{count}/250 Characters Remaining</p>
+                        </section>
+                        <button type='submit'>Send</button>
                     </div>
                 </form>
             </div>
