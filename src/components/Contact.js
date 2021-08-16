@@ -82,6 +82,7 @@ function Contact() {
                                     placeholder='Enter your name'
                                     type='text'
                                     name='user_name'
+                                    required
                                 />
                             </div>
                             <div>
@@ -90,6 +91,7 @@ function Contact() {
                                     placeholder='Enter your email'
                                     type='email'
                                     name='user_email'
+                                    required
                                 />
                             </div>
                         </div>
@@ -100,6 +102,7 @@ function Contact() {
                                 name='message'
                                 onChange={(e) => setCount(250 - e.target.value.length)}
                                 maxLength='250'
+                                required
                             ></textarea>
                             <p>{count} Characters Remaining</p>
                         </section>
