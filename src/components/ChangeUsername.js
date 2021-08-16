@@ -13,6 +13,9 @@ function ChangeUsername(props) {
     const [ failed, setFailed ] = useState(false);
     const [ success, setSuccess ] = useState(false);
 
+    // LOADING
+    const [ loading, setLoading ] = useState(false);
+
     const history = useHistory();
 
     const popup = () => {
@@ -26,6 +29,7 @@ function ChangeUsername(props) {
         e.preventDefault();
 
         popup();
+        setLoading(true);
 
         let body = { username };
             try {
@@ -35,9 +39,11 @@ function ChangeUsername(props) {
                     props.userData();
                     setSuccess(true);
                     setUsername('');
+                    setLoading(false);
             } catch (err) {
                 console.log(err);
                 setFailed(true);
+                setLoading(false);
             }
 
         e.target.reset();
@@ -45,6 +51,7 @@ function ChangeUsername(props) {
 
     return (
         <div className='ChangeUsername'>
+            {/* { !loading ? <div className='change-loading'><div></div><div></div><div></div><div></div></div> : null } */}
             <div className='change-username-form'>
                 <section>
                     <p onClick={() => history.goBack()}>&#8678;</p>
@@ -58,7 +65,17 @@ function ChangeUsername(props) {
                         maxLength='10'
                         required
                     />
-                    <button type='submit'>Change</button>
+                    <button type='submit'>
+                    {
+                        loading
+                        ?
+                        <div className='change-loading'>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+                        :
+                        'Change'
+                    }
+                    </button>
                 </form>
             </div>
             {

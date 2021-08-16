@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { Icon, IconButton, TextField } from '@material-ui/core';
+// import SearchIcon from '@material-ui/icons/Search';
+// import InputAdornment from '@material-ui/core/InputAdornment';
+// import { Icon, IconButton, TextField } from '@material-ui/core';
+// import { height } from '@material-ui/system';
 import '../styles/storeSearch.css';
-import { height } from '@material-ui/system';
 
 function StoreSearch() {
     // SearchBar State
@@ -232,11 +232,6 @@ function StoreSearch() {
         }
     }
 
-    const edit = () => {
-        if (window.innerWidth <= '666px') {
-            console.log('nice')
-        }
-    }
     
     return (
         <div className='StoreSearch'>

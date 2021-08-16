@@ -3,7 +3,7 @@ import emailjs from 'emailjs-com';
 import '../styles/contact.css';
 
 function Contact() {
-    const [ count, setCount ] = useState(0);
+    const [ count, setCount ] = useState(250);
 
     const [ success, setSuccess ] = useState(false);
     const [ fail, setFail ] = useState(false);
@@ -66,7 +66,7 @@ function Contact() {
                         <h2>Get In Touch</h2>
                         <div>
                             <div>
-                                <label for='fname'>Name</label>
+                                <label htmlFor='fname'>Name</label>
                                 <input
                                     placeholder='Enter your name'
                                     type='text'
@@ -87,10 +87,10 @@ function Contact() {
                             <textarea
                                 placeholder='Type your message...'
                                 name='message'
-                                onChange={(e) => setCount(e.target.value.length)}
+                                onChange={(e) => setCount(250 - e.target.value.length)}
                                 maxLength='250'
                             ></textarea>
-                            <p>{count}/250 Characters Remaining</p>
+                            <p>{count} Characters Remaining</p>
                         </section>
                         <button type='submit'>Send</button>
                     </div>

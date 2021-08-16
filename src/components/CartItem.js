@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { removeFromCart, adjustQuantity, addToCart } from '../redux/cartReducer';
 import cartImg from '../images/cart.png';
-import '../styles/cartItem.css';
 import { useHistory } from 'react-router-dom';
+import '../styles/cartItem.css';
 
 function CartItem(props) {
-    const [ itemCount, setItemCount ] = useState(0);
+    // const [ itemCount, setItemCount ] = useState(0);
 
     const history = useHistory();
-
-    
     
     const mappedCart = props.cart.cart.map((item, index) => {
         const handlePush = () => history.push(`/ProductView/${item.id}`)
@@ -18,14 +16,7 @@ function CartItem(props) {
         //     props.cart.cart.splice(props.cart.cart.id, 1)
         //     console.log('IF', props.cart.cart)
         // }
-        const increment = () => {
-            // props.addToCart(item);
-            // props.adjustQuantity(item.id)
 
-            if (item[index] === item[index]) {
-                setItemCount(itemCount + 1)
-            } 
-        }
         return (
             <div key={index} className='cart-items'>
                 <div>
@@ -69,12 +60,6 @@ function CartItem(props) {
                         <p>Once you have added items to your cart, you will see be able to see them here.</p>
                     </div>
                 }
-
-                {/* <img src={props.itemData.image} style={{ width: '50px', height: '50px'}} />
-                <div>
-                    <p>{props.itemData.title}</p>
-                    <p>{props.itemData.description}</p>
-                </div> */}
             </div>
         </div>
     );

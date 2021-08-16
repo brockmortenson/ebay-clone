@@ -20,7 +20,7 @@ function Account(props) {
         setPopup(false);
         setBirthday(user.birthday.substring(0, 10));
         setCreatedOn(user.created_on.substring(0, 10));
-    }, [])
+    }, [user.birthday, user.created_on])
 
     const deleteAccount = async (e) => {
         e.preventDefault();

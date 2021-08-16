@@ -17,6 +17,8 @@ function ChangeEmail(props) {
     // INVALID EMAIL
     const [ emailError, setEmailError ] = useState('');
 
+    const [ loading, setLoading ] = useState(false);
+
     const history = useHistory();
     
     const popup = () => {
@@ -30,6 +32,7 @@ function ChangeEmail(props) {
         e.preventDefault();
 
         popup();
+        setLoading(true);
 
         let body = { email };
             try {
@@ -37,10 +40,12 @@ function ChangeEmail(props) {
                     .put('/auth/changeEmail', body)
                     props.userData();
                     setSuccess(true);
+                    setLoading(false);
                     // history.replace(`/Account/${user.username}`);
             } catch (err) {
-                console.log(err)
+                console.log(err);
                 setFailed(true);
+                setLoading(false);
             }
 
         e.target.reset();
@@ -71,7 +76,17 @@ function ChangeEmail(props) {
                         onKeyUp={checkEmail}
                         required
                     />
-                    <button type='submit'>Change</button>
+                    <button type='submit'>
+                    {
+                        loading
+                        ?
+                        <div className='change-loading'>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+                        :
+                        'Change'
+                    }
+                    </button>
                 </form>
             </div>
             {

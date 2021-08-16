@@ -3,7 +3,6 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { userData } from '../redux/userReducer';
 import { useHistory } from 'react-router-dom';
-import store from '../redux/store';
 import '../styles/register.css';
 
 const Register = (props) => {

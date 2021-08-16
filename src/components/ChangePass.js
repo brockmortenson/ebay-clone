@@ -1,15 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router';
 import { userData, updateUser } from '../redux/userReducer';
 import '../styles/changePass.css';
 
 function ChangePass(props) {
     const [ password, setPassword ] = useState(''); 
-    const [ newPassword, setNewPassword ] = useState(''); 
-
-    const history = useHistory();
+    // const [ newPassword, setNewPassword ] = useState(''); 
 
     const changePassword = async (e) => {
         e.preventDefault();
@@ -43,7 +40,7 @@ function ChangePass(props) {
                 />
                 <input
                     type='text'
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    // onChange={(e) => setNewPassword(e.target.value)}
                 />
                 <button type='submit'>Change</button>
             </form>

@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { addToCart } from '../redux/cartReducer';
 import { addToSaved } from '../redux/savedReducer';
-import { Link } from 'react-router-dom';
 import '../styles/jewelry.css';
 
 function Jewelry(props) {
