@@ -3,24 +3,33 @@ import emailjs from 'emailjs-com';
 import '../styles/contact.css';
 
 function Contact() {
+    // REMAINING CHARACTERS
     const [ count, setCount ] = useState(250);
 
+    // POPUP
     const [ success, setSuccess ] = useState(false);
     const [ fail, setFail ] = useState(false);
 
+    // LOADING
+    const [ loading, setLoading ] = useState(false);
+
     function sendEmail(e) {
         e.preventDefault();
+
+        setLoading(true);
 
         emailjs.sendForm('service_y2vhikq', 'template_6rkendl', e.target, 'user_WhXjNaLuAcUBQlMNFKlOo')
             .then((result) => {
                 console.log(result.text);
                 setSuccess(true);
+                setLoading(false);
                 setTimeout(() => {
                     setSuccess(false)
                 }, 2000);
             }, (error) => {
                 console.log(error.text);
                 setFail(true);
+                setLoading(false);
                 setTimeout(() => {
                     setFail(false)
                 }, 2000);
@@ -92,7 +101,17 @@ function Contact() {
                             ></textarea>
                             <p>{count} Characters Remaining</p>
                         </section>
-                        <button type='submit'>Send</button>
+                        <button type='submit'>
+                            {
+                                loading
+                                ?
+                                <div className='change-loading'>
+                                    <div></div><div></div><div></div><div></div>
+                                </div>
+                                :
+                                'Send'
+                            }
+                        </button>
                     </div>
                 </form>
             </div>

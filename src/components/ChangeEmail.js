@@ -77,15 +77,15 @@ function ChangeEmail(props) {
                         required
                     />
                     <button type='submit'>
-                    {
-                        loading
-                        ?
-                        <div className='change-loading'>
-                            <div></div><div></div><div></div><div></div>
-                        </div>
-                        :
-                        'Change'
-                    }
+                        {
+                            loading
+                            ?
+                            <div className='change-loading'>
+                                <div></div><div></div><div></div><div></div>
+                            </div>
+                            :
+                            'Change'
+                        }
                     </button>
                 </form>
             </div>

@@ -51,7 +51,6 @@ function ChangeUsername(props) {
 
     return (
         <div className='ChangeUsername'>
-            {/* { !loading ? <div className='change-loading'><div></div><div></div><div></div><div></div></div> : null } */}
             <div className='change-username-form'>
                 <section>
                     <p onClick={() => history.goBack()}>&#8678;</p>
@@ -66,15 +65,15 @@ function ChangeUsername(props) {
                         required
                     />
                     <button type='submit'>
-                    {
-                        loading
-                        ?
-                        <div className='change-loading'>
-                            <div></div><div></div><div></div><div></div>
-                        </div>
-                        :
-                        'Change'
-                    }
+                        {
+                            loading
+                            ?
+                            <div className='change-loading'>
+                                <div></div><div></div><div></div><div></div>
+                            </div>
+                            :
+                            'Change'
+                        }
                     </button>
                 </form>
             </div>
