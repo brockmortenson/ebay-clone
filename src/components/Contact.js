@@ -70,6 +70,8 @@ function Contact() {
                 <span>
                     <p>Or send us a message below</p>
                 </span>
+                <br />
+                <h3>Note: All messages are received by Brock Mortenson</h3>
                 <form className='contact-form' onSubmit={sendEmail}>
                     <div>
                         <h2>Get In Touch</h2>
