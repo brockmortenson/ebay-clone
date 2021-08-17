@@ -148,7 +148,7 @@ const Register = (props) => {
                         ?
                         <button type='submit'>Create Account</button>
                         :
-                        <button id='greyed-out' disabled>Create Account</button>
+                        <button style={{ opacity: '50%', cursor: 'initial' }} disabled>Create Account</button>
                     }
                     {/* <button type='submit'>Create Account</button> */}
                     <div className='account-login'>
