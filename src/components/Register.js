@@ -65,6 +65,9 @@ const Register = (props) => {
         }
     }
 
+    const borderOne = matchPass === data.password && matchPass !== '' ? 'rgb(78, 196, 78)' : 'rgb(194, 194, 194)';
+    const borderTwo = count < 6 ? 'rgb(194, 194, 194)' : 'rgb(78, 196, 78)';
+
     return (
         <div className='Register'>
             <div className='reg-form'>
@@ -97,6 +100,7 @@ const Register = (props) => {
                             onChange={handleChange}
                             onKeyUp={e => setCount(e.target.value.length)}
                             value={data.password}
+                            style={{ borderColor: borderTwo }}
                             minLength='6'
                             required
                         />
@@ -107,7 +111,7 @@ const Register = (props) => {
                                 Password must be at least 6 characters
                             </p>
                             :
-                            <p>&#9989;</p>
+                            <span className='check-mark'>&#9989;</span>
                         }
                         <input
                             type='password'
@@ -115,28 +119,38 @@ const Register = (props) => {
                             name='confirm'
                             onChange={e => setMatchPass(e.target.value)}
                             value={matchPass}
+                            style={{ borderColor: borderOne }}
                             required
                         />
                         {
                             matchPass === data.password && matchPass !== ''
                             ?
-                            <span>&#9989;</span>
+                            <span className='check-mark'>&#9989;</span>
                             :
                             <span>Passwords do not match</span>
                         }
                     </div>
                     <div className='birthday'>
-                    <span>Birthday</span>
-                    <input
-                        type='date'
-                        placeholder='Enter your birthday'
-                        name='birthday'
-                        onChange={handleChange}
-                        value={data.birthday}
-                        required
-                    />
+                        <span>Birthday</span>
+                        <input
+                            type='date'
+                            placeholder='Enter your birthday'
+                            name='birthday'
+                            onChange={handleChange}
+                            value={data.birthday}
+                            required
+                        />
                     </div>
-                    <button type='submit'>Create Account</button>
+                    {/* The below code prevents a user from being able to create
+                    an account if the passwords are not the same */}
+                    {
+                        matchPass === data.password && matchPass !== ''
+                        ?
+                        <button type='submit'>Create Account</button>
+                        :
+                        <button id='greyed-out' disabled>Create Account</button>
+                    }
+                    {/* <button type='submit'>Create Account</button> */}
                     <div className='account-login'>
                         <p>Have an account?</p>
                         <span onClick={() => history.push('/Login')}>Log in.</span>

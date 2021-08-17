@@ -6,6 +6,7 @@
 .StoreSearch input {
   width: 100%;
   position: relative;
+  padding-left: 10px;
 }
 
 /* .text-field {
@@ -90,7 +91,7 @@
   font-weight: 600;
 }
 
-.item-search >div {
+.item-search > div {
   /* padding: 5px; */
   font-size: 20px;
 }
