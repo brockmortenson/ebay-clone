@@ -32,11 +32,18 @@
     padding: 25px 5px;
 }
 
+.change {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 25px 0;
+}
+
 .change > h3 {
     color: #396bf6;
-    padding: 25px 0;
-    transition: all 0.3s ease;
+    padding: 0 15px;
+    text-align: center;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .change > h3:hover {

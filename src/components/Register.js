@@ -25,6 +25,9 @@ const Register = (props) => {
     // REGISTER ERROR
     const [ registerError, setRegisterError ] = useState('');
 
+    // VALID EMAIL
+    const [ valid, setValid ] = useState(false);
+
 
     const history = useHistory();
 
@@ -59,9 +62,11 @@ const Register = (props) => {
     const checkEmail = () => {
         if (data.email.includes('@' && '.')) {
             setRegisterError('');
+            setValid(true);
             return;
         } else {
-            setRegisterError('*Invalid email address*')
+            setRegisterError('*Invalid email address*');
+            setValid(false);
         }
     }
 
@@ -144,13 +149,17 @@ const Register = (props) => {
                     {/* The below code prevents a user from being able to create
                     an account if the passwords are not the same */}
                     {
-                        matchPass === data.password && matchPass !== ''
+                        matchPass === data.password && matchPass !== '' && valid
                         ?
                         <button type='submit'>Create Account</button>
                         :
-                        <button style={{ opacity: '50%', cursor: 'initial' }} disabled>Create Account</button>
+                        <button
+                            style={{ opacity: '50%', cursor: 'initial' }}
+                            disabled
+                        >
+                            Create Account
+                        </button>
                     }
-                    {/* <button type='submit'>Create Account</button> */}
                     <div className='account-login'>
                         <p>Have an account?</p>
                         <span onClick={() => history.push('/Login')}>Log in.</span>

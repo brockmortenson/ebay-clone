@@ -136,6 +136,7 @@
   align-items: center;
   bottom: 28px;
   left: 27%;
+  border: none;
 }
 
 @media (max-width: 666px) {

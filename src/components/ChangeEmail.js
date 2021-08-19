@@ -17,6 +17,9 @@ function ChangeEmail(props) {
     // INVALID EMAIL
     const [ emailError, setEmailError ] = useState('');
 
+    // VALID EMAIL
+    const [ valid, setValid ] = useState(false);
+
     const [ loading, setLoading ] = useState(false);
 
     const history = useHistory();
@@ -35,18 +38,18 @@ function ChangeEmail(props) {
         setLoading(true);
 
         let body = { email };
-            try {
-                await axios
-                    .put('/auth/changeEmail', body)
-                    props.userData();
-                    setSuccess(true);
-                    setLoading(false);
-                    // history.replace(`/Account/${user.username}`);
-            } catch (err) {
-                console.log(err);
-                setFailed(true);
+        try {
+            await axios
+                .put('/auth/changeEmail', body)
+                props.userData();
+                setSuccess(true);
                 setLoading(false);
-            }
+                // history.replace(`/Account/${user.username}`);
+        } catch (err) {
+            console.log(err);
+            setFailed(true);
+            setLoading(false);
+        }
 
         e.target.reset();
     }
@@ -54,9 +57,11 @@ function ChangeEmail(props) {
     const checkEmail = () => {
         if (email.includes('@' && '.')) {
             setEmailError('');
+            setValid(true);
             return;
         } else {
             setEmailError('*Invalid email address*')
+            setValid(false);
         }
     }
 
@@ -76,17 +81,28 @@ function ChangeEmail(props) {
                         onKeyUp={checkEmail}
                         required
                     />
-                    <button type='submit'>
-                        {
-                            loading
-                            ?
-                            <div className='change-loading'>
-                                <div></div><div></div><div></div><div></div>
-                            </div>
-                            :
-                            'Change'
-                        }
-                    </button>
+                    {
+                        valid
+                        ?
+                        <button type='submit'>
+                            {
+                                loading
+                                ?
+                                <div className='change-loading'>
+                                    <div></div><div></div><div></div><div></div>
+                                </div>
+                                :
+                                'Change'
+                            }
+                        </button>
+                        :
+                        <button
+                            style={{ opacity: '50%', cursor: 'initial' }}
+                            disabled
+                        >
+                            Change
+                        </button>
+                    }
                 </form>
             </div>
             {

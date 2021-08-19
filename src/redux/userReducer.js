@@ -5,9 +5,6 @@ const initialState = {
     user: {},
     pending: null,
     isLoggedIn: false,
-    accountDelete: false,
-    usernameChange: false,
-    emailChange: false
 };
 
 // ACTION TYPES

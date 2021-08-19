@@ -63,7 +63,7 @@ function Account(props) {
                     <div className='change'>
                         <h3 onClick={() => history.push('/ChangeUsername')}>Change Username</h3>
                         <h3 onClick={() => history.push('/ChangeEmail')}>Change Email</h3>
-                        {/* <h3 onClick={() => alert('Work in progress')}>Change Password</h3> */}
+                        <h3 onClick={() => history.push('/ChangePass')}>Change Password</h3>
                     </div>
                     <button onClick={() => setPopup(true)}>Delete Account</button>
                     {

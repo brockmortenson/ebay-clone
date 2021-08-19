@@ -1,8 +1,172 @@
 .ChangePass {
-    max-width: 1100px;
-    padding: 150px 30px;
-    margin:  0 auto;
-    overflow: auto;
-    background-color: rgb(255, 255, 255);
-    border-inline: 1px solid rgb(194, 194, 194);
+  max-width: 1100px;
+  min-height: 70vh;
+  padding: 150px 30px;
+  margin:  0 auto;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+  border-inline: 1px solid rgb(194, 194, 194);
+}
+
+.change-password-form > form > p {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  margin-bottom: -25px;
+}
+
+.change-password-form > span {
+  font-size: 30px;
+}
+  
+.change-password-form {
+  width: 75%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(194, 194, 194);
+  margin: 0 auto;
+  margin-top: 100px;
+  border-radius: 20px;
+  background-color: rgb(241, 241, 241);
+  transition: box-shadow 0.4s ease;
+}
+
+.change-password-form:hover {
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.15);
+}
+  
+.change-password-form > form {
+  width: 50%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+    
+.change-password-form > form > input {
+  width: 60%;
+  height: 30px;
+  padding-left: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 194, 194);
+}
+    
+.change-password-form > form > button {
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #396bf6;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+    
+.change-password-form > form > button:hover {
+  background-color: rgb(78, 196, 78);
+}
+
+.change-password-form > form > span {
+  margin-top: -20px;
+  color: #396bf6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.change-password-form > form > span:hover {
+  filter: drop-shadow(2px 2px 2px #959595);
+}
+  
+.change-password-form > section {
+  width: 96%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
+  
+.change-password-form > section > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #396bf6;
+  border-radius: 5px;
+  padding: 2px 5px 6px 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* the html arrow does not center so
+  I had to use odd padding */
+}
+  
+.change-password-form > section > p:hover {
+  background-color: rgb(78, 196, 78);
+}
+  
+  
+  
+/* LOADING */
+.change-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.change-loading div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  /* margin: 8px; */
+  border: 4px solid #fff;
+  border-radius: 50%;
+  animation: change-loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(255, 255, 255) transparent transparent transparent;
+}
+  
+.change-loading div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.change-loading div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.change-loading div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+  
+@keyframes change-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+  
+  
+  
+@media (max-width: 666px) {
+  .change-password-form > span {
+      text-align: center;
+  }
+    
+  .change-password-form {
+    width: 100%;
+  }
+  
+  .change-password-form > form {
+    width: 100%;
+  }
 }

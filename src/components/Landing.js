@@ -17,7 +17,7 @@ const Landing = (props) => {
     const [ save, setSave ] = useState(false);
     const [ added, setAdded ] = useState(false);
     const [ saved, setSaved ] = useState(false);
-
+    
     const loadingError1 = 'Unable to load window';
     const loadingError2 = 'This may be due to a poor internet connection';
 
@@ -174,6 +174,7 @@ const Landing = (props) => {
         setPage(!page)
         window.scroll(0,0)
     }
+
 
     // Loading Animation From 'loading.io'
 

@@ -32,19 +32,18 @@ function ChangeUsername(props) {
         setLoading(true);
 
         let body = { username };
-            try {
-                await axios
-                    .put('/auth/changeUsername', body)
-                    // history.replace(`/Account/${user.username}`);
-                    props.userData();
-                    setSuccess(true);
-                    setUsername('');
-                    setLoading(false);
-            } catch (err) {
-                console.log(err);
-                setFailed(true);
+        try {
+            await axios
+                .put('/auth/changeUsername', body)
+                // history.replace(`/Account/${user.username}`);
+                props.userData();
+                setSuccess(true);
                 setLoading(false);
-            }
+        } catch (err) {
+            console.log(err);
+            setFailed(true);
+            setLoading(false);
+        }
 
         e.target.reset();
     }
