@@ -86,7 +86,7 @@
   justify-content: center;
   background-color: #396bf6;
   border-radius: 5px;
-  padding: 2px 5px 6px 5px;
+  padding: 10px 10px 10px 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   /* the html arrow does not center so
@@ -100,6 +100,7 @@
 @media (max-width: 666px) {
   .change-email-form > span {
       text-align: center;
+      font-size: 24px;
   }
   
   .change-email-form {

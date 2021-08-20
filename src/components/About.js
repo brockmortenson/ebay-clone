@@ -9,7 +9,7 @@ function About() {
             <div>
                 <section>
                     <div>
-                        SGGE is a web application developed by Brock Mortenson. There is no actual use for this website as it is only for show. The products show throughout the website are being brought from the
+                        SGGE is a web application developed by Brock Mortenson. There is no actual use for this website as it is only for show. The products shown throughout the website are being brought from the
                         <a
                             href='https://fakestoreapi.com/'
                             rel='noreferrer'

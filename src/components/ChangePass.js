@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { userData, updateUser } from '../redux/userReducer';
 import '../styles/changePass.css';
 
@@ -21,6 +21,7 @@ function ChangePass(props) {
     const [ loading, setLoading ] = useState(false);
 
     const history = useHistory();
+
 
     const popup = () => {
         setTimeout(() => {
@@ -64,7 +65,7 @@ function ChangePass(props) {
         <div className='ChangePass'>
             <div className='change-password-form'>
                 <section>
-                    <p onClick={() => history.goBack()}>&#8678;</p>
+                    <p onClick={() => history.goBack()}><i className='arrow'></i></p>
                 </section>
                 <span>Change your password</span>
                 <form onSubmit={changePassword}>

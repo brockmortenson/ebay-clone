@@ -35,7 +35,6 @@ function ChangeUsername(props) {
         try {
             await axios
                 .put('/auth/changeUsername', body)
-                // history.replace(`/Account/${user.username}`);
                 props.userData();
                 setSuccess(true);
                 setLoading(false);
@@ -52,7 +51,7 @@ function ChangeUsername(props) {
         <div className='ChangeUsername'>
             <div className='change-username-form'>
                 <section>
-                    <p onClick={() => history.goBack()}>&#8678;</p>
+                    <p onClick={() => history.goBack()}><i className='arrow'></i></p>
                 </section>
                 <span>Change your username</span>
                 <form onSubmit={changeUsername}>

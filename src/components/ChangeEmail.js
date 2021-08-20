@@ -44,7 +44,6 @@ function ChangeEmail(props) {
                 props.userData();
                 setSuccess(true);
                 setLoading(false);
-                // history.replace(`/Account/${user.username}`);
         } catch (err) {
             console.log(err);
             setFailed(true);
@@ -69,7 +68,7 @@ function ChangeEmail(props) {
         <div className='ChangeEmail'>
             <div className='change-email-form'>
                 <section>
-                    <p onClick={() => history.goBack()}>&#8678;</p>
+                    <p onClick={() => history.goBack()}><i className='arrow'></i></p>
                 </section>
                 <span>Change your email</span>
                 <form onSubmit={changeEmail}>

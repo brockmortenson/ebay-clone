@@ -97,7 +97,7 @@
   justify-content: center;
   background-color: #396bf6;
   border-radius: 5px;
-  padding: 2px 5px 6px 5px;
+  padding: 10px 10px 10px 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   /* the html arrow does not center so
@@ -106,6 +106,16 @@
   
 .change-password-form > section > p:hover {
   background-color: rgb(78, 196, 78);
+}
+
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
   
   
@@ -160,6 +170,7 @@
 @media (max-width: 666px) {
   .change-password-form > span {
       text-align: center;
+      font-size: 24px;
   }
     
   .change-password-form {

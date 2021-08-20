@@ -6,21 +6,24 @@ import axios from 'axios';
 import '../styles/account.css';
 
 function Account(props) {
-
-    const history = useHistory();
-
     const [ popup, setPopup ] = useState(false);
-
+    
     const [ birthday, setBirthday ] = useState('');
     const [ createdOn, setCreatedOn ] = useState('');
+    
+    const history = useHistory();
     
     let user = props.user.user
 
     useEffect(() => {
-        setPopup(false);
-        setBirthday(user.birthday.substring(0, 10));
-        setCreatedOn(user.created_on.substring(0, 10));
-    }, [user.birthday, user.created_on])
+        if (!props.user.isLoggedIn) {
+            history.replace('/');
+        } else {
+            setPopup(false);
+            setBirthday(user.birthday.substring(0, 10));
+            setCreatedOn(user.created_on.substring(0, 10));
+        }
+    }, [user.birthday, user.created_on, props.user.isLoggedIn])
 
     const deleteAccount = async (e) => {
         e.preventDefault();
