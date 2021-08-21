@@ -78,7 +78,7 @@ function ProductView(props) {
     return (
         <div className='ProductView'>
             <section>
-                <p onClick={() => history.goBack()}>&#8678;</p>
+                <p onClick={() => history.goBack()}><i className='arrow'></i></p>
             </section>
             {
                 !isLoaded
