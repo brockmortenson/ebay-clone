@@ -50,14 +50,6 @@ function Cart(props) {
             <p>YOUR CART</p>
             <button onClick={handleEmpty}>Empty cart</button>
             <div className='cart-view'>
-                {/* {
-                    props.cart.cart.map((item) => {
-                        if (item.id === item.id) {
-                            props.cart.cart.splice(item)
-                        }
-                        return <CartItem key={item.id} itemData={item} />
-                    })
-                } */}
                 <CartItem />
                 <section>
                     <h2>Cart Totals</h2>
@@ -96,9 +88,9 @@ function Cart(props) {
                         }
                         <div>
                             Note: Enter your card information as seen below to imitate a successful checkout
-                            <p>Card Number: '4242 4242 4242 4242'</p>
-                            <p>Expiration date: '04/24'</p>
-                            <p>CVC: '424'</p>
+                            <p>Card Number: "4242 4242 4242 4242"</p>
+                            <p>Expiration date: "04/24"</p>
+                            <p>CVC: "424"</p>
                         </div>
                     </div>
                 </section>

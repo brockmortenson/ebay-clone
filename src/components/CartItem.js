@@ -6,36 +6,25 @@ import { useHistory } from 'react-router-dom';
 import '../styles/cartItem.css';
 
 function CartItem(props) {
-    // const [ itemCount, setItemCount ] = useState(0);
 
     const history = useHistory();
     
     const mappedCart = props.cart.cart.map((item, index) => {
         const handlePush = () => history.push(`/ProductView/${item.id}`)
-        // if (props.cart.cart.id === props.cart.cart.id) {
-        //     props.cart.cart.splice(props.cart.cart.id, 1)
-        //     console.log('IF', props.cart.cart)
-        // }
 
         return (
             <div key={index} className='cart-items'>
-                <div>
+                <div onClick={handlePush}>
                     <img
                         id='cart-img'
                         src={item.image}
                         alt={item.title}
-                        onClick={handlePush}
                     />
-                    <div onClick={handlePush}>
+                    <div>
                         <p>{item.title}</p>
                     </div>
                     <div>${item.price}</div>
                 </div>
-                {/* <div>
-                    <button onClick={() => alert('Work in progress')}><p>-</p></button>
-                    <span>{itemCount}</span>
-                    <button onClick={increment}><p>+</p></button>
-                </div> */}
                 <br />
                 <button onClick={() => props.removeFromCart(item)}>Remove</button>
             </div>

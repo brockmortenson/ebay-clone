@@ -60,7 +60,10 @@ function NavOne(props) {
                 onMouseEnter={ () => setName('open') }
                 onMouseLeave={ () => setName('closed') }
             >
-                Hi, {newUser} &#11167;
+                <section>
+                    <span>Hi, {newUser}</span>
+                    <p><i className='arrow2'></i></p>
+                </section>
                 {
                     !props.open
                     ?

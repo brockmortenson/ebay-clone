@@ -17,6 +17,10 @@ function Electronics(props) {
     const [ added, setAdded ] = useState(false);
     const [ saved, setSaved ] = useState(false);
 
+    // BOOLEAN FOR ALREADY SAVED/IN CART
+    const [ inCart, setInCart ] = useState(false);
+    const [ inSaved, setInSaved ] = useState(false);
+
     const history = useHistory();
 
     const loadingError1 = 'Unable to load window';
@@ -26,27 +30,33 @@ function Electronics(props) {
         axios
             .get('https://fakestoreapi.com/products/category/electronics')
             .then(res => {
-                // console.log(res.data)
-                setProducts(res.data)
-                setIsLoaded(true)
+                setProducts(res.data);
+                setIsLoaded(true);
             })
             .catch(err => {
-                console.log(err)
-                setLoadError(true)
+                console.log(err);
+                setLoadError(true);
             })
     }, [])
 
     const addSuccess = () => {
         setTimeout(() => {
-            setAdded(false)
-            setSaved(false)
+            setAdded(false);
+            setSaved(false);
         }, 2000);
     }
 
     const addFail = () => {
         setTimeout(() => {
-            setUser(false)
-            setSave(false)
+            setUser(false);
+            setSave(false);
+        }, 2000)
+    }
+
+    const addedOrSaved = () => {
+        setTimeout(() => {
+            setInCart(false);
+            setInSaved(false);
         }, 2000)
     }
 
@@ -56,32 +66,42 @@ function Electronics(props) {
         const handleCart = (e) => {
             e.preventDefault();
     
-            setAdded(false)
-            
-            if (!loggedIn) {
-                setUser(true)
-                addFail();
+            setAdded(false);
+
+            if (!props.cart.cart.includes(product)) {
+                if (!loggedIn) {
+                    setUser(true);
+                    addFail();
+                } else {
+                    setUser(false);
+                    props.addToCart(product);
+                    setAdded(true);
+                    addSuccess();
+                }
             } else {
-                setUser(false)
-                props.addToCart(product)
-                setAdded(true)
-                addSuccess();
+                setInCart(true);
+                addedOrSaved();
             }
         }
         
         const handleSave = (e) => {
             e.preventDefault();
 
-            setSaved(false)
+            setSaved(false);
 
-            if (!loggedIn) {
-                setSave(true)
-                addFail();
+            if (!props.saved.saved.includes(product)) {
+                if (!loggedIn) {
+                    setSave(true);
+                    addFail();
+                } else {
+                    setSave(false);
+                    props.addToSaved(product);
+                    setSaved(true);
+                    addSuccess();
+                }
             } else {
-                setSave(false)
-                props.addToSaved(product)
-                setSaved(true)
-                addSuccess();
+                setInSaved(true);
+                addedOrSaved();
             }
         }
         
@@ -144,6 +164,28 @@ function Electronics(props) {
                     <div className='failed'>
                         <div>
                             <p>Login to save this item &#10060;</p>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    inSaved
+                    ?
+                    <div className='failed'>
+                        <div>
+                            <p>You already saved this item &#10060;</p>
+                        </div>
+                    </div>
+                    :
+                    null
+                }
+                {
+                    inCart
+                    ?
+                    <div className='failed'>
+                        <div>
+                            <p>You already added this item to your cart &#10060;</p>
                         </div>
                     </div>
                     :

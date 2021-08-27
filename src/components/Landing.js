@@ -17,6 +17,10 @@ const Landing = (props) => {
     const [ save, setSave ] = useState(false);
     const [ added, setAdded ] = useState(false);
     const [ saved, setSaved ] = useState(false);
+
+    // BOOLEAN FOR ALREADY SAVED/IN CART
+    const [ inCart, setInCart ] = useState(false);
+    const [ inSaved, setInSaved ] = useState(false);
     
     const loadingError1 = 'Unable to load window';
     const loadingError2 = 'This may be due to a poor internet connection';
@@ -27,28 +31,33 @@ const Landing = (props) => {
         axios
             .get('https://fakestoreapi.com/products')
             .then(res => {
-                // console.log(res.data)
-                setProducts(res.data)
-                setIsLoaded(true)
+                setProducts(res.data);
+                setIsLoaded(true);
             })
             .catch(err => {
-                console.log(err)
-                setLoadError(true)
+                console.log(err);
+                setLoadError(true);
             })
-            // console.log(props)
     }, [])
 
     const addSuccess = () => {
         setTimeout(() => {
-            setAdded(false)
-            setSaved(false)
+            setAdded(false);
+            setSaved(false);
         }, 2000);
     }
 
     const addFail = () => {
         setTimeout(() => {
-            setUser(false)
-            setSave(false)
+            setUser(false);
+            setSave(false);
+        }, 2000)
+    }
+
+    const addedOrSaved = () => {
+        setTimeout(() => {
+            setInCart(false);
+            setInSaved(false);
         }, 2000)
     }
 
@@ -58,32 +67,42 @@ const Landing = (props) => {
         const handleCart = (e) => {
             e.preventDefault();
 
-            setAdded(false)
-    
-            if (!loggedIn) {
-                setUser(true)
-                addFail();
+            setAdded(false);
+            
+            if (!props.cart.cart.includes(product)) {
+                if (!loggedIn) {
+                    setUser(true);
+                    addFail();
+                } else {
+                    setUser(false);
+                    props.addToCart(product);
+                    setAdded(true);
+                    addSuccess();
+                }
             } else {
-                setUser(false)
-                props.addToCart(product)
-                setAdded(true)
-                addSuccess();
+                setInCart(true);
+                addedOrSaved();
             }
         }
 
         const handleSave = (e) => {
             e.preventDefault();
 
-            setSaved(false)
-            
-            if (!loggedIn) {
-                setSave(true)
-                addFail();
+            setSaved(false);
+
+            if (!props.saved.saved.includes(product)) {
+                if (!loggedIn) {
+                    setSave(true);
+                    addFail();
+                } else {
+                    setSave(false);
+                    props.addToSaved(product);
+                    setSaved(true);
+                    addSuccess();
+                }
             } else {
-                setSave(false)
-                props.addToSaved(product)
-                setSaved(true)
-                addSuccess();
+                setInSaved(true);
+                addedOrSaved();
             }
         }
         
@@ -116,32 +135,42 @@ const Landing = (props) => {
         const handleCart = (e) => {
             e.preventDefault();
 
-            setAdded(false)
+            setAdded(false);
     
-            if (!loggedIn) {
-                setUser(true)
-                addFail();
+            if (!props.cart.cart.includes(product)) {
+                if (!loggedIn) {
+                    setUser(true);
+                    addFail();
+                } else {
+                    setUser(false);
+                    props.addToCart(product);
+                    setAdded(true);
+                    addSuccess();
+                }
             } else {
-                setUser(false)
-                props.addToCart(product)
-                setAdded(true)
-                addSuccess();
+                setInCart(true);
+                addedOrSaved();
             }
         }
 
         const handleSave = (e) => {
             e.preventDefault();
 
-            setSaved(false)
+            setSaved(false);
 
-            if (!loggedIn) {
-                setSave(true)
-                addFail();
+            if (!props.saved.saved.includes(product)) {
+                if (!loggedIn) {
+                    setSave(true);
+                    addFail();
+                } else {
+                    setSave(false);
+                    props.addToSaved(product);
+                    setSaved(true);
+                    addSuccess();
+                }
             } else {
-                setSave(false)
-                props.addToSaved(product)
-                setSaved(true)
-                addSuccess();
+                setInSaved(true);
+                addedOrSaved();
             }
         }
         
@@ -204,7 +233,9 @@ const Landing = (props) => {
                         isLoaded
                         ?
                         <div className='btn'>
-                            <button onClick={handleClick}>Next Page &#11166;</button>
+                            <button onClick={handleClick}>
+                                <p>Next Page<i className='arrow1' style={{ marginLeft: '10px' }}></i></p>
+                            </button>
                         </div>
                         :
                         null
@@ -226,6 +257,28 @@ const Landing = (props) => {
                         <div className='failed'>
                             <div>
                                 <p>Login to save this item &#10060;</p>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        inSaved
+                        ?
+                        <div className='failed'>
+                            <div>
+                                <p>You already saved this item &#10060;</p>
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        inCart
+                        ?
+                        <div className='failed'>
+                            <div>
+                                <p>You already added this item to your cart &#10060;</p>
                             </div>
                         </div>
                         :
@@ -261,7 +314,9 @@ const Landing = (props) => {
                         isLoaded
                         ?
                         <div className='btn'>
-                            <button onClick={handleClick} style={{ textDecoration: 'none' }}>&#11164; Previous Page</button>
+                            <button onClick={handleClick} style={{ textDecoration: 'none' }}>
+                                <p><i className='arrow' style={{ marginRight: '10px' }}></i>Previous Page</p>
+                            </button>
                         </div>
                         :
                         null

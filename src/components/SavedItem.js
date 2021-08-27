@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import '../styles/savedItem.css';
 
 function SavedItem(props) {
-    console.log(props)
 
     const history = useHistory();
 
