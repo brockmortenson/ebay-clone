@@ -20,15 +20,19 @@ function ProductView(props) {
     const [ save, setSave ] = useState(false);
     const [ added, setAdded ] = useState(false);
     const [ saved, setSaved ] = useState(false);
+
+    // BOOLEAN FOR ALREADY SAVED/IN CART
+    const [ inCart, setInCart ] = useState(false);
+    const [ inSaved, setInSaved ] = useState(false);
     
-    let id = props.match.params.id
+    let id = props.match.params.id;
 
     useEffect(() => {
         axios
             .get(`https://fakestoreapi.com/products/${id}`)
             .then(res => {
-                setItem(res.data)
-                setIsLoaded(true)
+                setItem(res.data);
+                setIsLoaded(true);
             })
     }, [id]);
 
@@ -37,42 +41,59 @@ function ProductView(props) {
     const handleCart = (e) => {
         e.preventDefault();
 
-        setSave(false)
+        setSave(false);
 
-        setAdded(false)
+        setAdded(false);
         
-        if (!loggedIn) {
-            setUser(true)
+        if (!props.cart.cart.includes(item)) {
+            if (!loggedIn) {
+                setUser(true);
+            } else {
+                setUser(false);
+                props.addToCart(item);
+                setAdded(true);
+                addSuccess();
+            }
         } else {
-            setUser(false)
-            props.addToCart(item)
-            setAdded(true)
-            addSuccess();
+            setInCart(true);
+            addedOrSaved();
         }
     }
 
     const handleSave = (e) => {
         e.preventDefault();
         
-        setUser(false)
+        setUser(false);
 
-        setSaved(false)
+        setSaved(false);
         
-        if (!loggedIn) {
-            setSave(true)
+        if (!props.saved.saved.includes(item)) {
+            if (!loggedIn) {
+                setSave(true);
+            } else {
+                setSave(false);
+                props.addToSaved(item);
+                setSaved(true);
+                addSuccess();
+            }
         } else {
-            setSave(false)
-            props.addToSaved(item)
-            setSaved(true)
-            addSuccess();
+            setInSaved(true);
+            addedOrSaved();
         }
     }
 
     const addSuccess = () => {
         setTimeout(() => {
-            setAdded(false)
-            setSaved(false)
+            setAdded(false);
+            setSaved(false);
         }, 2000);
+    }
+
+    const addedOrSaved = () => {
+        setTimeout(() => {
+            setInCart(false);
+            setInSaved(false);
+        }, 2000)
     }
 
     return (
@@ -136,6 +157,28 @@ function ProductView(props) {
                                         <p onClick={() => history.push('/Login')}>Login</p>
                                         to be able to save this item
                                     </span>
+                                </div>
+                                :
+                                null
+                            }
+                            {
+                                inSaved
+                                ?
+                                <div className='failed'>
+                                    <div>
+                                        <p>You already saved this item &#10060;</p>
+                                    </div>
+                                </div>
+                                :
+                                null
+                            }
+                            {
+                                inCart
+                                ?
+                                <div className='failed'>
+                                    <div>
+                                        <p>You already added this item to your cart &#10060;</p>
+                                    </div>
                                 </div>
                                 :
                                 null
