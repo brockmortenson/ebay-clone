@@ -46,14 +46,14 @@ function ProductView(props) {
         setAdded(false);
         
         if (!props.cart.cart.includes(item)) {
-            if (!loggedIn) {
-                setUser(true);
-            } else {
+            // if (!loggedIn) {
+            //     setUser(true);
+            // } else {
                 setUser(false);
                 props.addToCart(item);
                 setAdded(true);
                 addSuccess();
-            }
+            // }
         } else {
             setInCart(true);
             addedOrSaved();
@@ -68,14 +68,14 @@ function ProductView(props) {
         setSaved(false);
         
         if (!props.saved.saved.includes(item)) {
-            if (!loggedIn) {
-                setSave(true);
-            } else {
+            // if (!loggedIn) {
+            //     setSave(true);
+            // } else {
                 setSave(false);
                 props.addToSaved(item);
                 setSaved(true);
                 addSuccess();
-            }
+            // }
         } else {
             setInSaved(true);
             addedOrSaved();

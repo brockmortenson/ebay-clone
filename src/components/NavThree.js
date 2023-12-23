@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import '../styles/navThree.css';
 
 function NavThree() {
@@ -52,7 +52,7 @@ function NavThree() {
 
     return (
         <div className='NavThree'>
-            <Link
+            {/* <Link
                 to='/'
                 onClick={handleHome}
                 name='home'
@@ -60,7 +60,12 @@ function NavThree() {
                 style={{ textDecoration: 'none' }}
             >
                 Home
-            </Link>
+            </Link> */}
+            <NavLink
+                to='/'
+                onClick={handleHome}
+                name='home'
+                activeClassName='active'>Home</NavLink>
             <Link
                 to='/Electronics'
                 onClick={handleElec}
@@ -91,7 +96,6 @@ function NavThree() {
             <Link
                 to='/Jewelry'
                 onClick={handleJewelry}
-                style={{ textDecoration: 'none' }}
                 name='jewelry'
                 className={name5}
                 style={{ textDecoration: 'none' }}

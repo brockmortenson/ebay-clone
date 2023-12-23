@@ -69,15 +69,15 @@ function Electronics(props) {
             setAdded(false);
 
             if (!props.cart.cart.includes(product)) {
-                if (!loggedIn) {
-                    setUser(true);
-                    addFail();
-                } else {
+                // if (!loggedIn) {
+                //     setUser(true);
+                //     addFail();
+                // } else {
                     setUser(false);
                     props.addToCart(product);
                     setAdded(true);
                     addSuccess();
-                }
+                // }
             } else {
                 setInCart(true);
                 addedOrSaved();
@@ -90,15 +90,15 @@ function Electronics(props) {
             setSaved(false);
 
             if (!props.saved.saved.includes(product)) {
-                if (!loggedIn) {
-                    setSave(true);
-                    addFail();
-                } else {
+                // if (!loggedIn) {
+                //     setSave(true);
+                //     addFail();
+                // } else {
                     setSave(false);
                     props.addToSaved(product);
                     setSaved(true);
                     addSuccess();
-                }
+                // }
             } else {
                 setInSaved(true);
                 addedOrSaved();

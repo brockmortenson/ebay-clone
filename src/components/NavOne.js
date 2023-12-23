@@ -80,8 +80,8 @@ function NavOne(props) {
                 }
             </div>
             :
-            <div>Hi! {' '}
-                <Link
+            <div>Welcome to SGGE!
+                {/* <Link
                     to='/Login'
                     className='auth'
                     style={{ textDecoration: 'none' }}
@@ -95,7 +95,7 @@ function NavOne(props) {
                     style={{ textDecoration: 'none' }}
                 >
                     Register
-                </Link>
+                </Link> */}
             </div>
             }
             {

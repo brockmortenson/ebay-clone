@@ -22,23 +22,23 @@ function Header(props) {
     let currentUser = props.user.user;
     
     const handleAccount = () => {
-        if (loggedIn) {
+        // if (loggedIn) {
             history.push(`/Account/${currentUser.username}`)
-        }
+        // }
     }
 
     const handleCart = () => {
-        if (loggedIn) {
+        // if (loggedIn) {
             history.push('/Cart')
             setCart(false)
-        }
+        // }
     }
 
     const handleItems = () => {
-        if (loggedIn) {
+        // if (loggedIn) {
             history.push('/SavedItems')
             setItems(false)
-        }
+        // }
     }
 
     const loggedInAccount = () => {
@@ -50,19 +50,19 @@ function Header(props) {
     }
 
     const loggedInCart = () => {
-        if (!loggedIn) {
-            setCart(true)
-        } else {
+        // if (!loggedIn) {
+        //     setCart(true)
+        // } else {
             setCart(false)
-        }
+        // }
     }
 
     const loggedInItems = () => {
-        if (!loggedIn) {
-            setItems(true)
-        } else {
+        // if (!loggedIn) {
+        //     setItems(true)
+        // } else {
             setItems(false)
-        }
+        // }
     }
 
     const handleOpen = () => {
@@ -108,7 +108,7 @@ function Header(props) {
                                 null
                             }
                         </div>
-                        <div
+                        {/* <div
                             onClick={handleAccount}
                             onMouseEnter={loggedInAccount}
                             onMouseLeave={() => setName(false)}
@@ -121,13 +121,13 @@ function Header(props) {
                                 :
                                 null
                             }
-                        </div>
+                        </div> */}
                         <div
                             onClick={handleCart}
                             onMouseEnter={loggedInCart}
                             onMouseLeave={() => setCart(false)}
                         >
-                            <div>
+                            <div className='cart'>
                                 <img src={cartImg} alt='cart' />
                                 <p>{props.cart.cartCount}</p>
                             </div>

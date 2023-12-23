@@ -57,7 +57,12 @@
     height: 23px;
     padding-bottom: 1px;
     margin-bottom: 1px;
+    margin-right: 2px;
     cursor: pointer;
+}
+
+.cart {
+    display: flex;
 }
 
 .nav-one-group-two > div {

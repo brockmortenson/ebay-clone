@@ -21,6 +21,10 @@
     color: #396bf6;
 }
 
+.active {
+    color: green;
+}
+
 @media (max-width: 666px) {
     .NavThree {
         width: 70%;
